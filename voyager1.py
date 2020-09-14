@@ -1,0 +1,10 @@
+days = input()
+days_float = float(days)
+miles = round(16637000000 + (days_float * ((38241 * 24))))
+km = round(26774656128 + (days_float * ((61542.9239 * 24))))
+au = round(179 + (days_float / 100))
+
+print("Number of days after 9/25/09: "), str(days)
+print("Miles from the sun: " + str(miles))
+print("Kilometers from the sun: " + str(km))
+print("AU from the sun: " + str(au))
