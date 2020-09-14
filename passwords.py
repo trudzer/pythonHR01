@@ -2,7 +2,7 @@
 password = input
 valid_tries = 0
 invalid_tries = 0
-tries = -1
+tries = 0
 lower = 0
 upper = 0
 digit = 0
@@ -30,7 +30,8 @@ while password != "q":
   elif password != "q":
     print("Invalid length")
     invalid_tries +=1
-  tries += 1
+  if password != "q":
+    tries += 1
   lower = 0
   upper = 0
   digit = 0
