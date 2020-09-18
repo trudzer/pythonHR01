@@ -1,4 +1,5 @@
 #Úlfur Ingólfsson 18/09/2020
+#https://github.com/trudzer/pythonHR01/blob/master/TileTraveller.py
 post1 = 1
 post2 = 1
 print("You can travel: (N)orth.")
