@@ -63,10 +63,5 @@ try:
         median(mainList)
         file_object.close()
         print()
-        check = True
 except FileNotFoundError:
-    check = False
-    if check == False:
         print("File", i, "not found")
-    else:
-        check = True
