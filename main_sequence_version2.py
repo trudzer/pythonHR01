@@ -1,5 +1,5 @@
 #Úlfur Ingólfsson 28/09/2020
-import sequence_analysis as fl
+import sequence_analysis_version2 as fl
 
 file_name = input("Enter filenames: \n")
 file_name = file_name.split()
