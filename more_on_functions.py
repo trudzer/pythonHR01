@@ -91,14 +91,17 @@ def theList(int_list, check_list):
     else:
         print(False)
 
-try:
-    int_list = input("Enter elements of list separated by commas: ").strip().split(',')
-    for i in int_list:
-        i = int(i)
-    check_list = input("Consecutive check: ")
-    theList(int_list, check_list)
-except ValueError:
-    print("Error: enter only integers.")
+def main():
+    try:
+        int_list = input("Enter elements of list separated by commas: ").strip().split(',')
+        for i in int_list:
+            i = int(i)
+        check_list = input("Consecutive check: ")
+        theList(int_list, check_list)
+    except ValueError:
+        print("Error: enter only integers.")
+
+main()
 
 print()
 print("------------------------------------------------------------------------------------------------------")
