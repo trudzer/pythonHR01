@@ -132,7 +132,6 @@ def list_to_int(theList):
         newList.append(i)
     return newList
         
-# The main program starts here
 def lists(theList):
     primeList = []
     newList = []
@@ -147,6 +146,7 @@ def lists(theList):
     print("Prime list:", primeList)
     print("Min:", min(theList), " Max:", max(theList), " Average:", round(average(theList),2))
 
+# The main program starts here
 theList = input("Enter integers separated with commas: ").split(',')
 newList = list_to_int(theList)
 lists(newList)
