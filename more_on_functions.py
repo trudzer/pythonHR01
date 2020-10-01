@@ -93,7 +93,7 @@ def theList(int_list, check_list):
 
 def main():
     try:
-        int_list = input("Enter elements of list separated by commas: ").strip().split(',')
+        int_list = input("Enter elements of list separated by commas: ").split(',')
         for i in int_list:
             i = int(i)
         check_list = input("Consecutive check: ")
@@ -147,6 +147,6 @@ def lists(theList):
     print("Prime list:", primeList)
     print("Min:", min(theList), " Max:", max(theList), " Average:", round(average(theList),2))
 
-theList = input("Enter integers separated with commas: ").strip().split(',')
+theList = input("Enter integers separated with commas: ").split(',')
 newList = list_to_int(theList)
 lists(newList)
