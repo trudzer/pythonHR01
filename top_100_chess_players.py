@@ -101,13 +101,9 @@ def main():
 
     if file_stream:
         player_dict = create_player_dict(file_stream)
-
         country_dict = create_country_dict(player_dict)
-
         byear_dict = create_byear_dict(player_dict)
-
         print_sorted(country_dict, player_dict)
-
         print_sorted_byear(byear_dict, player_dict)
 
 if __name__ == "__main__":
