@@ -18,7 +18,7 @@ print(score)    # 5
 score.decrease(10)
 print(score)    # -5
 
-----------------------------------------------------------
+#----------------------------------------------------------
 
 class Sentence(object):
     def __init__(self, sentence=""):
