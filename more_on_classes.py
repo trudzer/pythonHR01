@@ -21,7 +21,7 @@ print(pair3)          # Value 1: 60, Value 2: 80
 -------------------------------------------------------------------------------------
 
 class MyString():
-    def __init__(self, sentence):
+    def __init__(self, sentence=""):
         self.sentence = sentence
 
     def __repr__(self):
