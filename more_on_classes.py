@@ -104,10 +104,10 @@ class CashRegister():
         return self.counter
 
     def get_total(self):
-        return self.balance
+        return round(self.balance, 2)
 
     def get_total_with_tax(self):
-      return self.balancetaxed + self.balance
+        return round((self.balancetaxed + self.balance), 2)
 
     def clear(self):
         self.balance = 0
