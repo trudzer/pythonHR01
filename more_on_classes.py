@@ -1,3 +1,4 @@
+  
 class Pair():
     def __init__(self, val1=0, val2=0):
         self.val1 = val1
@@ -51,9 +52,9 @@ class Rectangle():
         self.val1 = val1
         self.val2 = val2
         if self.val1 < 0:
-          self.val1 = 1
+           self.val1 = 1
         if self.val2 < 0:
-          self.val2 = 1
+           self.val2 = 1
 
     def __repr__(self):
         return "Rectangle({},{})".format(self.val1, self.val2)
@@ -68,9 +69,9 @@ class Rectangle():
         return 2*self.val2 + 2*self.val1
 
     def __eq__(self, other):
-      rec1 = self.val1 * self.val2
-      rec2 = other.val2 * other.val1
-      return rec1 == rec2
+        rec1 = self.val1 * self.val2
+        rec2 = other.val2 * other.val1
+        return rec1 == rec2
       
 rec1 = Rectangle()
 rec2 = Rectangle(2,3)
@@ -92,13 +93,13 @@ class CashRegister():
     def add_item(self, cost, tax):
         self.cost = cost
         if tax == True:
-          self.balance += self.cost
-          self.cost = self.cost * (self.taxes * 0.01)
-          self.balancetaxed += self.cost
-          self.counter += 1
+           self.balance += self.cost
+           self.cost = self.cost * (self.taxes * 0.01)
+           self.balancetaxed += self.cost
+           self.counter += 1
         else:
-          self.balance += self.cost
-          self.counter += 1
+           self.balance += self.cost
+           self.counter += 1
     
     def get_count(self):
         return self.counter
