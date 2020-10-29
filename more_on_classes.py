@@ -168,25 +168,25 @@ sav2 = SavingsAccount(2000)
 deb2 = DebitAccount(4000)
 
 accounts = [sav1, deb1, sav2, deb2]
-print_accounts(accounts)            # Balance: 1000.00
+print_accounts(accounts)          # Balance: 1000.00
                                   # Balance: 1000.00
                                   # Balance: 2000.00
                                   # Balance: 4000.00
 update_accounts(accounts)
 
-print_accounts(accounts)            # Balance: 1150.00
+print_accounts(accounts)          # Balance: 1150.00
                                   # Balance: 1020.00
                                   # Balance: 2300.00
                                   # Balance: 4080.00
 update_accounts(accounts)
 
-print_accounts(accounts)            # Balance: 1322.50
+print_accounts(accounts)          # Balance: 1322.50
                                   # Balance: 1040.40
                                   # Balance: 2645.00
                                   # Balance: 4161.60
 update_accounts(accounts)
 
-print_accounts(accounts)            # Balance: 1520.88
+print_accounts(accounts)          # Balance: 1520.88
                                   # Balance: 1061.21
                                   # Balance: 3041.75
                                   # Balance: 4244.83
