@@ -48,9 +48,8 @@ def createList(theList):
         numbers = []
         for j in i.split():
             number = ""
-            for n in j:
-                number += n
-                numbers.append(number)
+            number += j
+            numbers.append(number)
         newList.append(numbers)
     return newList
 
@@ -61,30 +60,39 @@ def findReplace(list, numbers):
     for i in numbers:
         i = int(i)
         numbersList.append(i)
-    if numbersList[0] < 0 or numbersList[0] > 40 and numbersList[1] < 0 or numbersList[1] > 40 and numbersList[2] < 0 or numbersList[2] > 40 and numbersList[3] < 0 or numbersList[3] > 40 and numbersList[4] < 0 or numbersList[4] > 40:
-        if numbers[0].isdigit() and numbers[1].isdigit() and numbers[2].isdigit() and numbers[3].isdigit() and numbers[4].isdigit():
-            for i in (list):
-                for j in i: 
-                    if j == numbers[0] or j == numbers[1] or j == numbers[2] or j == numbers[3] or j == numbers[4]:
-                        j = j+"*"
-                    newList.append(j)
-                    count += 1
-                    print("{}".format(j), end=" ")
-                    if count % 5 == 0:
-                        print()
-                        count = 0
+    try:
+        if len(numbers) == 5:
+            if numbers[0].isnumeric() and numbers[1].isnumeric() and numbers[2].isnumeric() and numbers[3].isnumeric() and numbers[4].isnumeric():
+                if (numbersList[0] >= 1 and numbersList[0] <= 40) and (numbersList[1] >= 1 and numbersList[1] <= 40) and (numbersList[2] >= 1 and numbersList[2] <= 40) and (numbersList[3] >= 1 and numbersList[3] <= 40) and (numbersList[4] >= 1 and numbersList[4] <= 40):
+                    for i in (list):
+                        for j in i: 
+                            if j == numbers[0] or j == numbers[1] or j == numbers[2] or j == numbers[3] or j == numbers[4]:
+                                j = j+"*"
+                            newList.append(j)
+                            count += 1
+                            print("{}".format(j), end=" ")
+                            if count % 5 == 0:
+                                print()
+                                count = 0
+                else:
+                    print("Winning numbers are invalid!")
+            else:
+                print("Winning numbers are invalid!")
         else:
             print("Winning numbers are invalid!")
-    else:
-        print("Winning numbers are invalid!")
+    except(ValueError, TypeError, AttributeError):
+        print("Winning numbers are invalid")
 
 file_name = input("Enter file name: ")
 try:
     file_object = open_file(file_name)
     mainList = createList(file_object)
     numbers = input("Enter winning numbers: ").split(" ")
-    findReplace(mainList,numbers)
+    try:
+        findReplace(mainList,numbers)
+    except(ValueError):
+        print("Winning numbers are invalid!")
     file_object.close()
 
-except (FileNotFoundError):
+except (TypeError):
     print("File", file_name, "not found!")
