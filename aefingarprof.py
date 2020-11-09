@@ -4,7 +4,6 @@ DASH_2 = 5
 DASH_3 = 11
 isbn = input
 
-
 while isbn != "q".lower():
     isbn = input("Enter an ISBN: ").strip()
     if len(isbn) == NUMBERS:
@@ -32,7 +31,6 @@ while isbn != "q".lower():
             print("Invalid format!")
     elif isbn != "q".lower():
         print("Invalid format!")
-
 
 --------------------------------------------------------------------------------------------------------------------------------------
 
