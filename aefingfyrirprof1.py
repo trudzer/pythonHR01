@@ -18,14 +18,10 @@ def print_student_list(student_dict):
         sorted_list = sorted(student_dict)
         current_value = 0
         max_value = 0
-        previous_value = 0
-        current_student = ""
         print("Student list:")
         for name in sorted_list:
-            previous_value = current_value
             current_value = (student_dict[name][3])
-            if current_value > previous_value:
-                if current_value != max_value:
+            if current_value > max_value:
                     max_value = current_value
                     current_student = name
             
