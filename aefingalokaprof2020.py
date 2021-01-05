@@ -114,3 +114,52 @@ while pos_input != QUIT:
     display(the_board)
     pos_input = int(input())
     row, col = make_move(the_board, pos_input, row, col)
+
+#-----------------------------------------------------------------------------------------------
+
+class StringSet:
+    def __init__(self, sentence):
+        new_list = []
+        self.sentence = sentence
+        new_string = ""
+        for i in self.sentence.split(" "):
+            if i not in new_list:
+                new_list.append(i)
+
+        for i in new_list:
+            new_string += i + " "
+        self.sentence = new_string
+        
+
+    def __words(self):
+        word_list = []
+        for i in self.sentence.split(" "):
+            if i not in word_list:
+                word_list.append(i)
+        word_list.pop()
+        return word_list
+
+    def __str__(self):
+        return self.sentence
+
+    def __add__(self, other):
+        new_sentence = "{}{}".format(self.sentence, other.sentence)
+        return self.__class__(new_sentence)
+
+    def size(self):
+        count = 0
+        for i in self.__words():
+            count += 1
+
+        return count
+
+    def find(self, word):
+        if word in self.sentence:
+            return True
+        else:
+            return False
+
+    def at(self, position):
+        for i in self.__words():
+            if self.__words().index(i) == position:
+                return i
