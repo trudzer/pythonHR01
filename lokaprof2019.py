@@ -96,3 +96,76 @@ try:
 
 except (TypeError):
     print("File", file_name, "not found!")
+
+#------------------------------------------------------------------------------------------------------------------
+
+class Distribution:
+    
+    # You need to implement several methods here 
+
+    def __init__(self, distribution=""):
+        self.__distribution = distribution
+
+    #def __read_file(self, distribution):
+    #    distribution_dict = {}
+    #    first = 0
+    #    second = 0
+    #    third = 0
+    #    fourth = 0
+    #    fifth = 0
+    #    sixth = 0
+    #    for i in distribution:
+    #        if i == 1:
+    #            first += 1
+    #        if i == 2:
+    #            second += 1
+    #        if i == 3:
+    #            third += 1
+    #        if i == 4:
+    #            fourth += 1
+    #        if i == 5:
+    #            fifth += 1
+    #        if i == 6:
+    #            sixth += 1
+    #    return self.__class__(distribution_dict({1:first, 2:second, 3:third, 4:fourth, 5:fifth, 6:sixth}))
+
+
+    def set_distribution(self, distribution):
+        if distribution is not None:
+            self.__distribution = distribution
+    #    else:
+    #        self.__distribution = self.__read_file(distribution)
+        
+        
+
+    def average(self):
+        total = 0
+        length = 0
+        if len(self.__distribution) > 0:
+            for i in self.__distribution:
+                total += (self.__distribution[i] * i)
+                length += (1 * self.__distribution[i])
+            average = total / length
+            return average
+        else:
+            return 0
+
+    def __ge__(self, other):
+        if self.average() >= other.average():
+            return True
+        else:
+            return False
+
+    def __add__(self, other):
+        new_dict = {x: self.__distribution.get(x, 0) + other.__distribution.get(x, 0) for x in set(self.__distribution).union(other.__distribution)} 
+        return self.__class__(new_dict)
+
+
+    def __str__(self):
+        numbers = []
+        if len(self.__distribution) > 0:
+            for key, value in self.__distribution.items():
+                    numbers.append("{}: {}\n".format(key, value))
+        else:
+            return ""
+        return "".join(numbers)
