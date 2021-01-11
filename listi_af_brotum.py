@@ -6,7 +6,7 @@ def get_lists():
             position = (i,j)
             if hnit not in hnit_list:
                 hnit_list.append(hnit)
-                new_list.append(position)
+                brot_list.append(position)
 
 def get_average():
     '''reiknar meðaltal á tölum í lista'''
@@ -19,7 +19,7 @@ def get_average():
 def print_list():
     '''prentar út brotin sem eru unique í lista'''
     prev = 0
-    for i in new_list:
+    for i in brot_list:
         yfir = i[0]
         undir = i[1]
         if yfir != prev:
@@ -41,7 +41,7 @@ def main():
 
 #Main byrjar hérna
 if __name__ == "__main__":
-    new_list = []
+    brot_list = []
     hnit_list = []
     YFIR = int(input("Yfir: "))
     UNDIR = int(input("Undir: "))
