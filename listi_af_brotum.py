@@ -39,6 +39,7 @@ def main():
     print_list()
     print_average()
 
+#Main byrjar hérna
 if __name__ == "__main__":
     new_list = []
     hnit_list = []
