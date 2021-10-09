@@ -23,11 +23,11 @@ def printSeats(no_of_rows, seats_per_row, left_seats, right_seats):
     '''Prints out the seats in order'''
     for row in range(1, no_of_rows + 1):                                                                            #Loops for how many rows there are
         print("{:>2}   ".format(str(row)), end="")                                                                  #Prints out the number of the row
-        for seat in range(0, seats_per_row):                                                                        #Loops for each seat on the left side
-            print(left_seats[row][seat], end=" ")                                                                   #Prints out the seat
+        for left_seat in range(0, seats_per_row):                                                                   #Loops for each seat on the left side
+            print(left_seats[row][left_seat], end=" ")                                                              #Prints out the seat
         print("  ", end="")                                                                                         #Creates space between left and right seats
-        for k in range(0, seats_per_row):                                                                           #Loops for how many rows there are
-            print(right_seats[row][k], end=" ")                                                                     #Prints out the seat
+        for right_seat in range(0, seats_per_row):                                                                  #Loops for how many rows there are
+            print(right_seats[row][right_seat], end=" ")                                                            #Prints out the seat
         print()                                                                                                     #Makes a stop after all seats in a full row are printed
 
 def checkNumber(no_of_rows, seats_per_row, seat_booking, letters_text, occupied, temp_booking):
