@@ -15,7 +15,7 @@ def sortArray(x):
                 
 """Display odd numbers first in ascending order, then even numbers in descending order"""
 def oddThenEven(x):
-    sortArr(x)
+    sortArray(x)
     for i in range(len(x)):
         for j in range(len(x)):
             if (x[j] % 2 == 0):
