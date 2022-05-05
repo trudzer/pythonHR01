@@ -23,10 +23,10 @@ def oddThenEven(x):
                     swapElements(x, i, j)
                 swapElements(x, i, j)
                 
-print("ARRAY:\t" + str(ARRAY))
+print("ARRAY:\t\t" + str(ARRAY))
 print("-" * 55)
 oddThenEven(ARRAY)
 print("ODD THEN EVEN:\t" + str(ARRAY))
 print("-" * 55)
-sortArr(ARRAY)
+sortArray(ARRAY)
 print("SORTED ARRAY:\t" + str(ARRAY))
