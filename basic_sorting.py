@@ -1,6 +1,6 @@
 ARRAY = [1, 3, 6, 4, 8, 2, 11, 5, 9, 7, 12, 10]
 
-def swap(a, x, y):
+def swapElements(a, x, y):
     z = a[x]
     a[x] = a[y]
     a[y] = z
@@ -9,7 +9,7 @@ def sortArray(x):
     for i in range(len(x)):
         for j in range(len(x)):
             if (x[j] > x[i]):
-                swap(x, i, j)
+                swapElements(x, i, j)
                 
 def oddThenEven(x):
     sortArr(x)
@@ -17,8 +17,8 @@ def oddThenEven(x):
         for j in range(len(x)):
             if (x[j] % 2 == 0):
                 if (x[j] > x[i]):
-                    swap(x, i, j)
-                swap(x, i, j)
+                    swapElements(x, i, j)
+                swapElements(x, i, j)
                 
 print("ARRAY:\t" + str(ARRAY))
 print("-" * 55)
