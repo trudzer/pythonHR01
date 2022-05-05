@@ -5,7 +5,7 @@ def swap(a, x, y):
     a[x] = a[y]
     a[y] = z
 
-def sortArr(x):
+def sortArray(x):
     for i in range(len(x)):
         for j in range(len(x)):
             if (x[j] > x[i]):
