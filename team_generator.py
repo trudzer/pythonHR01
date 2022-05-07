@@ -1,6 +1,6 @@
 import random
 
-FORMATIONS = ["3-5-2", "4-4-2", "4-2-3-1", "4-3-3", "4-4-1-1", "4-1-2-1-2", "4-1-2-1-2", "5-2-1-2", "5-2-3", "3-4-3"]
+FORMATIONS = ["3-5-2", "4-4-2", "4-2-3-1", "4-3-3", "4-4-1-1", "4-1-2-1-2", "4-1-2-1-2", "5-2-1-2", "5-2-3", "3-4-3", "4-1-4-1", "4-2-2-2", "4-1-2-2-1", "5-2-2-1", "3-2-2-2-1", "3-2-1-3",  "3-2-3-2", "5-3-1-1"]
 
 def TheGK(GK):
     randGK = random.randint(0, len(GK) - 1)
@@ -282,6 +282,24 @@ def OneCAM(CAM):
         if (CAM[i] == CAM1):
             CAM.pop(i)
 
+def TwoCAM(CAM):
+    randCAM = random.randint(0, len(CAM) - 1)
+    randCAM2 = random.randint(0, len(CAM) - 1)
+
+    print("\n\t{}\t\t".format(CAM[randCAM]), end="")
+    print(CAM[randCAM2])
+
+    CAM1 = CAM[randCAM]
+    CAM2 = CAM[randCAM2]
+
+    for i in range(len(CAM) - 1):
+        if (CAM[i] == CAM1):
+            CAM.pop(i)
+
+    for i in range(len(CAM) - 1):
+        if (CAM[i] == CAM2):
+            CAM.pop(i)
+
 def LeftCAMRight(LM, RM, CAM):
     randLM = random.randint(0, len(LM) - 1)
     randRM = random.randint(0, len(RM) - 1)
@@ -414,7 +432,7 @@ def generateTeam(GK, LB, CB, RB, CDM, CM, CAM, LM, RM, RW, CF, LW, ST):
     if (randFormation == 4):
         print("\t\t{}\n".format(FORMATIONS[randFormation]))
         OneST(ST)
-        OneCF(CF)
+        OneCAM(CAM)
         FourInTheMiddle(CM, LM, RM)
         FourInTheBack(LB, CB, RB)
         TheGK(GK)
@@ -457,6 +475,72 @@ def generateTeam(GK, LB, CB, RB, CDM, CM, CAM, LM, RM, RW, CF, LW, ST):
         FrontThree(RW, CF, LW)
         FourInTheMiddle(CM, LM, RM)
         ThreeInTheBack(CB)
+        TheGK(GK)
+
+    if (randFormation == 10):
+        print("\t\t{}\n".format(FORMATIONS[randFormation]))
+        OneST(ST)
+        FourInTheMiddle(CM, LM, RM)
+        OneCDM(CDM)
+        FourInTheBack(LB, CB, RB)
+        TheGK(GK)
+
+    if (randFormation == 11):
+        print("\t\t{}\n".format(FORMATIONS[randFormation]))
+        TwoST(ST)
+        TwoCAM(CAM)
+        TwoCDM(CDM)
+        FourInTheBack(LB, CB, RB)
+        TheGK(GK)
+
+    if (randFormation == 12):
+        print("\t\t{}\n".format(FORMATIONS[randFormation]))
+        OneST(ST)
+        TwoCAM(CAM)
+        LeftRight(LM, RM)
+        OneCDM(CDM)
+        FourInTheBack(LB, CB, RB)
+        TheGK(GK)
+
+    if (randFormation == 13):
+        print("\t\t{}\n".format(FORMATIONS[randFormation]))
+        OneST(ST)
+        LeftRight(LM, RM)
+        TwoCDM(CDM)
+        FiveInTheBack(LB, CB, RB)
+        TheGK(GK)
+
+    if (randFormation == 14):
+        print("\t\t{}\n".format(FORMATIONS[randFormation]))
+        OneST(ST)
+        TwoCAM(CAM)
+        LeftRight(LM, RM)
+        TwoCDM(CDM)
+        ThreeInTheBack(CB)
+        TheGK(GK)
+
+    if (randFormation == 15):
+        print("\t\t{}\n".format(FORMATIONS[randFormation]))
+        FrontThree(RW, CF, LW)
+        TwoCAM(CAM)
+        TwoCDM(CDM)
+        ThreeInTheBack(CB)
+        TheGK(GK)
+
+    if (randFormation == 16):
+        print("\t\t{}\n".format(FORMATIONS[randFormation]))
+        TwoST(ST)
+        ThreeCMInTheMiddle(CM)
+        TwoCDM(CDM)
+        ThreeInTheBack(CB)
+        TheGK(GK)
+
+    if (randFormation == 17):
+        print("\t\t{}\n".format(FORMATIONS[randFormation]))
+        OneST(ST)
+        OneCAM(CAM)
+        ThreeCMInTheMiddle(CM)
+        FiveInTheBack(LB, CB, RB)
         TheGK(GK)
 
     randFormation = random.randint(0, len(FORMATIONS) - 1)
