@@ -1,6 +1,6 @@
 import random
 
-FORMATIONS = ["3-5-2", "4-4-2", "4-2-3-1", "4-3-3", "4-4-1-1", "4-1-2-1-2", "4-1-2-1-2", "5-2-1-2", "5-2-3", "3-4-3", "4-1-4-1", "4-2-2-2", "4-1-2-2-1", "5-2-2-1", "3-2-2-2-1", "3-2-1-3",  "3-2-3-2", "5-3-1-1"]
+FORMATIONS = ["3-5-2", "4-4-2", "4-2-3-1", "4-3-3", "4-4-1-1", "4-1-2-1-2", "4-1-2-1-2", "5-2-1-2", "5-2-3", "3-4-3", "4-1-4-1", "4-2-2-2", "4-1-2-2-1", "5-2-2-1", "3-2-2-2-1", "3-2-1-3",  "3-2-3-2", "5-3-1-1", "3-2-3-2"]
 
 def TheGK(GK):
     randGK = random.randint(0, len(GK) - 1)
@@ -541,6 +541,14 @@ def generateTeam(GK, LB, CB, RB, CDM, CM, CAM, LM, RM, RW, CF, LW, ST):
         OneCAM(CAM)
         ThreeCMInTheMiddle(CM)
         FiveInTheBack(LB, CB, RB)
+        TheGK(GK)
+
+    if (randFormation == 18):
+        print("\t\t{}\n".format(FORMATIONS[randFormation]))
+        TwoST(ST)
+        LeftCAMRight(LM, RM, CAM)
+        TwoCDM(CDM)
+        ThreeInTheBack(CB)
         TheGK(GK)
 
     randFormation = random.randint(0, len(FORMATIONS) - 1)
