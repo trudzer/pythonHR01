@@ -5,7 +5,8 @@ FORMATIONS = ["3-5-2", "4-4-2", "4-2-3-1", "4-3-3", "4-4-1-1", "4-1-2-1-2", "4-1
 def TheGK(GK):
     randGK = random.randint(0, len(GK) - 1)
 
-    print("\n\t\t{}".format(GK[randGK]))
+    print("\n{:<30}{}".format("", "GK"))
+    print("{:<30}{}".format("", GK[randGK]))
 
     GK1 = GK[randGK]
 
@@ -19,13 +20,14 @@ def FourInTheBack(LB, CB, RB):
     randCB2 = random.randint(0, len(CB) - 1)
     randRB = random.randint(0, len(RB) - 1)
 
-    print("\n{}\t".format(LB[randLB]), end="")
-    print("{}\t\t".format(CB[randCB]),end="")
+    print("\n{:<20}{:<20}{:<20}{}".format("LB", "CB", "CB", "RB"))
+    print("{:<20}".format(LB[randLB]), end="")
+    print("{:<20}".format(CB[randCB]),end="")
     while (randCB2 == randCB):
         randCB2 = random.randint(0, len(CB) - 1)
         if (randCB2 != randCB):
             break
-    print("{}\t".format(CB[randCB2]), end="")
+    print("{:<20}".format(CB[randCB2]), end="")
     print(RB[randRB])
 
     CB1 = CB[randCB]
@@ -55,12 +57,13 @@ def ThreeInTheBack(CB):
     randCB2 = random.randint(0, len(CB) - 1)
     randCB3 = random.randint(0, len(CB) - 1)
 
-    print("\n\t{}\t".format(CB[randCB]), end="")
+    print("\n{:<10}{:<20}{:<20}{}".format("","CB","CB","CB"))
+    print("{:<10}{:<20}".format("", CB[randCB]), end="")
     while (randCB2 == randCB  or randCB2 == randCB3):
         randCB2 = random.randint(0, len(CB) - 1)
         if (randCB2 != randCB and randCB2 != randCB3):
             break
-    print("{}\t".format(CB[randCB2]), end="")
+    print("{:<20}".format(CB[randCB2]), end="")
     while (randCB3 == randCB  or randCB3 == randCB2):
         randCB3 = random.randint(0, len(CB) - 1)
         if (randCB3 != randCB and randCB3 != randCB2):
@@ -90,18 +93,20 @@ def FiveInTheBack(LB, CB, RB):
     randCB2 = random.randint(0, len(CB) - 1)
     randCB3 = random.randint(0, len(CB) - 1)
 
-    print("\n{}\t\t\t\t{}\n".format(LB[randLB], RB[randRB]), end="")
-    print("\n\t{}\t".format(CB[randCB]), end="")
+    print("\n{:<60}{}".format("LWB","RWB"))
+    print("{:<60}{}".format(LB[randLB], RB[randRB]))
+    print("\n{:<10}{:<20}{:<20}{}".format("","CB","CB","CB"))
+    print("{:<10}{:<20}".format("", CB[randCB]), end="")
     while (randCB2 == randCB  or randCB2 == randCB3):
         randCB2 = random.randint(0, len(CB) - 1)
         if (randCB2 != randCB and randCB2 != randCB3):
             break
-    print("{}\t".format(CB[randCB2]), end="")
+    print("{:<20}".format(CB[randCB2]), end="")
     while (randCB3 == randCB  or randCB3 == randCB2):
         randCB3 = random.randint(0, len(CB) - 1)
         if (randCB3 != randCB and randCB3 != randCB2):
             break
-    print("{}".format(CB[randCB3]))
+    print(CB[randCB3])
 
     CB1 = CB[randCB]
     CB2 = CB[randCB2]
@@ -133,7 +138,8 @@ def TwoCDM(CDM):
     randCDM = random.randint(0, len(CDM) - 1)
     randCDM2 = random.randint(0, len(CDM) - 1)
 
-    print("\n\t{}\t\t".format(CDM[randCDM]), end="")
+    print("\n{:<10}{:<40}{}".format("","CDM","CDM"))
+    print("{:<10}{:<40}".format("",CDM[randCDM]), end="")
     while (randCDM2 == randCDM):
         randCDM2 = random.randint(0, len(CDM) - 1)
         if (randCDM2 != randCDM):
@@ -154,7 +160,8 @@ def TwoCDM(CDM):
 def OneCDM(CDM):
     randCDM = random.randint(0, len(CDM) - 1)
 
-    print("\n\t\t{}".format(CDM[randCDM]))
+    print("\n{:<30}{}".format("","CDM"))
+    print("{:<30}{}".format("",CDM[randCDM]))
 
     CDM1 = CDM[randCDM]
 
@@ -168,13 +175,14 @@ def FourInTheMiddle(CM, LM, RM):
     randLM = random.randint(0, len(LM) - 1)
     randRM = random.randint(0, len(RM) - 1)
 
-    print("\n{}\t".format(LM[randLM]), end="")
-    print("{}\t\t".format(CM[randCM]), end="")
+    print("\n{:<20}{:<20}{:<20}{}".format("LM","CM","CM","RM"))
+    print("{:<20}".format(LM[randLM]), end="")
+    print("{:<20}".format(CM[randCM]), end="")
     while (randCM2 == randCM):
         randCM2 = random.randint(0, len(CM) - 1)
         if (randCM2 != randCM):
             break
-    print("{}\t".format(CM[randCM2]), end="")
+    print("{:<20}".format(CM[randCM2]), end="")
     print(RM[randRM])
 
     CM1 = CM[randCM]
@@ -203,12 +211,13 @@ def ThreeCMInTheMiddle(CM):
     randCM2 = random.randint(0, len(CM) - 1)
     randCM3 = random.randint(0, len(CM) - 1)
 
-    print("\n\t{}\t".format(CM[randCM]), end="")
+    print("\n{:<10}{:<20}{:<20}{}".format("","CM","CM","CM"))
+    print("{:<10}{:<20}".format("",CM[randCM]), end="")
     while (randCM2 == randCM  or randCM2 == randCM3):
         randCM2 = random.randint(0, len(CM) - 1)
         if (randCM2 != randCM and randCM2 != randCM3):
             break
-    print("{}\t".format(CM[randCM2]), end="")
+    print("{:<20}".format(CM[randCM2]), end="")
     while (randCM3 == randCM or randCM3 == randCM2):
         randCM3 = random.randint(0, len(CM) - 1)
         if (randCM3 != randCM and randCM3 != randCM2):
@@ -235,7 +244,8 @@ def LeftRight(LM, RM):
     randLM = random.randint(0, len(LM) - 1)
     randRM = random.randint(0, len(RM) - 1)
 
-    print("\n{}\t\t\t\t".format(LM[randLM]), end="")
+    print("\n{:<60}{}".format("LM","RM"))
+    print("{:<60}".format(LM[randLM]), end="")
     print(RM[randRM])
 
     LM1 = LM[randLM]
@@ -253,7 +263,8 @@ def TwoCM(CM):
     randCM = random.randint(0, len(CM) - 1)
     randCM2 = random.randint(0, len(CM) - 1)
 
-    print("\n\t{}\t\t".format(CM[randCM]), end="")
+    print("\n{:<20}{:<20}{:<20}".format("","CM","CM"))
+    print("{:<20}{:<20}".format("",CM[randCM]), end="")
     while (randCM2 == randCM):
         randCM2 = random.randint(0, len(CM) - 1)
         if (randCM2 != randCM):
@@ -274,7 +285,8 @@ def TwoCM(CM):
 def OneCAM(CAM):
     randCAM = random.randint(0, len(CAM) - 1)
 
-    print("\n\t\t{}".format(CAM[randCAM]))
+    print("\n{:<30}{}".format("","CAM"))
+    print("{:<30}{}".format("",CAM[randCAM]))
 
     CAM1 = CAM[randCAM]
 
@@ -286,7 +298,8 @@ def TwoCAM(CAM):
     randCAM = random.randint(0, len(CAM) - 1)
     randCAM2 = random.randint(0, len(CAM) - 1)
 
-    print("\n\t{}\t\t".format(CAM[randCAM]), end="")
+    print("\n{:<10}{:<40}{}".format("","CAM","CAM"))
+    print("{:<10}{:<40}".format("",CAM[randCAM]), end="")
     print(CAM[randCAM2])
 
     CAM1 = CAM[randCAM]
@@ -305,8 +318,9 @@ def LeftCAMRight(LM, RM, CAM):
     randRM = random.randint(0, len(RM) - 1)
     randCAM = random.randint(0, len(CAM) - 1)
 
-    print("\n{}\t\t".format(LM[randLM]), end="")
-    print("{}\t\t".format(CAM[randCAM]), end="")
+    print("\n{:<30}{:<30}{}".format("LM","CAM","RM"))
+    print("{:<30}".format(LM[randLM]), end="")
+    print("{:<30}".format(CAM[randCAM]), end="")
     print(RM[randRM])
 
     CAM1 = CAM[randCAM]
@@ -328,7 +342,8 @@ def LeftCAMRight(LM, RM, CAM):
 def OneCF(CF):
     randCF = random.randint(0, len(CF) - 1)
 
-    print("\n\t\t{}".format(CF[randCF]))
+    print("\n{:<30}{}".format("","CF"))
+    print("{:<30}{}".format("",CF[randCF]))
 
     CF1 = CF[randCF]
 
@@ -339,7 +354,8 @@ def OneCF(CF):
 def OneST(ST):
     randST = random.randint(0, len(ST) - 1)
 
-    print("\t\t{}".format(ST[randST]))
+    print("{:<30}{}".format("","ST"))
+    print("{:<30}{}".format("",ST[randST]))
 
     ST1 = ST[randST]
 
@@ -351,7 +367,8 @@ def TwoST(ST):
     randST = random.randint(0, len(ST) - 1)
     randST2 = random.randint(0, len(ST) - 1)
 
-    print("\t{}\t\t".format(ST[randST]), end="")
+    print("{:<20}{:<20}{}".format("","ST","ST"))
+    print("{:<20}{:<20}".format("",ST[randST]), end="")
     while (randST2 == randST):
         randST2 = random.randint(0, len(ST) - 1)
         if (randST2 != randST):
@@ -374,8 +391,9 @@ def FrontThree(RW, CF, LW):
     randCF = random.randint(0, len(CF) - 1)
     randLW = random.randint(0, len(LW) - 1)
 
-    print("\t{}\t".format(LW[randLW]), end="")
-    print("{}\t".format(CF[randCF]), end="")
+    print("{:<10}{:<20}{:<20}{}".format("","LW","CF","RW"))
+    print("{:<10}{:<20}".format("",LW[randLW]), end="")
+    print("{:<20}".format(CF[randCF]), end="")
     print("{}".format(RW[randRW]))
 
     LW1 = LW[randLW]
@@ -553,23 +571,101 @@ def generateTeam(GK, LB, CB, RB, CDM, CM, CAM, LM, RM, RW, CF, LW, ST):
 
     randFormation = random.randint(0, len(FORMATIONS) - 1)
 
+def longName(GK, LB, CB, RB, CDM, CM, CAM, LM, RM, RW, CF, LW, ST):
+    tempGK = ""
+    tempLB = ""
+    tempCB = ""
+    tempRB = ""
+    tempCDM = ""
+    tempCM = ""
+    tempCAM = ""
+    tempLM = ""
+    tempRM = ""
+    tempRW = ""
+    tempCF = ""
+    tempLW = ""
+    tempST = ""
+    tempArr = []
+
+    for i in GK:
+        if (len(i) > len(tempGK)):
+            tempGK = i
+    for i in LB:
+        if (len(i) > len(tempLB)):
+            tempLB = i
+    for i in CB:
+        if (len(i) > len(tempCB)):
+            tempCB = i
+    for i in RB:
+        if (len(i) > len(tempRB)):
+            tempRB = i
+    for i in CDM:
+        if (len(i) > len(tempCDM)):
+            tempCDM = i
+    for i in CM:
+        if (len(i) > len(tempCM)):
+            tempCM = i
+    for i in CAM:
+        if (len(i) > len(tempCAM)):
+            tempCAM = i
+    for i in LM:
+        if (len(i) > len(tempLM)):
+            tempLM = i
+    for i in RM:
+        if (len(i) > len(tempRM)):
+            tempRM = i
+    for i in RW:
+        if (len(i) > len(tempRW)):
+            tempRW = i
+    for i in CF:
+        if (len(i) > len(tempCF)):
+            tempCF = i
+    for i in LW:
+        if (len(i) > len(tempLW)):
+            tempLW = i
+    for i in ST:
+        if (len(i) > len(tempST)):
+            tempST = i
+
+    tempArr.append(tempGK)
+    tempArr.append(tempLB)
+    tempArr.append(tempCB)
+    tempArr.append(tempRB)
+    tempArr.append(tempCDM)
+    tempArr.append(tempCM)
+    tempArr.append(tempCAM)
+    tempArr.append(tempLM)
+    tempArr.append(tempRM)
+    tempArr.append(tempRW)
+    tempArr.append(tempCF)
+    tempArr.append(tempLW)
+    tempArr.append(tempST)
+
+    tempLong = ""
+    for i in tempArr:
+        if len(i) > len(tempLong):
+            tempLong = i
+    
+    print("name:" + tempLong + "\nlength: " + (str(len(tempLong))))
+
 def main():
     inp = input
     while (inp != "q".upper()):
-        GK = ["GK1", "GK2", "GK3", "GK4", "GK5", "GK6", "GK7", "GK8", "GK9", "GK10", "GK11", "GK12", "GK13", "GK14", "GK15", "GK16", "GK17", "GK18", "GK19", "GK20", "GK21", "GK22", "GK23", "GK24"]
-        LB = ["LB1", "LB2", "LB3", "LB4", "LB5", "LB6", "LB7", "LB8", "LB9", "LB10", "LB11", "LB12", "LB13", "LB14", "LB15", "LB16", "LB17", "LB18", "LB19", "LB20", "LB21", "LB22", "LB23", "LB24"]
-        CB = ["CB1", "CB2", "CB3", "CB4", "CB5", "CB6", "CB7", "CB8", "CB9", "CB10", "CB11", "CB12", "CB13", "CB14", "CB15", "CB16", "CB17", "CB18", "CB19", "CB20", "CB21", "CB22", "CB23", "CB24"]
-        RB = ["RB1", "RB2", "RB3", "RB4", "RB5", "RB6", "RB7", "RB8", "RB9", "RB10", "RB11", "RB12", "RB13", "RB14", "RB15", "RB16", "RB17", "RB18", "RB19", "RB20", "RB21", "RB22", "RB23", "RB24"]
-        CDM = ["CDM1", "CDM2", "CDM3", "CDM4", "CDM5", "CDM6", "CDM7", "CDM8", "CDM9", "CDM10", "CDM11", "CDM12", "CDM13", "CDM14", "CDM15", "CDM16", "CDM17", "CDM18", "CDM19", "CDM20", "CDM21", "CDM22", "CDM23", "CDM24"]
-        CM = ["CM1", "CM2", "CM3", "CM4", "CM5", "CM6", "CM7", "CM8", "CM9", "CM10", "CM11", "CM12", "CM13", "CM14", "CM15", "CM16", "CM17", "CM18", "CM19", "CM20", "CM21", "CM22", "CM23", "CM24", ]
-        CAM = ["CAM1", "CAM2", "CAM3", "CAM4", "CAM5", "CAM6", "CAM7", "CAM8", "CAM9", "CAM10", "CAM11", "CAM12", "CAM13", "CAM14", "CAM15", "CAM16", "CAM17", "CAM18", "CAM19", "CAM20", "CAM21", "CAM22", "CAM23", "CAM24"]
-        LM = ["LM1", "LM2", "LM3", "LM4", "LM5", "LM6", "LM7", "LM8", "LM9", "LM10", "LM11", "LM12", "LM13", "LM14", "LM15", "LM16", "LM17", "LM18", "LM19", "LM20", "LM21", "LM22", "LM23", "LM24"]
-        RM = ["RM1", "RM2", "RM3", "RM4", "RM5", "RM6", "RM7", "RM8", "RM9", "RM10", "RM11", "RM12", "RM13", "RM14", "RM15", "RM16", "RM17", "RM18", "RM19", "RM20", "RM21", "RM22", "RM23", "RM24"]
-        RW = ["RW1", "RW2", "RW3", "RW4", "RW5", "RW6", "RW7", "RW8", "RW9", "RW10", "RW11", "RW12", "RW13", "RW14", "RW15", "RW16", "RW17", "RW18", "RW19", "RW20", "RW21", "RW22", "RW23", "RW24"]
-        CF = ["CF1", "CF2", "CF3", "CF4", "CF5", "CF6", "CF7", "CF8", "CF9", "CF10", "CF11", "CF12", "CF13", "CF14", "CF15", "CF16", "CF17", "CF18", "CF19", "CF20", "CF21", "CF22", "CF23", "CF24"]
-        LW = ["LW1", "LW2", "LW3", "LW4", "LW5", "LW6", "LW7", "LW8", "LW9", "LW10", "LW11", "LW12", "LW13", "LW14", "LW15", "LW16", "LW17", "LW18", "LW19", "LW20", "LW21", "LW22", "LW23", "LW24"]
-        ST = ["ST1", "ST2", "ST3", "ST4", "ST5", "ST6", "ST7", "ST8", "ST9", "ST10", "ST11", "ST12", "ST13", "ST14", "ST15", "ST16", "ST17", "ST18", "ST19", "ST20", "ST21", "ST22", "ST23", "ST24"]
+        GK = ["Oblak", "Alisson", "Ter Stegen", "Courtois", "Neuer", "Ederson", "De Gea", "Szczesny", "Handanovic", "Leno", "Gulácsi", "Lloris", "Donnarumma", "Navas", "Sommer", "Onana", "Meret", "Casteels", "Rui Patrício", "Fabianski", "Strakosha", "Musso", "Pickford", "Kepa"]
+        LB = ["Robertson", "Guerreiro", "Jordi Alba", "Hernandez", "Alex Sandro", "Tagliafico", "Davies", "Renan Lodi", "Hernández", "Chilwell", "F.Mendy", "Alex Telles", "Kolarov", "Marcelo", "Tierney", "Acuna", "Álex Grimaldo", "José Gayà", "B.Mendy", "Digne", "Juan Bernat", "Reguilón", "Fabra", "Spinazolla"]
+        CB = ["Van Dijk", "Sergio Ramos", "Varane", "Koulibaly", "Alaba", "Piqué", "Süle", "De Ligt", "Skriniar", "Lenglet", "Giménez", "Laporte", "De Vrij", "Thiago Silva", "Chiellini", "Maguire", "Umtiti", "Acerbi", "Manolas", "Alderweireld", "Bonucci", "Rúben Dias", "Koundé", "Sánchez", "Kimpembe", "Ginter", "Romagnoli", "Felipe", "Vertonghen", "Benatia", "Pau Torres", "Éder Militao", "Djené", "Rüdiger", "Joe Gomez", "Diego Carlos", "Savic", "Boateng", "David Luiz"]
+        RB = ["Alexander-Arnold", "Carvajal", "Ricardo Pereira", "Jesus Navas", "Wan-Bissaka", "Hakimi", "Nélson Semedo", "Pavard", "Trippier", "Sergi Roberto", "Kyle Walker", "Cuadrado", "Azpilicueta", "Di Lorenzo", "Bellerín", "Joao Cancelo", "Florenzi", "Meunier", "Mário Fernandes", "Youcef Atal", "Dumfries", "Danilo", "Lars Bender", "Dest"]
+        CDM = ["Kimmich", "Casemiro", "Sergio Busquets", "Marquinhos", "Fabinho", "Pjanic", "Rodri", "Partey", "Jorginho", "Witsel", "Fernandinho", "Ndidi", "Allan", "Javi Martínez", "Zakaria", "Torreira", "Emre Can", "Xhaka", "Lucas Leiva", "Barrios", "Paredes", "Matic", "Delaney", "Gabi"]
+        CM = ["Kanté", "Thiago", "Kroos", "De Jong", "Saúl", "Verratti", "Milinkovic-Savic", "Luis Alberto", "Pogba", "Koke", "Dani Parejo", "Modric", "Iniesta", "Valverde", "Arthur", "Sabitzer", "Goretzka", "Brozovic", "Gündogan", "Nainggolan", "Henderson", "Rakitic", "Wijnaldum", "Ndombèlé", "Fabián Ruiz", "Bentancur", "De Paul", "Sergio Canales", "Pellegrini", "Dani Ceballos", "Rúben Neves", "Barella", "Tolisso", "Tielemans", "Kovacic", "Gueye", "Aránguiz", "Ramsey", "Vidal", "Matuidi", "Santi Cazorla", "Joao Moutinho", "Paulinho"]
+        CAM = ["De Bruyne", "Bruno Fernandes", "Havertz", "Marcos Llorente", "Coutinho", "Papu Gómez", "Isco", "Eriksen", "David Silva", "Odegaard", "Calhanoglu", "Brandt", "Fekir", "Maddison", "Van De Beek", "Zielinski", "Draxler", "Özil", "Oscar", "Mount", "Zaniolo", "Forsberg", "De Arrascaeta", "Mkhitaryan"]
+        LM = ["Heung-Min Son", "Kostic", "Carrasco", "Perisic", "Felipe Anderson", "Thomas Lemar", "Gosens", "Bergwijn", "El Shaarawy", "Vitolo", "Saint-Maximin", "Lulic", "Bamba", "Claesson", "Deulofeu", "Cornet", "Fraser", "Jony", "Bouanga", "Pablo FFornals", "Barnes", "Saka", "Szoboszlai", "Redmond"]
+        RM = ["Pizzi", "Corona", "Lucas Moura", "Correa", "Visca", "Everton Ribeiro", "Caligiuri", "Joaquín", "Candreva", "Ayoze Pérez", "Hateboer", "Lazzari", "Lamela"]
+        RW = ["Messi", "Salah", "Bernardo Silva", "Gnabry", "Di María", "Sancho", "Mahrez", "Ziyech", "Pépé", "Thauvin", "Ocampos", "Pablo Sarabia", "James Rodríguez", "Douglas Costa", "Willian", "Bale", "Chiesa", "Asensio", "Portu", "Coman", "Berghuis", "José Callejón", "Ferran Torres", "Malcom"]
+        CF = ["Dybala", "Müller", "Ilicic", "Lobato", "Correa", "Joao Félix", "Tevez", "Kruse", "Joao Pedro", "Corte Real", "Giovinco", "Quaison", "Marega", "Waldschmidt", "Moniz", "Vietto", "Philipp", "Jonathan David", "Zárate"]
+        LW = ["Dembéle", "Oyarzabal", "Insigne", "Richarlison", "Payet", "Pavón", "Grealish", "Rebic", "Ansu Fati", "Lozano", "Pulisic", "Diogo Jota", "Goncalo Guedes", "Bruno Henrique", "Thorgan Hazard", "Promes", "Éverton", "Zaha", "Taison", "Vinícius Júnior", "Rashica", "Perotti", "Baldé", "Diaby"]
+        ST = ["Lewandowski", "Mbappé", "Kane", "Agüero", "Aubameyang", "Suárez", "Benzema", "Roberto Firmino", "Immobile", "Håland", "Werner", "Vardy", "Icardi", "Lukaku", "Cavani", "Martínez", "Gabriel Jesus", "Zapata", "Jiménez", "Depay", "Iago Aspas", "Ben Yedder", "Mertens", "Dzeko", "Higuaín", "Ibrahimovic", "Weghorst", "Belotti", "Morata", "Lacazette", "Mandzukic", "Jovic", "André Silva", "Danny Ings", "Moussa Dembéle", "Volland", "Milik", "Gerard Moreno", "Martial", "Muriel", "Rodrigo", "Tadic", "Dzyuba", "Falcao", "Arnautovic", "Calbert-Lewin", "Abraham", "Gómez", "Wilson", "Williams", "Alario", "Gabriel Barbosa", "Benedetto", "Paco Alcácer", "Alex Teixeira", "Caputo", "Giroud", "Diego Costa", "Sánchez", "Quagliarella", "Osimhen", "Schick", "Embolo", "King", "Lasagna"]
         print("------------------------------")
+        #longName(GK, LB, CB, RB, CDM, CM, CAM, LM, RM, RW, CF, LW, ST)
         print("1. Generate 1 team\n2. Generate 2 teams\nQ. Quit")
         print("------------------------------")
         inp = str(input("INPUT: ").upper())
