@@ -138,8 +138,8 @@ def TwoCDM(CDM):
     randCDM = random.randint(0, len(CDM) - 1)
     randCDM2 = random.randint(0, len(CDM) - 1)
 
-    print("\n{:<10}{:<40}{}".format("","CDM","CDM"))
-    print("{:<10}{:<40}".format("",CDM[randCDM]), end="")
+    print("\n{:<20}{:<20}{}".format("","CDM","CDM"))
+    print("{:<20}{:<20}".format("",CDM[randCDM]), end="")
     while (randCDM2 == randCDM):
         randCDM2 = random.randint(0, len(CDM) - 1)
         if (randCDM2 != randCDM):
@@ -571,6 +571,101 @@ def generateTeam(GK, LB, CB, RB, CDM, CM, CAM, LM, RM, RW, CF, LW, ST):
 
     randFormation = random.randint(0, len(FORMATIONS) - 1)
 
+def generateBench(GK, LB, CB, RB, CDM, CM, CAM, LM, RM, RW, CF, LW, ST):
+    randGK = random.randint(0, len(GK) - 1)
+    randLB = random.randint(0, len(LB) - 1)
+    randCB = random.randint(0, len(CB) - 1)
+    randRB = random.randint(0, len(RB) - 1)
+    randCDM = random.randint(0, len(CDM) - 1)
+    randCM = random.randint(0, len(CM) - 1)
+    randCAM = random.randint(0, len(CAM) - 1)
+    randLM = random.randint(0, len(LM) - 1)
+    randRM = random.randint(0, len(RM) - 1)
+    randRW = random.randint(0, len(RW) - 1)
+    randCF = random.randint(0, len(CF) - 1)
+    randLW = random.randint(0, len(LW) - 1)
+    randST = random.randint(0, len(ST) - 1)
+
+    print("GK:  " + GK[randGK])
+    print("LB:  " + LB[randLB])
+    print("CB:  " + CB[randCB])
+    print("RB:  " + RB[randRB])
+    print("CDM: " + CDM[randCDM])
+    print("CM:  " + CM[randCM])
+    print("CAM: " + CAM[randCAM])
+    print("LM:  " + LM[randLM])
+    print("RM:  " + RM[randRM])
+    print("RW:  " + RW[randRW])
+    print("CF:  " + CF[randCF])
+    print("LW:  " + LW[randLW])
+    print("ST:  " + ST[randST])
+
+    GK1 = GK[randGK]
+    CB1 = CB[randCB]
+    LB1 = LB[randLB]
+    RB1 = RB[randRB]
+    CDM1 = CDM[randCDM]
+    CM1 = CM[randCM]
+    CAM1 = CAM[randCAM]
+    LM1 = LM[randLM]
+    RM1 = RM[randRM]
+    LW1 = LW[randLW]
+    CF1 = CF[randCF]
+    RW1 = RW[randRW]
+    ST1 = ST[randST]
+
+    for i in range(len(GK) - 1):
+        if (GK[i] == GK1):
+            GK.pop(i)
+
+    for i in range(len(CB) - 1):
+        if (CB[i] == CB1):
+            CB.pop(i)
+
+    for i in range(len(LB) - 1):
+        if (LB[i] == LB1):
+            LB.pop(i)
+
+    for i in range(len(RB) - 1):
+        if (RB[i] == RB1):
+            RB.pop(i)
+
+    for i in range(len(CDM) - 1):
+        if (CDM[i] == CDM1):
+            CDM.pop(i)
+
+    for i in range(len(CM) - 1):
+        if (CM[i] == CM1):
+            CM.pop(i)
+
+    for i in range(len(CAM) - 1):
+        if (CAM[i] == CAM1):
+            CAM.pop(i)
+
+    for i in range(len(LM) - 1):
+        if (LM[i] == LM1):
+            LM.pop(i)
+
+    for i in range(len(RM) - 1):
+        if (RM[i] == RM1):
+            RM.pop(i)
+
+    for i in range(len(LW) - 1):
+        if (LW[i] == LW1):
+            LW.pop(i)
+
+    for i in range(len(CF) - 1):
+        if (CF[i] == CF1):
+            CF.pop(i)
+
+    for i in range(len(RW) - 1):
+        if (RW[i] == RW1):
+            RW.pop(i)
+
+    for i in range(len(ST) - 1):
+        if (ST[i] == ST1):
+            ST.pop(i)
+
 def longName(GK, LB, CB, RB, CDM, CM, CAM, LM, RM, RW, CF, LW, ST):
     tempGK = ""
     tempLB = ""
@@ -651,8 +746,8 @@ def longName(GK, LB, CB, RB, CDM, CM, CAM, LM, RM, RW, CF, LW, ST):
 def main():
     inp = input
     while (inp != "q".upper()):
-        GK = ["Oblak", "Alisson", "Ter Stegen", "Courtois", "Neuer", "Ederson", "De Gea", "Szczesny", "Handanovic", "Leno", "Gulácsi", "Lloris", "Donnarumma", "Navas", "Sommer", "Onana", "Meret", "Casteels", "Rui Patrício", "Fabianski", "Strakosha", "Musso", "Pickford", "Kepa"]
-        LB = ["Robertson", "Guerreiro", "Jordi Alba", "Hernandez", "Alex Sandro", "Tagliafico", "Davies", "Renan Lodi", "Hernández", "Chilwell", "F.Mendy", "Alex Telles", "Kolarov", "Marcelo", "Tierney", "Acuna", "Álex Grimaldo", "José Gayà", "B.Mendy", "Digne", "Juan Bernat", "Reguilón", "Fabra", "Spinazolla"]
+        GK = ["Oblak", "Alisson", "Ter Stegen", "Courtois", "Neuer", "Ederson", "De Gea", "Szczesny", "Handanovic", "Leno", "Gulácsi", "Lloris", "Donnarumma", "Navas", "Sommer", "Onana", "Meret", "Casteels", "Rui Patrício", "Fabianski", "Strakosha", "Musso", "Pickford", "Kepa", "Hrádecký", "Anthony Lopes", "Cilliessen", "Mandanda", "Muslera", "Sirigu", "Schmeichel", "Mendy", "Unai Simón", "Pavlenka", "Pau López", "Maignan", "Benítez", "Rulli", "Neto", "Lecomte", "Andrada", "Asenjo", "Ospina", "Ruffier", "Henderson", "David Soria", "Dúbravka", "Pacheco", "Pope", "Cragno", "Aitor Fernández", "Bounou", "Armani", "Vaclík", "Areola"]
+        LB = ["Robertson", "Guerreiro", "Jordi Alba", "Hernandez", "Alex Sandro", "Tagliafico", "Davies", "Renan Lodi", "Hernández", "Chilwell", "F.Mendy", "Alex Telles", "Kolarov", "Marcelo", "Tierney", "Acuna", "Álex Grimaldo", "José Gayà", "B.Mendy", "Digne", "Juan Bernat", "Reguilón", "Fabra", "Spinazzola"]
         CB = ["Van Dijk", "Sergio Ramos", "Varane", "Koulibaly", "Alaba", "Piqué", "Süle", "De Ligt", "Skriniar", "Lenglet", "Giménez", "Laporte", "De Vrij", "Thiago Silva", "Chiellini", "Maguire", "Umtiti", "Acerbi", "Manolas", "Alderweireld", "Bonucci", "Rúben Dias", "Koundé", "Sánchez", "Kimpembe", "Ginter", "Romagnoli", "Felipe", "Vertonghen", "Benatia", "Pau Torres", "Éder Militao", "Djené", "Rüdiger", "Joe Gomez", "Diego Carlos", "Savic", "Boateng", "David Luiz"]
         RB = ["Alexander-Arnold", "Carvajal", "Ricardo Pereira", "Jesus Navas", "Wan-Bissaka", "Hakimi", "Nélson Semedo", "Pavard", "Trippier", "Sergi Roberto", "Kyle Walker", "Cuadrado", "Azpilicueta", "Di Lorenzo", "Bellerín", "Joao Cancelo", "Florenzi", "Meunier", "Mário Fernandes", "Youcef Atal", "Dumfries", "Danilo", "Lars Bender", "Dest"]
         CDM = ["Kimmich", "Casemiro", "Sergio Busquets", "Marquinhos", "Fabinho", "Pjanic", "Rodri", "Partey", "Jorginho", "Witsel", "Fernandinho", "Ndidi", "Allan", "Javi Martínez", "Zakaria", "Torreira", "Emre Can", "Xhaka", "Lucas Leiva", "Barrios", "Paredes", "Matic", "Delaney", "Gabi"]
@@ -664,21 +759,33 @@ def main():
         CF = ["Dybala", "Müller", "Ilicic", "Lobato", "Correa", "Joao Félix", "Tevez", "Kruse", "Joao Pedro", "Corte Real", "Giovinco", "Quaison", "Marega", "Waldschmidt", "Moniz", "Vietto", "Philipp", "Jonathan David", "Zárate"]
         LW = ["Dembéle", "Oyarzabal", "Insigne", "Richarlison", "Payet", "Pavón", "Grealish", "Rebic", "Ansu Fati", "Lozano", "Pulisic", "Diogo Jota", "Goncalo Guedes", "Bruno Henrique", "Thorgan Hazard", "Promes", "Éverton", "Zaha", "Taison", "Vinícius Júnior", "Rashica", "Perotti", "Baldé", "Diaby"]
         ST = ["Lewandowski", "Mbappé", "Kane", "Agüero", "Aubameyang", "Suárez", "Benzema", "Roberto Firmino", "Immobile", "Håland", "Werner", "Vardy", "Icardi", "Lukaku", "Cavani", "Martínez", "Gabriel Jesus", "Zapata", "Jiménez", "Depay", "Iago Aspas", "Ben Yedder", "Mertens", "Dzeko", "Higuaín", "Ibrahimovic", "Weghorst", "Belotti", "Morata", "Lacazette", "Mandzukic", "Jovic", "André Silva", "Danny Ings", "Moussa Dembéle", "Volland", "Milik", "Gerard Moreno", "Martial", "Muriel", "Rodrigo", "Tadic", "Dzyuba", "Falcao", "Arnautovic", "Calbert-Lewin", "Abraham", "Gómez", "Wilson", "Williams", "Alario", "Gabriel Barbosa", "Benedetto", "Paco Alcácer", "Alex Teixeira", "Caputo", "Giroud", "Diego Costa", "Sánchez", "Quagliarella", "Osimhen", "Schick", "Embolo", "King", "Lasagna"]
-        print("------------------------------")
+        print("---------------------------------------------------------------------------------")
         #longName(GK, LB, CB, RB, CDM, CM, CAM, LM, RM, RW, CF, LW, ST)
         print("1. Generate 1 team\n2. Generate 2 teams\nQ. Quit")
-        print("------------------------------")
+        print("---------------------------------------------------------------------------------")
         inp = str(input("INPUT: ").upper())
         if (inp == "1"):
-            print("------------------------------")
+            print("---------------------------------------------------------------------------------")
+            print("Team:")
             generateTeam(GK, LB, CB, RB, CDM, CM, CAM, LM, RM, RW, CF, LW, ST)
+            print("\n---------------------------------------------------------------------------------")
+            print("\nBench:")
+            generateBench(GK, LB, CB, RB, CDM, CM, CAM, LM, RM, RW, CF, LW, ST)
+            print()
         elif (inp == "2"):
-            print("------------------------------")
+            print("---------------------------------------------------------------------------------")
             print("Team 1:")
             generateTeam(GK, LB, CB, RB, CDM, CM, CAM, LM, RM, RW, CF, LW, ST)
-            print("\n------------------------------")
+            print("\n---------------------------------------------------------------------------------")
             print("\nTeam 2:")
             generateTeam(GK, LB, CB, RB, CDM, CM, CAM, LM, RM, RW, CF, LW, ST)
+            print("\n---------------------------------------------------------------------------------")
+            print("\nTeam 2 Bench:\n")
+            generateBench(GK, LB, CB, RB, CDM, CM, CAM, LM, RM, RW, CF, LW, ST)
+            print("\n---------------------------------------------------------------------------------")
+            print("\nTeam 1 Bench:\n")
+            generateBench(GK, LB, CB, RB, CDM, CM, CAM, LM, RM, RW, CF, LW, ST)
+            print()
         elif (inp == "q".upper()):
             break
         else:
