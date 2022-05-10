@@ -1,7 +1,7 @@
 import random
 import os
 
-FORMATIONS = ["3-5-2", "4-4-2", "4-2-3-1", "4-3-3", "4-4-1-1", "4-1-2-1-2", "4-1-2-1-2", "5-2-1-2", "5-2-3", "3-4-3", "4-1-4-1", "4-2-2-2", "4-1-2-2-1", "5-2-2-1", "3-2-2-2-1", "3-2-1-3",  "3-2-3-2", "5-3-1-1", "3-2-3-2"]
+FORMATIONS = ["3-5-2", "4-4-2", "4-2-3-1", "4-3-3", "4-4-1-1", "4-1-2-1-2", "4-1-2-1-2", "5-2-1-2", "5-2-3", "3-4-3", "4-1-4-1", "4-2-2-2", "4-1-2-2-1", "5-2-2-1", "3-2-2-2-1", "3-2-1-3",  "3-2-3-2", "5-3-1-1", "3-2-3-2", "4-3-3", "4-3-3"]
 
 def TheGK(GK):
     randGK = random.randint(0, len(GK) - 1)
@@ -169,6 +169,18 @@ def OneCDM(CDM):
     for i in range(len(CDM) - 1):
         if (CDM[i] == CDM1):
             CDM.pop(i)
+
+def OneCM(CM):
+    randCM = random.randint(0, len(CM) - 1)
+
+    print("\n{:<30}{}".format("","CM"))
+    print("{:<30}{}".format("",CM[randCM]))
+
+    CM1 = CM[randCM]
+
+    for i in range(len(CM) - 1):
+        if (CM[i] == CM1):
+            CM.pop(i)
 
 def FourInTheMiddle(CM, LM, RM):
     randCM = random.randint(0, len(CM) - 1)
@@ -568,6 +580,22 @@ def generateTeam(GK, LB, CB, RB, CDM, CM, CAM, LM, RM, RW, CF, LW, ST):
         LeftCAMRight(LM, RM, CAM)
         TwoCDM(CDM)
         ThreeInTheBack(CB)
+        TheGK(GK)
+
+    if (randFormation == 19):
+        print("\t\t{}\n".format(FORMATIONS[randFormation]))
+        FrontThree(RW, CF, LW)
+        OneCAM(CAM)
+        TwoCM(CM)
+        FourInTheBack(LB, CB, RB)
+        TheGK(GK)
+
+    if (randFormation == 20):
+        print("\t\t{}\n".format(FORMATIONS[randFormation]))
+        FrontThree(RW, CF, LW)
+        OneCM(CM)
+        TwoCDM(CDM)
+        FourInTheBack(LB, CB, RB)
         TheGK(GK)
 
     randFormation = random.randint(0, len(FORMATIONS) - 1)
