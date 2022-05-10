@@ -1,4 +1,5 @@
 import random
+import os
 
 FORMATIONS = ["3-5-2", "4-4-2", "4-2-3-1", "4-3-3", "4-4-1-1", "4-1-2-1-2", "4-1-2-1-2", "5-2-1-2", "5-2-3", "3-4-3", "4-1-4-1", "4-2-2-2", "4-1-2-2-1", "5-2-2-1", "3-2-2-2-1", "3-2-1-3",  "3-2-3-2", "5-3-1-1", "3-2-3-2"]
 
@@ -743,9 +744,13 @@ def longName(GK, LB, CB, RB, CDM, CM, CAM, LM, RM, RW, CF, LW, ST):
     
     print("name:" + tempLong + "\nlength: " + (str(len(tempLong))))
 
+def clear():
+    os.system("cls")
+
 def main():
     inp = input
     while (inp != "q".upper()):
+        clear()
         GK = ["Oblak", "Alisson", "Ter Stegen", "Courtois", "Neuer", "Ederson", "De Gea", "Szczesny", "Handanovic", "Leno", "Gulácsi", "Lloris", "Donnarumma", "Navas", "Sommer", "Onana", "Meret", "Casteels", "Rui Patrício", "Fabianski", "Strakosha", "Musso", "Pickford", "Kepa", "Hrádecký", "Anthony Lopes", "Cilliessen", "Mandanda", "Muslera", "Sirigu", "Schmeichel", "Mendy", "Unai Simón", "Pavlenka", "Pau López", "Maignan", "Benítez", "Rulli", "Neto", "Lecomte", "Andrada", "Asenjo", "Ospina", "Ruffier", "Henderson", "David Soria", "Dúbravka", "Pacheco", "Pope", "Cragno", "Aitor Fernández", "Bounou", "Armani", "Vaclík", "Areola"]
         LB = ["Robertson", "Guerreiro", "Jordi Alba", "Hernandez", "Alex Sandro", "Tagliafico", "Davies", "Renan Lodi", "Hernández", "Chilwell", "F.Mendy", "Alex Telles", "Kolarov", "Marcelo", "Tierney", "Acuna", "Álex Grimaldo", "José Gayà", "B.Mendy", "Digne", "Juan Bernat", "Reguilón", "Fabra", "Spinazzola"]
         CB = ["Van Dijk", "Sergio Ramos", "Varane", "Koulibaly", "Alaba", "Piqué", "Süle", "De Ligt", "Skriniar", "Lenglet", "Giménez", "Laporte", "De Vrij", "Thiago Silva", "Chiellini", "Maguire", "Umtiti", "Acerbi", "Manolas", "Alderweireld", "Bonucci", "Rúben Dias", "Koundé", "Sánchez", "Kimpembe", "Ginter", "Romagnoli", "Felipe", "Vertonghen", "Benatia", "Pau Torres", "Éder Militao", "Djené", "Rüdiger", "Joe Gomez", "Diego Carlos", "Savic", "Boateng", "David Luiz"]
@@ -757,7 +762,7 @@ def main():
         RM = ["Pizzi", "Corona", "Lucas Moura", "Correa", "Visca", "Everton Ribeiro", "Caligiuri", "Joaquín", "Candreva", "Ayoze Pérez", "Hateboer", "Lazzari", "Lamela"]
         RW = ["Messi", "Salah", "Bernardo Silva", "Gnabry", "Di María", "Sancho", "Mahrez", "Ziyech", "Pépé", "Thauvin", "Ocampos", "Pablo Sarabia", "James Rodríguez", "Douglas Costa", "Willian", "Bale", "Chiesa", "Asensio", "Portu", "Coman", "Berghuis", "José Callejón", "Ferran Torres", "Malcom"]
         CF = ["Dybala", "Müller", "Ilicic", "Lobato", "Correa", "Joao Félix", "Tevez", "Kruse", "Joao Pedro", "Corte Real", "Giovinco", "Quaison", "Marega", "Waldschmidt", "Moniz", "Vietto", "Philipp", "Jonathan David", "Zárate"]
-        LW = ["Dembéle", "Oyarzabal", "Insigne", "Richarlison", "Payet", "Pavón", "Grealish", "Rebic", "Ansu Fati", "Lozano", "Pulisic", "Diogo Jota", "Goncalo Guedes", "Bruno Henrique", "Thorgan Hazard", "Promes", "Éverton", "Zaha", "Taison", "Vinícius Júnior", "Rashica", "Perotti", "Baldé", "Diaby"]
+        LW = ["Ronaldo", "Neymar", "Mané","Sterling", "Griezmann", "Eden Hazard", "Rashford", "Sané", "Dembéle", "Oyarzabal", "Insigne", "Richarlison", "Payet", "Pavón", "Grealish", "Rebic", "Ansu Fati", "Lozano", "Pulisic", "Diogo Jota", "Goncalo Guedes", "Bruno Henrique", "Thorgan Hazard", "Promes", "Éverton", "Zaha", "Taison", "Vinícius Júnior", "Rashica", "Perotti", "Baldé", "Diaby"]
         ST = ["Lewandowski", "Mbappé", "Kane", "Agüero", "Aubameyang", "Suárez", "Benzema", "Roberto Firmino", "Immobile", "Håland", "Werner", "Vardy", "Icardi", "Lukaku", "Cavani", "Martínez", "Gabriel Jesus", "Zapata", "Jiménez", "Depay", "Iago Aspas", "Ben Yedder", "Mertens", "Dzeko", "Higuaín", "Ibrahimovic", "Weghorst", "Belotti", "Morata", "Lacazette", "Mandzukic", "Jovic", "André Silva", "Danny Ings", "Moussa Dembéle", "Volland", "Milik", "Gerard Moreno", "Martial", "Muriel", "Rodrigo", "Tadic", "Dzyuba", "Falcao", "Arnautovic", "Calbert-Lewin", "Abraham", "Gómez", "Wilson", "Williams", "Alario", "Gabriel Barbosa", "Benedetto", "Paco Alcácer", "Alex Teixeira", "Caputo", "Giroud", "Diego Costa", "Sánchez", "Quagliarella", "Osimhen", "Schick", "Embolo", "King", "Lasagna"]
         print("---------------------------------------------------------------------------------")
         #longName(GK, LB, CB, RB, CDM, CM, CAM, LM, RM, RW, CF, LW, ST)
@@ -765,6 +770,7 @@ def main():
         print("---------------------------------------------------------------------------------")
         inp = str(input("INPUT: ").upper())
         if (inp == "1"):
+            clear()
             print("---------------------------------------------------------------------------------")
             print("Team:")
             generateTeam(GK, LB, CB, RB, CDM, CM, CAM, LM, RM, RW, CF, LW, ST)
@@ -772,7 +778,9 @@ def main():
             print("\nBench:")
             generateBench(GK, LB, CB, RB, CDM, CM, CAM, LM, RM, RW, CF, LW, ST)
             print()
+            input("Press enter to continue...")
         elif (inp == "2"):
+            clear()
             print("---------------------------------------------------------------------------------")
             print("Team 1:")
             generateTeam(GK, LB, CB, RB, CDM, CM, CAM, LM, RM, RW, CF, LW, ST)
@@ -786,6 +794,7 @@ def main():
             print("\nTeam 1 Bench:\n")
             generateBench(GK, LB, CB, RB, CDM, CM, CAM, LM, RM, RW, CF, LW, ST)
             print()
+            input("Press enter to continue...")
         elif (inp == "q".upper()):
             break
         else:
