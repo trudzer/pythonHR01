@@ -18,10 +18,10 @@ while (counter < 1000000):
         it = random.randint(it, newHigh)
         counter += 1
         number = "{:,}".format(it)
-        print("{}:\t{}".format(counter, number))
+        print("{:>2}:\t{}".format(counter, number))
     elif (it > num):
         newHigh = it
         it = random.randint(newLow, it)
         counter += 1
         number = "{:,}".format(it)
-        print("{}:\t{}".format(counter, number))
+        print("{:>2}:\t{}".format(counter, number))
