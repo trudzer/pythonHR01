@@ -1259,7 +1259,7 @@ def main():
         CF = ["Dybala", "Müller", "Ilicic", "Lobato", "Correa", "Joao Félix", "Tevez", "Kruse", "Joao Pedro", "Corte Real", "Giovinco", "Quaison", "Marega", "Waldschmidt", "Moniz", "Vietto", "Philipp", "Jonathan David", "Zárate"]
         LW = ["Ronaldo", "Neymar", "Mané","Sterling", "Griezmann", "Eden Hazard", "Rashford", "Sané", "Dembéle", "Oyarzabal", "Insigne", "Richarlison", "Payet", "Pavón", "Grealish", "Rebic", "Ansu Fati", "Lozano", "Pulisic", "Diogo Jota", "Goncalo Guedes", "Bruno Henrique", "Thorgan Hazard", "Promes", "Éverton", "Zaha", "Taison", "Vinícius Júnior", "Rashica", "Perotti", "Baldé", "Diaby"]
         ST = ["Lewandowski", "Mbappé", "Kane", "Agüero", "Aubameyang", "Suárez", "Benzema", "Roberto Firmino", "Immobile", "Håland", "Werner", "Vardy", "Icardi", "Lukaku", "Cavani", "Martínez", "Gabriel Jesus", "Zapata", "Jiménez", "Depay", "Iago Aspas", "Ben Yedder", "Mertens", "Dzeko", "Higuaín", "Ibrahimovic", "Weghorst", "Belotti", "Morata", "Lacazette", "Mandzukic", "Jovic", "André Silva", "Danny Ings", "Moussa Dembéle", "Volland", "Milik", "Gerard Moreno", "Martial", "Muriel", "Rodrigo", "Tadic", "Dzyuba", "Falcao", "Arnautovic", "Calbert-Lewin", "Abraham", "Gómez", "Wilson", "Williams", "Alario", "Gabriel Barbosa", "Benedetto", "Paco Alcácer", "Alex Teixeira", "Caputo", "Giroud", "Diego Costa", "Sánchez", "Quagliarella", "Osimhen", "Schick", "Embolo", "King", "Lasagna"]
-        NUMBERS = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30]
+        NUMBERS = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99]
         print("---------------------------------------------------------------------------------")
         #longName(GK, LB, CB, RB, CDM, CM, CAM, LM, RM, RW, CF, LW, ST)
         print("1. Generate 1 team\n2. Generate 2 teams\nQ. Quit")
@@ -1281,7 +1281,7 @@ def main():
             print("Team 1:")
             generateTeam(GK, LB, CB, RB, CDM, CM, CAM, LM, RM, RW, CF, LW, ST, NUMBERS)
             print("\n---------------------------------------------------------------------------------")
-            NUMBERS = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30]
+            NUMBERS = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99]
             print("\nTeam 2:")
             generateTeam(GK, LB, CB, RB, CDM, CM, CAM, LM, RM, RW, CF, LW, ST, NUMBERS)
             print("\n---------------------------------------------------------------------------------")
