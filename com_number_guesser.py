@@ -1,15 +1,16 @@
 import random
 
-num = random.randint(0, 1000000)
-it = random.randint(0, 1000000)
+MAXNUM = 1000000
+num = random.randint(0, MAXNUM)
+it = random.randint(0, MAXNUM)
 counter = 0
 newLow = 0
-newHigh = 1000000
+newHigh = MAXNUM
 
 formNum = "{:,}".format(num)
 print("THE NUMBER: " + str(formNum))
 print("----------------------------")
-while (counter < 1000000):
+while (counter < MAXNUM):
     if (num == it):
         print("Number found after {} tries".format(counter))
         break
