@@ -1,7 +1,7 @@
 import random
 import os
 
-FORMATIONS = ["3-5-2", "4-4-2", "4-2-3-1", "4-3-3", "4-4-1-1", "4-1-2-1-2", "4-1-2-1-2", "5-2-1-2", "5-2-3", "3-4-3", "4-1-4-1", "4-2-2-2", "4-1-2-2-1", "5-2-2-1", "3-2-2-2-1", "3-2-1-3",  "3-2-3-2", "5-3-1-1", "3-2-3-2", "4-3-3", "4-3-3"]
+FORMATIONS = ["3-5-2", "4-4-2", "4-2-3-1", "4-3-3", "4-4-1-1", "4-1-2-1-2", "4-1-2-1-2", "5-2-1-2", "5-2-3", "3-4-3", "4-1-4-1", "4-2-2-2", "4-1-2-2-1", "5-2-2-1", "3-2-2-2-1", "3-2-1-3",  "3-2-3-2", "5-3-1-1", "3-2-3-2", "4-3-3", "4-3-3", "5-3-3"]
 
 def TheGK(GK, NUMBERS):
     randGK = random.randint(0, len(GK) - 1)
@@ -268,6 +268,71 @@ def FiveInTheBack(LB, CB, RB, NUMBERS):
 
     for i in range(len(NUMBERS) - 1):
         if (NUMBERS[i] == NUM5):
+            NUMBERS.pop(i)
+
+def ThreeCDM(CDM, NUMBERS):
+    randCDM = random.randint(0, len(CDM) - 1)
+    randCDM2 = random.randint(0, len(CDM) - 1)
+    randCDM3 = random.randint(0, len(CDM) - 1)
+
+    randNum1 = random.randint(0, len(NUMBERS) - 1)
+    randNum2 = random.randint(0, len(NUMBERS) - 1)
+    randNum3 = random.randint(0, len(NUMBERS) - 1)
+
+    while (randNum2 == randNum1):
+        randNum2 = random.randint(0, len(NUMBERS) - 1)
+        if (randNum2 != randNum1):
+            break
+
+    while (randNum3 == randNum1 or randNum3 == randNum2):
+        randNum3 = random.randint(0, len(NUMBERS) - 1)
+        if (randNum3 != randNum1 and randNum3 != randNum2):
+            break
+
+    print("\n{:<10}{:<20}{:<20}{}".format("","CDM","CDM","CDM"))
+    print("{:<10}{:<20}".format("", CDM[randCDM]), end="")
+    while (randCDM2 == randCDM  or randCDM2 == randCDM3):
+        randCDM2 = random.randint(0, len(CDM) - 1)
+        if (randCDM2 != randCDM and randCDM2 != randCDM3):
+            break
+    print("{:<20}".format(CDM[randCDM2]), end="")
+    while (randCDM3 == randCDM  or randCDM3 == randCDM2):
+        randCDM3 = random.randint(0, len(CDM) - 1)
+        if (randCDM3 != randCDM and randCDM3 != randCDM2):
+            break
+    print(CDM[randCDM3])
+    print("{:<10}{:<20}{:<20}{}".format("","(" + str(NUMBERS[randNum1]) + ")", "(" + str(NUMBERS[randNum2]) + ")", "(" + str(NUMBERS[randNum3]) + ")" ))
+
+    CDM1 = CDM[randCDM]
+    CDM2 = CDM[randCDM2]
+    CDM3 = CDM[randCDM3]
+
+    NUM1 = NUMBERS[randNum1]
+    NUM2 = NUMBERS[randNum2]
+    NUM3 = NUMBERS[randNum3]
+
+    for i in range(len(CDM) - 1):
+        if (CDM[i] == CDM1):
+            CDM.pop(i)
+
+    for i in range(len(CDM) - 1):
+        if (CDM[i] == CDM2):
+            CDM.pop(i)
+
+    for i in range(len(CDM) - 1):
+        if (CDM[i] == CDM3):
+            CDM.pop(i)
+
+    for i in range(len(NUMBERS) - 1):
+        if (NUMBERS[i] == NUM1):
+            NUMBERS.pop(i)
+
+    for i in range(len(NUMBERS) - 1):
+        if (NUMBERS[i] == NUM2):
+            NUMBERS.pop(i)
+
+    for i in range(len(NUMBERS) - 1):
+        if (NUMBERS[i] == NUM3):
             NUMBERS.pop(i)
 
 def TwoCDM(CDM, NUMBERS):
@@ -989,6 +1054,13 @@ def generateTeam(GK, LB, CB, RB, CDM, CM, CAM, LM, RM, RW, CF, LW, ST, NUMBERS):
         OneCAM(CAM, NUMBERS)
         TwoCM(CDM, NUMBERS)
         FourInTheBack(LB, CB, RB, NUMBERS)
+        TheGK(GK, NUMBERS)
+
+    if (randFormation == 21):
+        print("\t\t{}\n".format(FORMATIONS[randFormation]))
+        FrontThree(RW, CF, LW, NUMBERS)
+        ThreeCDM(CDM, NUMBERS)
+        FiveInTheBack(LB, CB, RB, NUMBERS)
         TheGK(GK, NUMBERS)
 
     randFormation = random.randint(0, len(FORMATIONS) - 1)
