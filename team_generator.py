@@ -1328,7 +1328,21 @@ def longName(GK, LB, CB, RB, CDM, CM, CAM, LM, RM, RW, CF, LW, ST):
         if len(i) > len(tempLong):
             tempLong = i
     
-    print("name:" + tempLong + "\nlength: " + (str(len(tempLong))))
+    print("Longest name: {:<20}length: {}".format(tempLong, (str(len(tempLong)))))
+    print("---------------------------------------------------------------------------------")
+    print("Longest GK:   {:<20}length: {}".format(tempGK, (str(len(tempGK)))))
+    print("Longest LB:   {:<20}length: {}".format(tempLB, (str(len(tempLB)))))
+    print("Longest CB:   {:<20}length: {}".format(tempCB, (str(len(tempCB)))))
+    print("Longest RB:   {:<20}length: {}".format(tempRB, (str(len(tempRB)))))
+    print("Longest CDM:  {:<20}length: {}".format(tempCDM, (str(len(tempCDM)))))
+    print("Longest CM:   {:<20}length: {}".format(tempCM, (str(len(tempCM)))))
+    print("Longest CAM:  {:<20}length: {}".format(tempCAM, (str(len(tempCAM)))))
+    print("Longest LM:   {:<20}length: {}".format(tempLM, (str(len(tempLM)))))
+    print("Longest RM:   {:<20}length: {}".format(tempRM, (str(len(tempRM)))))
+    print("Longest LW:   {:<20}length: {}".format(tempLW, (str(len(tempLW)))))
+    print("Longest CF:   {:<20}length: {}".format(tempCF, (str(len(tempCF)))))
+    print("Longest RW:   {:<20}length: {}".format(tempRW, (str(len(tempRW)))))
+    print("Longest ST:   {:<20}length: {}".format(tempST, (str(len(tempST)))))
 
 def clear():
     os.system("cls")
@@ -1352,8 +1366,7 @@ def main():
         ST = ["Lewandowski", "Mbappé", "Kane", "Agüero", "Aubameyang", "Suárez", "Benzema", "Roberto Firmino", "Immobile", "Håland", "Werner", "Vardy", "Icardi", "Lukaku", "Cavani", "Martínez", "Gabriel Jesus", "Zapata", "Jiménez", "Depay", "Iago Aspas", "Ben Yedder", "Mertens", "Dzeko", "Higuaín", "Ibrahimovic", "Weghorst", "Belotti", "Morata", "Lacazette", "Mandzukic", "Jovic", "André Silva", "Danny Ings", "Moussa Dembéle", "Volland", "Milik", "Gerard Moreno", "Martial", "Muriel", "Rodrigo", "Tadic", "Dzyuba", "Falcao", "Arnautovic", "Calbert-Lewin", "Abraham", "Gómez", "Wilson", "Williams", "Alario", "Gabriel Barbosa", "Benedetto", "Paco Alcácer", "Alex Teixeira", "Caputo", "Giroud", "Diego Costa", "Sánchez", "Quagliarella", "Osimhen", "Schick", "Embolo", "King", "Lasagna"]
         NUMBERS = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99]
         print("---------------------------------------------------------------------------------")
-        #longName(GK, LB, CB, RB, CDM, CM, CAM, LM, RM, RW, CF, LW, ST)
-        print("1. Generate 1 team\n2. Generate 2 teams\nQ. Quit")
+        print("1. Generate 1 team\n2. Generate 2 teams\n3. Longest names\nQ. Quit")
         print("---------------------------------------------------------------------------------")
         inp = str(input("INPUT: ").upper())
         if (inp == "1"):
@@ -1381,6 +1394,11 @@ def main():
             print("\n---------------------------------------------------------------------------------")
             print("\nTeam 1 Bench:\n")
             generateBench(GK, LB, CB, RB, CDM, CM, CAM, LM, RM, RW, CF, LW, ST, NUMBERS)
+            print()
+            input("Press enter to continue...")
+        elif (inp == "3"):
+            clear()
+            longName(GK, LB, CB, RB, CDM, CM, CAM, LM, RM, RW, CF, LW, ST)
             print()
             input("Press enter to continue...")
         elif (inp == "q".upper()):
