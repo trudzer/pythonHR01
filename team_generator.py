@@ -1,7 +1,7 @@
 import random
 import os
 
-FORMATIONS = ["3-5-2", "4-4-2", "4-2-3-1", "4-3-3", "4-4-1-1", "4-1-2-1-2", "4-1-2-1-2", "5-2-1-2", "5-2-3", "3-4-3", "4-1-4-1", "4-2-2-2", "4-1-2-2-1", "5-2-2-1", "3-2-2-2-1", "3-2-2-3",  "3-2-3-2", "5-3-1-1", "3-3-3-1", "4-3-3", "4-3-3", "5-3-3", "4-2-2-1-1", "3-1-2-2-1-1"]
+FORMATIONS = ["3-5-2", "4-4-2", "4-2-3-1", "4-3-3", "4-4-1-1", "4-1-2-1-2", "4-1-2-1-2", "5-2-1-2", "5-2-3", "3-4-3", "4-1-4-1", "4-2-2-2", "4-1-2-2-1", "5-2-2-1", "3-2-2-2-1", "3-2-2-3",  "3-2-3-2", "5-3-1-1", "3-3-3-1", "4-3-3", "4-3-3", "5-3-3", "4-2-2-1-1", "3-1-2-2-1-1", "5-4-1"]
 
 def TheGK(GK, NUMBERS):
     randGK = random.randint(0, len(GK) - 1)
@@ -1082,6 +1082,13 @@ def generateTeam(GK, LB, CB, RB, CDM, CM, CAM, LM, RM, RW, CF, LW, ST, NUMBERS):
         ThreeInTheBack(CB, NUMBERS)
         TheGK(GK, NUMBERS)
 
+    if (randFormation == 24):
+        print("\t\t{}\n".format(FORMATIONS[randFormation]))
+        OneST(ST, NUMBERS)
+        FourInTheMiddle(CM, LM, RM, NUMBERS)
+        FiveInTheBack(LB, CB, RB, NUMBERS)
+        TheGK(GK, NUMBERS)
+
     randFormation = random.randint(0, len(FORMATIONS) - 1)
 
 def generateBench(GK, LB, CB, RB, CDM, CM, CAM, LM, RM, RW, CF, LW, ST, NUMBERS):
@@ -1182,9 +1189,9 @@ def generateBench(GK, LB, CB, RB, CDM, CM, CAM, LM, RM, RW, CF, LW, ST, NUMBERS)
     print("CAM: {:<20}{}".format(CAM[randCAM], "(" + str(NUMBERS[randNum7]) + ")"))
     print("LM:  {:<20}{}".format(LM[randLM], "(" + str(NUMBERS[randNum8] ) + ")"))
     print("RM:  {:<20}{}".format(RM[randRM], "(" + str(NUMBERS[randNum9] ) + ")"))
-    print("RW:  {:<20}{}".format(RW[randRW], "(" + str(NUMBERS[randNum10]) + ")"))
-    print("CF:  {:<20}{}".format(CF[randCF], "(" + str(NUMBERS[randNum11]) + ")"))
     print("LW:  {:<20}{}".format(LW[randLW], "(" + str(NUMBERS[randNum12]) + ")"))
+    print("CF:  {:<20}{}".format(CF[randCF], "(" + str(NUMBERS[randNum11]) + ")"))
+    print("RW:  {:<20}{}".format(RW[randRW], "(" + str(NUMBERS[randNum10]) + ")"))
     print("ST:  {:<20}{}".format(ST[randST], "(" + str(NUMBERS[randNum13]) + ")"))
 
     GK1 = GK[randGK]
