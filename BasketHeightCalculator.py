@@ -1,17 +1,11 @@
 import math
 
-HEIGHT = 190
-WS = 194
-BASKET = 305
-
 def calcReach(height, ws):
-    return math.floor(height + (0.07 * height) + (0.24 * ws))
+    return math.floor(height + (ws / 2) - (0.2 * ws))
 
-REACH = calcReach(HEIGHT, WS)
-    
-def calcHeight(height, ws):
-    differenceInReach = calcReach(height, ws) - REACH
-    equivalent_basket_height = BASKET - differenceInReach
+def calcHeight(height, ws, basket, HEIGHT, WS):
+    differenceInReach = calcReach(height, ws) - calcReach(HEIGHT, WS)
+    equivalent_basket_height = basket - differenceInReach
     return math.floor(equivalent_basket_height)
 
 def calcCMtoInch(height_cm):
@@ -24,11 +18,19 @@ def calcCMtoInch(height_cm):
     return newHeight
 
 def main():
+    HEIGHT = 190
+    WS = 194
+    BASKET = 305
+
     otherHeight = int(input("Enter the height of the person (in cm): "))
     otherWS = int(input("Enter the wingspan of the person (in cm): "))
+    REACH = calcReach(HEIGHT, WS)
     otherReach = calcReach(otherHeight, otherWS)
-    equivalentHeight = calcHeight(otherHeight, otherWS)
-    print(f"\nThe person with height {HEIGHT}cm ({calcCMtoInch(HEIGHT)}), wingspan {WS}cm ({calcCMtoInch(WS)}) and standing reach {REACH}cm ({calcCMtoInch(REACH)})\nThe person with height {otherHeight}cm ({calcCMtoInch(otherHeight)}), wingspan {otherWS}cm ({calcCMtoInch(otherWS)}) and standing reach {otherReach}cm ({calcCMtoInch(otherReach)}) \n\nA basket height of {equivalentHeight}cm ({calcCMtoInch(equivalentHeight)}) is equivelant to a basket height of {BASKET}cm ({calcCMtoInch(BASKET)})")
+    equivalentHeight = calcHeight(otherHeight, otherWS, BASKET, HEIGHT, WS)
+
+    print(f"\nThe person with height {HEIGHT}cm ({calcCMtoInch(HEIGHT)}), wingspan {WS}cm ({calcCMtoInch(WS)}) and standing reach {REACH}cm ({calcCMtoInch(REACH)})")
+    print(f"The person with height {otherHeight}cm ({calcCMtoInch(otherHeight)}), wingspan {otherWS}cm ({calcCMtoInch(otherWS)}) and standing reach {otherReach}cm ({calcCMtoInch(otherReach)})")
+    print(f"A basket height of {equivalentHeight}cm ({calcCMtoInch(equivalentHeight)}) is equivalent to a basket height of {BASKET}cm ({calcCMtoInch(BASKET)})")
 
 if __name__ == "__main__":
     main()
