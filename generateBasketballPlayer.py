@@ -1,5 +1,7 @@
 import random
 
+playerList = []
+
 def generateStats(MPG, three_point_attempts, two_point_attempts, free_throw_attempts, offensive_rebounds, defensive_rebounds, assists, steals, blocks, turnovers):
     adjust_stats = MPG / 48.0
     three_point_attempts *= adjust_stats
@@ -31,9 +33,9 @@ def generatePlayer(POS, MPG, GP):
         for i in range(0, GP):
             three_point_attempts, two_point_attempts, free_throw_attempts, offensive_rebounds, defensive_rebounds, assists, steals, blocks, turnovers = generateStats(
                 MPG,
-                random.uniform(0.0, 14.0),  # 3PA
-                random.uniform(0.0, 25.0),  # 2PA
-                random.uniform(0.0, 15.0),  # FTA
+                random.uniform(0.0, 20.0),  # 3PA
+                random.uniform(0.0, 30.0),  # 2PA
+                random.uniform(0.0, 25.0),  # FTA
                 random.uniform(0.0, 3.0),   # ORB
                 random.uniform(0.0, 7.0),   # DRB
                 random.uniform(0.0, 20.0),  # AST
@@ -75,9 +77,9 @@ def generatePlayer(POS, MPG, GP):
         for i in range(0, GP):
             three_point_attempts, two_point_attempts, free_throw_attempts, offensive_rebounds, defensive_rebounds, assists, steals, blocks, turnovers = generateStats(
                 MPG,
-                random.uniform(0.0, 15.0),  # 3PA
-                random.uniform(0.0, 25.0),  # 2PA
-                random.uniform(0.0, 15.0),  # FTA
+                random.uniform(0.0, 20.0),  # 3PA
+                random.uniform(0.0, 30.0),  # 2PA
+                random.uniform(0.0, 25.0),  # FTA
                 random.uniform(0.0, 2.0),   # ORB
                 random.uniform(0.0, 8.0),   # DRB
                 random.uniform(0.0, 8.0),   # AST
@@ -119,9 +121,9 @@ def generatePlayer(POS, MPG, GP):
         for i in range(0, GP):
             three_point_attempts, two_point_attempts, free_throw_attempts, offensive_rebounds, defensive_rebounds, assists, steals, blocks, turnovers = generateStats(
                 MPG,
-                random.uniform(0.0, 11.0),  # 3PA
-                random.uniform(0.0, 25.0),  # 2PA
-                random.uniform(0.0, 15.0),  # FTA
+                random.uniform(0.0, 15.0),  # 3PA
+                random.uniform(0.0, 30.0),  # 2PA
+                random.uniform(0.0, 20.0),  # FTA
                 random.uniform(0.0, 5.0),   # ORB
                 random.uniform(0.0, 10.0),  # DRB
                 random.uniform(0.0, 11.0),  # AST
@@ -163,11 +165,11 @@ def generatePlayer(POS, MPG, GP):
         for i in range(0, GP):
             three_point_attempts, two_point_attempts, free_throw_attempts, offensive_rebounds, defensive_rebounds, assists, steals, blocks, turnovers = generateStats(
                 MPG,
-                random.uniform(0.0, 8.0),   # 3PA
-                random.uniform(0.0, 25.0),  # 2PA
-                random.uniform(0.0, 12.0),  # FTA
+                random.uniform(0.0, 12.0),   # 3PA
+                random.uniform(0.0, 30.0),  # 2PA
+                random.uniform(0.0, 20.0),  # FTA
                 random.uniform(0.0, 8.0),   # ORB
-                random.uniform(0.0, 12.0),  # DRB
+                random.uniform(0.0, 15.0),  # DRB
                 random.uniform(0.0, 11.0),  # AST
                 random.uniform(0.0, 4.0),   # STL
                 random.uniform(0.0, 3.0),   # BLK
@@ -208,18 +210,18 @@ def generatePlayer(POS, MPG, GP):
             three_point_attempts, two_point_attempts, free_throw_attempts, offensive_rebounds, defensive_rebounds, assists, steals, blocks, turnovers = generateStats(
                 MPG,
                 random.uniform(0.0, 8.0),   # 3PA
-                random.uniform(0.0, 20.0),  # 2PA
-                random.uniform(0.0, 12.0),  # FTA
-                random.uniform(0.0, 7.0),   # ORB
-                random.uniform(0.0, 13.0),  # DRB
-                random.uniform(0.0, 11.0),  # AST
+                random.uniform(0.0, 30.0),  # 2PA
+                random.uniform(0.0, 20.0),  # FTA
+                random.uniform(0.0, 10.0),  # ORB
+                random.uniform(0.0, 20.0),  # DRB
+                random.uniform(0.0, 15.0),  # AST
                 random.uniform(0.0, 2.0),   # STL
                 random.uniform(0.0, 4.0),   # BLK
                 random.uniform(0.0, 4.0)    # TOV
             )
-            two_point_hit = random.uniform(0.25, 0.7) * two_point_attempts
-            three_point_hit = random.uniform(0.15, 0.5) * three_point_attempts
-            free_throw_hit = random.uniform(0.3, 0.85) * free_throw_attempts
+            two_point_hit = random.uniform(0.25, 0.85) * two_point_attempts
+            three_point_hit = random.uniform(0.15, 0.55) * three_point_attempts
+            free_throw_hit = random.uniform(0.5, 0.9) * free_throw_attempts
             
             total_three_point_attempts += three_point_attempts
             total_two_point_attempts += two_point_attempts
@@ -286,13 +288,13 @@ def generatePlayer(POS, MPG, GP):
     return result_string
 
 # Example usage
-generated_player = generatePlayer("PG", 30.0, 70)
+generated_player = generatePlayer("C", 38.0, 82)
 print(generated_player)
-generated_player = generatePlayer("SG", 33.2, 66)
+generated_player = generatePlayer("C", 38.0, 82)
 print(generated_player)
-generated_player = generatePlayer("SF", 25.6, 50)
+generated_player = generatePlayer("C", 38.0, 82)
 print(generated_player)
-generated_player = generatePlayer("PF", 35.1, 78)
+generated_player = generatePlayer("C", 38.0, 82)
 print(generated_player)
-generated_player = generatePlayer("C", 38.0, 62)
+generated_player = generatePlayer("C", 38.0, 82)
 print(generated_player)
