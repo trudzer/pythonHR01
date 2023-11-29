@@ -17,6 +17,9 @@ def generateStats(MPG, three_point_attempts, two_point_attempts, free_throw_atte
 
 def generatePlayer(POS, MPG, GP):
     if POS == "PG":
+        height = random.randint(175, 203)
+        weight = random.randint(69, 92)
+
         total_three_point_attempts = 0
         total_two_point_attempts = 0
         total_free_throw_attempts = 0
@@ -30,22 +33,45 @@ def generatePlayer(POS, MPG, GP):
         total_three_point_hit = 0 
         total_free_throw_hit = 0
         
+        insideScoring = random.randint(55, 90)
+        insideFinishing = random.randint(55, 95)
+        offensiveMovement = random.randint(55, 98)
+        outsideScoring = random.randint(50, 95)
+        playmaking = random.randint(50, 95)
+        insideDefense = random.randint(35, 70)
+        exteriorDefense = random.randint(55, 95)
+        defensiveMovement = random.randint(45, 90)
+        athletic = random.randint(45, 85)
+        ballMovement = random.randint(45, 95)
+        
+        overall = round(100 * ((insideScoring / 100) * 0.05 
+                            + (insideFinishing / 100) * 0.2
+                            + (offensiveMovement / 100) * 0.05 
+                            + (outsideScoring / 100) * 0.2 
+                            + (playmaking / 100) * 0.2 
+                            + (insideDefense / 100) * 0.02 
+                            + (exteriorDefense / 100) * 0.2 
+                            + (defensiveMovement / 100) * 0.05 
+                            + (athletic / 100) * 0.05 
+                            + (ballMovement / 100) * 0.1))
+        
         for i in range(0, GP):
             three_point_attempts, two_point_attempts, free_throw_attempts, offensive_rebounds, defensive_rebounds, assists, steals, blocks, turnovers = generateStats(
                 MPG,
-                random.uniform(0.0, 20.0),  # 3PA
-                random.uniform(0.0, 30.0),  # 2PA
-                random.uniform(0.0, 25.0),  # FTA
-                random.uniform(0.0, 3.0),   # ORB
-                random.uniform(0.0, 7.0),   # DRB
-                random.uniform(0.0, 20.0),  # AST
-                random.uniform(0.0, 5.0),   # STL
-                random.uniform(0.0, 1.5),   # BLK
-                random.uniform(0.0, 6.0)    # TOV
+                random.uniform(0.0, (25.0 * (outsideScoring / 100))),  # 3PA
+                random.uniform(0.0, (35.0 * (insideFinishing / 100))),  # 2PA
+                random.uniform(0.0, (25.0 * (outsideScoring / 100))),  # FTA
+                random.uniform(0.0, (5.0 * (0.5 * (offensiveMovement / 100) + 0.5 * (athletic / 100)))),   # ORB
+                random.uniform(0.0, (10.0 * (0.7 * (insideDefense / 100) +  0.1 * (athletic / 100) + 0.2 * (defensiveMovement / 100)))),   # DRB
+                random.uniform(0.0, 20.0) * (playmaking / 100),  # AST
+                random.uniform(0.0, (8.0 * (exteriorDefense / 100))),   # STL
+                random.uniform(0.0, (5.0 * (insideDefense / 100))),   # BLK
+                random.uniform(0.0, (6.0 * (100 / ballMovement)))    # TOV
             )
-            two_point_hit = round(random.uniform(0.25, 0.65) * two_point_attempts)
-            three_point_hit = round(random.uniform(0.15, 0.55) * three_point_attempts)
-            free_throw_hit = round(random.uniform(0.65, 0.95) * free_throw_attempts)
+            
+            two_point_hit = round(random.uniform(0.15, (0.05 * (height / 203) + 0.4 * (insideScoring / 100) + 0.4 * (insideFinishing / 100) + 0.05 * (athletic / 100) + 0.1 * (offensiveMovement / 100))) * two_point_attempts)
+            three_point_hit = round(random.uniform(0.25, (three_point_attempts / 1 * (outsideScoring / 100))))
+            free_throw_hit = round(random.uniform(0.95, ( 1 * (outsideScoring / 100))) * free_throw_attempts)
             
             total_three_point_attempts += three_point_attempts
             total_two_point_attempts += two_point_attempts
@@ -59,6 +85,12 @@ def generatePlayer(POS, MPG, GP):
             total_two_point_hit += two_point_hit
             total_three_point_hit += three_point_hit
             total_free_throw_hit += free_throw_hit
+            
+        print("------------------------------")
+        print(f"Height: {height}\nWeight: {weight}\n\nOutside scoring: {outsideScoring}\nInside scoring: {insideScoring}\nInside finishing: {insideFinishing}\nOffensive movement: {offensiveMovement}")
+        print(f"Inside defense: {insideDefense}\nPlaymaking: {playmaking}\nExterior defense: {exteriorDefense}\nBall movement: {ballMovement}\nAthletic: {athletic}")
+        print(f"Overall: {overall}")
+        print("")
         
     if POS == "SG":
         total_three_point_attempts = 0
@@ -209,15 +241,15 @@ def generatePlayer(POS, MPG, GP):
         for i in range(0, GP):
             three_point_attempts, two_point_attempts, free_throw_attempts, offensive_rebounds, defensive_rebounds, assists, steals, blocks, turnovers = generateStats(
                 MPG,
-                random.uniform(0.0, 8.0),   # 3PA
+                random.uniform(0.0, 10.0),   # 3PA
                 random.uniform(0.0, 30.0),  # 2PA
                 random.uniform(0.0, 20.0),  # FTA
                 random.uniform(0.0, 10.0),  # ORB
-                random.uniform(0.0, 20.0),  # DRB
+                random.uniform(0.0, 25.0),  # DRB
                 random.uniform(0.0, 15.0),  # AST
-                random.uniform(0.0, 2.0),   # STL
-                random.uniform(0.0, 4.0),   # BLK
-                random.uniform(0.0, 4.0)    # TOV
+                random.uniform(0.0, 3.0),   # STL
+                random.uniform(0.0, 6.0),   # BLK
+                random.uniform(0.0, 6.0)    # TOV
             )
             two_point_hit = random.uniform(0.25, 0.85) * two_point_attempts
             three_point_hit = random.uniform(0.15, 0.55) * three_point_attempts
@@ -288,13 +320,13 @@ def generatePlayer(POS, MPG, GP):
     return result_string
 
 # Example usage
-generated_player = generatePlayer("C", 38.0, 82)
+generated_player = generatePlayer("PG", 38.0, 82)
 print(generated_player)
-generated_player = generatePlayer("C", 38.0, 82)
+generated_player = generatePlayer("PG", 38.0, 82)
 print(generated_player)
-generated_player = generatePlayer("C", 38.0, 82)
+generated_player = generatePlayer("PG", 38.0, 82)
 print(generated_player)
-generated_player = generatePlayer("C", 38.0, 82)
+generated_player = generatePlayer("PG", 38.0, 82)
 print(generated_player)
-generated_player = generatePlayer("C", 38.0, 82)
+generated_player = generatePlayer("PG", 38.0, 82)
 print(generated_player)
