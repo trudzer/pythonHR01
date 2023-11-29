@@ -58,12 +58,12 @@ def generatePlayer(POS, MPG, GP):
         for i in range(0, GP):
             three_point_attempts, two_point_attempts, free_throw_attempts, offensive_rebounds, defensive_rebounds, assists, steals, blocks, turnovers = generateStats(
                 MPG,
-                random.uniform(0.0, (25.0 * (outsideScoring / 100))),  # 3PA
-                random.uniform(0.0, (35.0 * (insideFinishing / 100))),  # 2PA
+                random.uniform(0.0, (25.0 * (0.6 * (outsideScoring / 100) + 0.1 * (ballMovement / 100) + 0.3 * (offensiveMovement / 100)))),  # 3PA
+                random.uniform(0.0, (35.0 * (0.4 * insideFinishing / 100) + 0.4 * (insideScoring / 100) + 0.1 * (offensiveMovement / 100) + 0.1 * (athletic * 0.1))),  # 2PA
                 random.uniform(0.0, (25.0 * (outsideScoring / 100))),  # FTA
                 random.uniform(0.0, (5.0 * (0.5 * (offensiveMovement / 100) + 0.5 * (athletic / 100)))),   # ORB
                 random.uniform(0.0, (10.0 * (0.7 * (insideDefense / 100) +  0.1 * (athletic / 100) + 0.2 * (defensiveMovement / 100)))),   # DRB
-                random.uniform(0.0, 20.0) * (playmaking / 100),  # AST
+                random.uniform(0.0, (20.0 * (0.6 * (playmaking / 100) + 0.3 * (offensiveMovement / 100) + 0.1 * (ballMovement / 100)))),  # AST
                 random.uniform(0.0, (8.0 * (exteriorDefense / 100))),   # STL
                 random.uniform(0.0, (5.0 * (insideDefense / 100))),   # BLK
                 random.uniform(0.0, (6.0 * (100 / ballMovement)))    # TOV
