@@ -1,8 +1,8 @@
 import math
 import random
 
-MIN = 40
-TEMPMIN = 50
+MIN = 30
+TEMPMIN = 45
 MAX = 59
 
 def calcCMtoInch(heightCM):
@@ -110,7 +110,7 @@ def generatePlayer(POS, OSP, ISP, DP, AP, PP, RP):
         baseValue = 1.5
     passAccuracy = math.ceil(random.randint(MIN, MAX) * baseValue) + (PG + SF + C)
     ballHandle = math.ceil(random.randint(MIN, MAX) * baseValue) + (PG + SG + SF)
-    speedWithBall = math.ceil(random.randint(MIN, MAX) * baseValue) + (PG + SG + SF)
+    speedWithBall = math.ceil((speed + acceleration + ballHandle) / 3)
     passIQ= math.ceil(random.randint(MIN, MAX) * baseValue) + (PG + C)
     passVision = math.ceil(random.randint(MIN, MAX) * baseValue) + (PG + C)
     playmaking = math.floor((passAccuracy
@@ -144,6 +144,7 @@ def generatePlayer(POS, OSP, ISP, DP, AP, PP, RP):
         weight = random.randint(96, 120)
     intangibles = random.randint(70, 99)
     potential = random.randint(90, 99)
+    workEthic = random.randint(0,3)
     
     playerStats = (
         f"{outsideScoring:2d} Outside Scoring\n"
@@ -154,16 +155,6 @@ def generatePlayer(POS, OSP, ISP, DP, AP, PP, RP):
         f"{freeThrow:2d} Free Throw\n"
         f"{shotIQ:2d} Shot IQ\n"
         f"{offensiveConsistency:2d} Offensive Consistency\n"
-        f"\n"
-        f"{athleticism:2d} Athleticism\n"
-        f"-------------------------------------\n"
-        f"{speed:2d} Speed\n"
-        f"{acceleration:2d} Acceleration\n"
-        f"{strength:2d} Strength\n"
-        f"{vertical:2d} Vertical\n"
-        f"{stamina:2d} Stamina\n"
-        f"{hustle:2d} Hustle\n"
-        f"{overallDurability:2d} Overall Durability\n"
         f"\n"
         f"{insideScoring:2d} Inside Scoring\n"
         f"-------------------------------------\n"
@@ -176,14 +167,6 @@ def generatePlayer(POS, OSP, ISP, DP, AP, PP, RP):
         f"{drawFoul:2d} Draw Foul\n"
         f"{hands:2d} Hands\n"
         f"\n"
-        f"{playmaking:2d} Playmaking\n"
-        f"-------------------------------------\n"
-        f"{passAccuracy:2d} Pass Accuracy\n"
-        f"{ballHandle:2d} Ball Handle\n"
-        f"{speedWithBall:2d} Speed with Ball\n"
-        f"{passIQ:2d} Pass IQ\n"
-        f"{passVision:2d} Pass Vision\n"
-        f"\n"
         f"{defending:2d} Defending\n"
         f"-------------------------------------\n"
         f"{interiorDefense:2d} Interior Defense\n"
@@ -194,6 +177,24 @@ def generatePlayer(POS, OSP, ISP, DP, AP, PP, RP):
         f"{helpDefenseIQ:2d} Help Defense IQ\n"
         f"{passPerception:2d} Pass Perception\n"
         f"{defensiveConsistency:2d} Defensive Consistency\n"
+        f"\n"
+        f"{athleticism:2d} Athleticism\n"
+        f"-------------------------------------\n"
+        f"{speed:2d} Speed\n"
+        f"{acceleration:2d} Acceleration\n"
+        f"{strength:2d} Strength\n"
+        f"{vertical:2d} Vertical\n"
+        f"{stamina:2d} Stamina\n"
+        f"{hustle:2d} Hustle\n"
+        f"{overallDurability:2d} Overall Durability\n"
+        f"\n"
+        f"{playmaking:2d} Playmaking\n"
+        f"-------------------------------------\n"
+        f"{passAccuracy:2d} Pass Accuracy\n"
+        f"{ballHandle:2d} Ball Handle\n"
+        f"{speedWithBall:2d} Speed with Ball\n"
+        f"{passIQ:2d} Pass IQ\n"
+        f"{passVision:2d} Pass Vision\n"
         f"\n"
         f"{rebounding:2d} Rebounding\n"
         f"-------------------------------------\n"
@@ -581,6 +582,11 @@ def generatePlayer(POS, OSP, ISP, DP, AP, PP, RP):
         f"{'Work Horse: Silver' if defensiveConsistency >= 80 and defensiveConsistency < 85 else ''}",
         f"{'Work Horse: Gold' if defensiveConsistency >= 85 and defensiveConsistency < 90 else ''}",
         f"{'Work Horse: Hall of Fame' if defensiveConsistency >= 90 else ''}",
+        
+        f"{'Work Ethic: Bronze' if workEthic == 0 else ''}",
+        f"{'Work Ethic: Silver' if workEthic == 1 else ''}",
+        f"{'Work Ethic: Gold' if workEthic == 2 else ''}",
+        f"{'Work Ethic: Hall of Fame' if workEthic == 3 else ''}",
     ]
     
     playerStats += "Badges:\n" + "\n".join(filter(None, badges))
@@ -588,9 +594,9 @@ def generatePlayer(POS, OSP, ISP, DP, AP, PP, RP):
     return playerStats
     
 def main():
-                               #OSP      #ISP    #DP     #AP     #PP     #RP
+                                #OSP     #ISP    #DP     #AP     #PP     #RP
     #print(generatePlayer("SF", True,    True,   False,  True,   False,  False))
-    print(generatePlayer("SF",  True,     True,   True,   True,   True,  True))
+    print(generatePlayer("SF",  True,     True,   False,   True,   False,  False))
     
 if __name__ == "__main__":
     main()
