@@ -97,6 +97,20 @@ def generatePlayer(POS, OSP, ISP, DP, AP, PP, RP):
     perimeterDefense = math.ceil(random.randint(MIN, MAX) * baseValue) + (PG + SG + SF)
     steal = math.ceil(random.randint(round(perimeterDefense / 2), MAX) * baseValue) + (PG + SG + SF)
     block = math.ceil(random.randint(MIN, MAX) * baseValue) + (PF + C)
+    if POS == "PG" or POS == "SG" or POS == "SF":
+        tempPerimeterDefense = max(perimeterDefense, interiorDefense)
+        tempSteal = max(steal, block)
+        block = min(steal, block)
+        steal = tempSteal
+        interiorDefense = min(perimeterDefense, perimeterDefense)
+        perimeterDefense = tempPerimeterDefense
+    if POS == "PF" or POS == "C":
+        tempPerimeterDefense = min(perimeterDefense, interiorDefense)
+        tempSteal = min(steal, block)
+        block = max(steal, block)
+        steal = tempSteal
+        interiorDefense = max(perimeterDefense, perimeterDefense)
+        perimeterDefense = tempPerimeterDefense
     lateralQuickness = math.ceil(random.randint(round(acceleration / 2), MAX) * baseValue) + (PG + SG + SF)
     helpDefenseIQ = math.ceil(random.randint(MIN, MAX) * baseValue) + (PG + SG + SF + PF + C)
     passPerception = math.ceil(random.randint(MIN, MAX) * baseValue) + (PG + SG + SF)
@@ -147,6 +161,7 @@ def generatePlayer(POS, OSP, ISP, DP, AP, PP, RP):
     if POS == "C":
         height = random.randint(208, 221)
         weight = random.randint(96, 120)
+    wingspan = random.randint(height -5, height + 25)
     intangibles = random.randint(70, 99)
     potential = random.randint(HOF, 99)
     workEthic = random.randint(0,3)
@@ -212,6 +227,7 @@ def generatePlayer(POS, OSP, ISP, DP, AP, PP, RP):
         f"{potential:2d} Potential\n"
         f"{height} cm ({calcCMtoInch(height)} ft)\n"
         f"{weight} KG ({round(weight * 2.20462)} lbs)\n"
+        f"{wingspan} cm ({calcCMtoInch(wingspan)}) ft\n"
         f"\n"
     )
     badges = [
@@ -370,10 +386,10 @@ def generatePlayer(POS, OSP, ISP, DP, AP, PP, RP):
         f"{'Green Machine: Gold' if max(midRangeShot, threePointShot) >= GOLD and max(midRangeShot, threePointShot) < HOF and shotIQ >= GOLD else ''}",
         f"{'Green Machine: Hall of Fame' if max(midRangeShot, threePointShot) >= HOF and shotIQ >= HOF else ''}",
     
-        f"{'Blinders: Bronze' if shotIQ >= BRONZE and shotIQ < SILVER else ''}",
-        f"{'Blinders: Silver' if shotIQ >= SILVER and shotIQ < GOLD and max(midRangeShot, threePointShot) >= BRONZE else ''}",
-        f"{'Blinders: Gold' if shotIQ >= GOLD and shotIQ < HOF and max(midRangeShot, threePointShot) >= SILVER else ''}",
-        f"{'Blinders: Hall of Fame' if shotIQ >= HOF and max(midRangeShot, threePointShot) >= GOLD else ''}",
+        f"{'Guard Up: Bronze' if shotIQ >= BRONZE and shotIQ < SILVER else ''}",
+        f"{'Guard Up: Silver' if shotIQ >= SILVER and shotIQ < GOLD and max(midRangeShot, threePointShot) >= BRONZE else ''}",
+        f"{'Guard Up: Gold' if shotIQ >= GOLD and shotIQ < HOF and max(midRangeShot, threePointShot) >= SILVER else ''}",
+        f"{'Guard Up: Hall of Fame' if shotIQ >= HOF and max(midRangeShot, threePointShot) >= GOLD else ''}",
         
         f"{'Limitless Range: Bronze' if threePointShot >= BRONZE and threePointShot < SILVER else ''}",
         f"{'Limitless Range: Silver' if threePointShot >= SILVER and threePointShot < GOLD else ''}",
@@ -603,7 +619,7 @@ def generatePlayer(POS, OSP, ISP, DP, AP, PP, RP):
 def main():
                                 #OSP     #ISP    #DP     #AP     #PP     #RP
     #print(generatePlayer("SF", True,    True,   False,  True,   False,  False))
-    print(generatePlayer("PG",  True,     False,   False,   True,   True,  False))
+    print(generatePlayer("C",  True,     False,   False,   True,   True,  False))
     
 if __name__ == "__main__":
     main()
