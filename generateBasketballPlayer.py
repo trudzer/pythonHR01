@@ -63,14 +63,14 @@ def generatePlayer(POS, MPG, GP):
                 random.uniform(0.0, (25.0 * (outsideScoring / 100))),  # FTA
                 random.uniform(0.0, (5.0 * (0.5 * (offensiveMovement / 100) + 0.5 * (athletic / 100)))),   # ORB
                 random.uniform(0.0, (8.0 * (0.7 * (insideDefense / 100) +  0.1 * (athletic / 100) + 0.2 * (defensiveMovement / 100)))),   # DRB
-                random.uniform(0.0, (25.0 * (0.6 * (playmaking / 100) + 0.3 * (offensiveMovement / 100) + 0.1 * (ballMovement / 100)))),  # AST
+                random.uniform(0.0, (30.0 * (0.6 * (playmaking / 100) + 0.3 * (offensiveMovement / 100) + 0.1 * (ballMovement / 100)))),  # AST
                 random.uniform(0.0, (5.0 * ( 0.7 * (exteriorDefense / 100) + 0.2 * (defensiveMovement / 100) + 0.1 * (athletic / 100)))),   # STL
                 random.uniform(0.0, (2.0 * (0.5 * insideDefense / 100) + 0.5 * (height / 100))),   # BLK
                 random.uniform(0.0, (4.0 * (100 / ballMovement)))    # TOV
             )
             
-            two_point_hit = round(random.uniform(0.25, 1.0) * ((0.05 * (height / 203) + 0.4 * (insideScoring / 100) + 0.4 * (insideFinishing / 100) + 0.05 * (athletic / 100) + 0.1 * (offensiveMovement / 100))) * two_point_attempts)
-            three_point_hit = round(random.uniform(0.25, 1.0) * ((0.8 * (outsideScoring / 100) + (0.05 * (height / 203) + 0.15 * (offensiveMovement / 100)))) * three_point_attempts)
+            two_point_hit = round(random.uniform(0.25, 0.9) * ((0.05 * (height / 203) + 0.4 * (insideScoring / 100) + 0.4 * (insideFinishing / 100) + 0.05 * (athletic / 100) + 0.1 * (offensiveMovement / 100))) * two_point_attempts)
+            three_point_hit = round(random.uniform(0.25, 0.9) * ((0.8 * (outsideScoring / 100) + (0.05 * (height / 203) + 0.15 * (offensiveMovement / 100)))) * three_point_attempts)
             free_throw_hit = round(random.uniform(0.95, ( 1 * (outsideScoring / 100))) * free_throw_attempts)
             
             total_three_point_attempts += three_point_attempts
@@ -139,8 +139,8 @@ def generatePlayer(POS, MPG, GP):
                 random.uniform(0.0, (4.0 * (100 / ballMovement)))    # TOV
             )
             
-            two_point_hit = round(random.uniform(0.25, 1.0) * ((0.05 * (height / 208) + 0.4 * (insideScoring / 100) + 0.4 * (insideFinishing / 100) + 0.05 * (athletic / 100) + 0.1 * (offensiveMovement / 100))) * two_point_attempts)
-            three_point_hit = round(random.uniform(0.25, 1.0) * ((0.8 * (outsideScoring / 100) + (0.05 * (height / 208) + 0.15 * (offensiveMovement / 100)))) * three_point_attempts)
+            two_point_hit = round(random.uniform(0.25, 0.9) * ((0.05 * (height / 208) + 0.4 * (insideScoring / 100) + 0.4 * (insideFinishing / 100) + 0.05 * (athletic / 100) + 0.1 * (offensiveMovement / 100))) * two_point_attempts)
+            three_point_hit = round(random.uniform(0.25, 0.9) * ((0.8 * (outsideScoring / 100) + (0.05 * (height / 208) + 0.15 * (offensiveMovement / 100)))) * three_point_attempts)
             free_throw_hit = round(random.uniform(0.95, ( 1 * (outsideScoring / 100))) * free_throw_attempts)
             
             total_three_point_attempts += three_point_attempts
@@ -209,8 +209,8 @@ def generatePlayer(POS, MPG, GP):
                 random.uniform(0.0, (4.0 * (100 / ballMovement)))    # TOV
             )
             
-            two_point_hit = round(random.uniform(0.25, 1.0) * ((0.05 * (height / 211) + 0.4 * (insideScoring / 100) + 0.4 * (insideFinishing / 100) + 0.05 * (athletic / 100) + 0.1 * (offensiveMovement / 100))) * two_point_attempts)
-            three_point_hit = round(random.uniform(0.25, 1.0) * ((0.8 * (outsideScoring / 100) + (0.05 * (height / 211) + 0.15 * (offensiveMovement / 100)))) * three_point_attempts)
+            two_point_hit = round(random.uniform(0.25, 0.9) * ((0.05 * (height / 211) + 0.4 * (insideScoring / 100) + 0.4 * (insideFinishing / 100) + 0.05 * (athletic / 100) + 0.1 * (offensiveMovement / 100))) * two_point_attempts)
+            three_point_hit = round(random.uniform(0.25, 0.9) * ((0.8 * (outsideScoring / 100) + (0.05 * (height / 211) + 0.15 * (offensiveMovement / 100)))) * three_point_attempts)
             free_throw_hit = round(random.uniform(0.95, ( 1 * (outsideScoring / 100))) * free_throw_attempts)
         
             total_three_point_attempts += three_point_attempts
@@ -279,8 +279,8 @@ def generatePlayer(POS, MPG, GP):
                 random.uniform(0.0, (4.0 * (100 / ballMovement)))    # TOV
                 )
                 
-            two_point_hit = round(random.uniform(0.25, 1.0) * ((0.05 * (height / 216) + 0.4 * (insideScoring / 100) + 0.4 * (insideFinishing / 100) + 0.05 * (athletic / 100) + 0.1 * (offensiveMovement / 100))) * two_point_attempts)
-            three_point_hit = round(random.uniform(0.25, 1.0) * ((0.8 * (outsideScoring / 100) + (0.05 * (height / 216) + 0.15 * (offensiveMovement / 100)))) * three_point_attempts)
+            two_point_hit = round(random.uniform(0.25, 0.9) * ((0.05 * (height / 216) + 0.4 * (insideScoring / 100) + 0.4 * (insideFinishing / 100) + 0.05 * (athletic / 100) + 0.1 * (offensiveMovement / 100))) * two_point_attempts)
+            three_point_hit = round(random.uniform(0.25, 0.9) * ((0.8 * (outsideScoring / 100) + (0.05 * (height / 216) + 0.15 * (offensiveMovement / 100)))) * three_point_attempts)
             free_throw_hit = round(random.uniform(0.95, ( 1 * (outsideScoring / 100))) * free_throw_attempts)
             
             total_three_point_attempts += three_point_attempts
@@ -349,8 +349,8 @@ def generatePlayer(POS, MPG, GP):
                 random.uniform(0.0, (3.0 * (100 / ballMovement)))    # TOV
                 )
                 
-            two_point_hit = round(random.uniform(0.25, 1.0) * ((0.05 * (height / 229) + 0.4 * (insideScoring / 100) + 0.4 * (insideFinishing / 100) + 0.05 * (athletic / 100) + 0.1 * (offensiveMovement / 100))) * two_point_attempts)
-            three_point_hit = round(random.uniform(0.25, 1.0) * ((0.8 * (outsideScoring / 100) + (0.05 * (height / 229) + 0.15 * (offensiveMovement / 100)))) * three_point_attempts)
+            two_point_hit = round(random.uniform(0.25, 0.9) * ((0.05 * (height / 229) + 0.4 * (insideScoring / 100) + 0.4 * (insideFinishing / 100) + 0.05 * (athletic / 100) + 0.1 * (offensiveMovement / 100))) * two_point_attempts)
+            three_point_hit = round(random.uniform(0.25, 0.9) * ((0.8 * (outsideScoring / 100) + (0.05 * (height / 229) + 0.15 * (offensiveMovement / 100)))) * three_point_attempts)
             free_throw_hit = round(random.uniform(0.95, ( 1 * (outsideScoring / 100))) * free_throw_attempts)
             
             total_three_point_attempts += three_point_attempts
