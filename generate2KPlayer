@@ -79,7 +79,7 @@ def generatePlayer(POS, OSP, ISP, DP, AP, PP, RP):
     acceleration = math.ceil(random.randint(MIN, MAX) * baseValue) + (PG + SG + SF)
     strength = math.ceil(random.randint(MIN, MAX) * baseValue) + (PF + C)
     vertical = math.ceil(random.randint(MIN, MAX) * baseValue) + (SG + SF + PF)
-    stamina = math.ceil(random.randint(TEMPMIN, MAX) * baseValue) + (PG + SG + SF + PF + C)
+    stamina = math.ceil(random.randint(57, MAX) * baseValue) + (PG + SG + SF + PF + C)
     hustle = math.ceil(random.randint(MIN, MAX) * baseValue) + (PG + SG + SF)
     overallDurability = math.ceil(random.randint(TEMPMIN, MAX) * baseValue) + (PG + SG + SF + PF + C)
     athleticism = math.floor((speed
@@ -603,7 +603,7 @@ def generatePlayer(POS, OSP, ISP, DP, AP, PP, RP):
 def main():
                                 #OSP     #ISP    #DP     #AP     #PP     #RP
     #print(generatePlayer("SF", True,    True,   False,  True,   False,  False))
-    print(generatePlayer("SF",  True,     True,   False,   True,   False,  False))
+    print(generatePlayer("PG",  True,     False,   False,   True,   True,  False))
     
 if __name__ == "__main__":
     main()
