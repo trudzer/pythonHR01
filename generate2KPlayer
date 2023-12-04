@@ -1,0 +1,597 @@
+import math
+import random
+
+MIN = 40
+TEMPMIN = 50
+MAX = 59
+
+def calcCMtoInch(heightCM):
+    feet = math.floor(heightCM / 30.48)
+    inches = round((heightCM % 30.48) / 2.54)
+    if inches == 12:
+        feet += 1
+        inches = 0
+    newHeight = "{}'{}\"".format(feet, inches)
+    return newHeight
+
+def generatePlayer(POS, OSP, ISP, DP, AP, PP, RP):
+    PG = 0 
+    SG = 0
+    SF = 0 
+    PF = 0
+    C = 0
+    if POS == "PG":
+        PG = 10
+    if POS == "SG":
+        SG = 10
+    if POS == "SF":
+        SF = 10
+    if POS == "PF":
+        PF = 10
+    if POS == "C":
+        C = 10
+    #Outside Scoring
+    baseValue = 1.2
+    if OSP:
+        baseValue = 1.5
+    closeShot = math.ceil(random.randint(MIN, MAX) * baseValue) + (SF + PF + C)
+    midRangeShot = math.ceil(random.randint(MIN, MAX) * baseValue) + (PG + SG + SF + PF + C)
+    threePointShot = math.ceil(random.randint(MIN, MAX) * baseValue) + (PG + SG + SF)
+    freeThrow = math.ceil(random.randint(MIN, MAX) * baseValue) + (PG + SG + SF)
+    shotIQ = math.ceil(random.randint(TEMPMIN, MAX) * baseValue) + (PG + SG + SF + PF + C)
+    offensiveConsistency = math.ceil(random.randint(TEMPMIN, MAX) * baseValue) + (SG + SF + PF)
+    outsideScoring = math.floor((closeShot 
+                                + midRangeShot 
+                                + threePointShot 
+                                + freeThrow 
+                                + shotIQ
+                                + offensiveConsistency) / 6)
+    #Inside Scoring
+    baseValue = 1.2
+    if ISP:
+        baseValue = 1.5
+    layup = math.ceil(random.randint(MIN, MAX) * baseValue) + (PG + SG + SF)
+    standingDunk = math.ceil(random.randint(MIN, MAX) * baseValue) + (SF + PF + C)
+    drivingDunk = math.ceil(random.randint(MIN, MAX) * baseValue) + (SF + PF)
+    postHook = math.ceil(random.randint(MIN, MAX) * baseValue) + (PF + C)
+    postFade = math.ceil(random.randint(MIN, MAX) * baseValue) + (PG + SG + SF)
+    postControl = math.ceil(random.randint(MIN, MAX) * baseValue) + (PF + C)
+    drawFoul = math.ceil(random.randint(MIN, MAX) * baseValue) + (PG + SG + SF + PF + C)
+    hands = math.ceil(random.randint(TEMPMIN, MAX) * baseValue) + (PG + SG + SF + PF + C)
+    insideScoring = math.floor((layup
+                                + standingDunk
+                                + drivingDunk
+                                + postHook
+                                + postFade
+                                + postControl
+                                + drawFoul
+                                + hands) / 8)
+    #Defending
+    baseValue = 1.2
+    if DP:
+        baseValue = 1.5
+    interiorDefense = math.ceil(random.randint(MIN, MAX) * baseValue) + (PF + C)
+    perimeterDefense = math.ceil(random.randint(MIN, MAX) * baseValue) + (PG + SG + SF)
+    steal = math.ceil(random.randint(MIN, MAX) * baseValue) + (PG + SG + SF)
+    block = math.ceil(random.randint(MIN, MAX) * baseValue) + (PF + C)
+    lateralQuickness = math.ceil(random.randint(MIN, MAX) * baseValue) + (PG + SG + SF)
+    helpDefenseIQ = math.ceil(random.randint(MIN, MAX) * baseValue) + (PG + SG + SF + PF + C)
+    passPerception = math.ceil(random.randint(MIN, MAX) * baseValue) + (PG + SG + SF)
+    defensiveConsistency = math.ceil(random.randint(TEMPMIN, MAX) * baseValue) + (PG + SG + SF + PF + C)
+    defending = math.floor((interiorDefense
+                            + perimeterDefense
+                            + steal
+                            + block
+                            + lateralQuickness
+                            + helpDefenseIQ
+                            + passPerception
+                            + defensiveConsistency) / 8)
+    #Athleticism
+    baseValue = 1.2
+    if AP:
+        baseValue = 1.5
+    speed = math.ceil(random.randint(MIN, MAX) * baseValue) + (PG + SG + SF)
+    acceleration = math.ceil(random.randint(MIN, MAX) * baseValue) + (PG + SG + SF)
+    strength = math.ceil(random.randint(MIN, MAX) * baseValue) + (PF + C)
+    vertical = math.ceil(random.randint(MIN, MAX) * baseValue) + (SG + SF + PF)
+    stamina = math.ceil(random.randint(TEMPMIN, MAX) * baseValue) + (PG + SG + SF + PF + C)
+    hustle = math.ceil(random.randint(MIN, MAX) * baseValue) + (PG + SG + SF)
+    overallDurability = math.ceil(random.randint(TEMPMIN, MAX) * baseValue) + (PG + SG + SF + PF + C)
+    athleticism = math.floor((speed
+                            + acceleration
+                            + strength
+                            + vertical
+                            + stamina
+                            + hustle
+                            + overallDurability) / 7)
+    #Playmaking
+    baseValue = 1.2
+    if PP:
+        baseValue = 1.5
+    passAccuracy = math.ceil(random.randint(MIN, MAX) * baseValue) + (PG + SF + C)
+    ballHandle = math.ceil(random.randint(MIN, MAX) * baseValue) + (PG + SG + SF)
+    speedWithBall = math.ceil(random.randint(MIN, MAX) * baseValue) + (PG + SG + SF)
+    passIQ= math.ceil(random.randint(MIN, MAX) * baseValue) + (PG + C)
+    passVision = math.ceil(random.randint(MIN, MAX) * baseValue) + (PG + C)
+    playmaking = math.floor((passAccuracy
+                            + ballHandle
+                            + speedWithBall
+                            + passIQ
+                            + passVision) / 5)
+    #Rebounding
+    baseValue = 1.2
+    if RP:
+        baseValue = 1.5
+    offensiveRebound = math.ceil(random.randint(MIN, MAX) * baseValue) + (SF + PF + C)
+    defensiveRebound = math.ceil(random.randint(MIN, MAX) * baseValue) + (PF + C)
+    rebounding = math.floor((offensiveRebound
+                            + defensiveRebound) / 2)
+    #Other
+    if POS == "PG":
+        height = random.randint(175, 201)
+        weight = random.randint(69, 88)
+    if POS == "SG":
+        height = random.randint(191, 206)
+        weight = random.randint(75, 95)
+    if POS == "SF":
+        height = random.randint(196, 208)
+        weight = random.randint(83, 103)
+    if POS == "PF":
+        height = random.randint(201, 213)
+        weight = random.randint(90, 110)
+    if POS == "C":
+        height = random.randint(208, 221)
+        weight = random.randint(96, 120)
+    intangibles = random.randint(70, 99)
+    potential = random.randint(90, 99)
+    
+    playerStats = (
+        f"{outsideScoring:2d} Outside Scoring\n"
+        f"-------------------------------------\n"
+        f"{closeShot:2d} Close Shot\n"
+        f"{midRangeShot:2d} Mid-Range Shot\n"
+        f"{threePointShot:2d} Three-Point Shot\n"
+        f"{freeThrow:2d} Free Throw\n"
+        f"{shotIQ:2d} Shot IQ\n"
+        f"{offensiveConsistency:2d} Offensive Consistency\n"
+        f"\n"
+        f"{athleticism:2d} Athleticism\n"
+        f"-------------------------------------\n"
+        f"{speed:2d} Speed\n"
+        f"{acceleration:2d} Acceleration\n"
+        f"{strength:2d} Strength\n"
+        f"{vertical:2d} Vertical\n"
+        f"{stamina:2d} Stamina\n"
+        f"{hustle:2d} Hustle\n"
+        f"{overallDurability:2d} Overall Durability\n"
+        f"\n"
+        f"{insideScoring:2d} Inside Scoring\n"
+        f"-------------------------------------\n"
+        f"{layup:2d} Layup\n"
+        f"{standingDunk:2d} Standing Dunk\n"
+        f"{drivingDunk:2d} Driving Dunk\n"
+        f"{postHook:2d} Post Hook\n"
+        f"{postFade:2d} Post Fade\n"
+        f"{postControl:2d} Post Control\n"
+        f"{drawFoul:2d} Draw Foul\n"
+        f"{hands:2d} Hands\n"
+        f"\n"
+        f"{playmaking:2d} Playmaking\n"
+        f"-------------------------------------\n"
+        f"{passAccuracy:2d} Pass Accuracy\n"
+        f"{ballHandle:2d} Ball Handle\n"
+        f"{speedWithBall:2d} Speed with Ball\n"
+        f"{passIQ:2d} Pass IQ\n"
+        f"{passVision:2d} Pass Vision\n"
+        f"\n"
+        f"{defending:2d} Defending\n"
+        f"-------------------------------------\n"
+        f"{interiorDefense:2d} Interior Defense\n"
+        f"{perimeterDefense:2d} Perimeter Defense\n"
+        f"{steal:2d} Steal\n"
+        f"{block:2d} Block\n"
+        f"{lateralQuickness:2d} Lateral Quickness\n"
+        f"{helpDefenseIQ:2d} Help Defense IQ\n"
+        f"{passPerception:2d} Pass Perception\n"
+        f"{defensiveConsistency:2d} Defensive Consistency\n"
+        f"\n"
+        f"{rebounding:2d} Rebounding\n"
+        f"-------------------------------------\n"
+        f"{offensiveRebound:2d} Offensive Rebound\n"
+        f"{defensiveRebound:2d} Defensive Rebound\n"
+        f"\n"
+        f"{intangibles:2d} Intangibles\n"
+        f"{potential:2d} Potential\n"
+        f"{height} cm ({calcCMtoInch(height)} ft)\n"
+        f"{weight} KG ({round(weight * 2.20462)} lbs)\n"
+        f"\n"
+    )
+    badges = [
+        f"{'Acrobat: Bronze' if layup >= 75 and layup < 80 else ''}",
+        f"{'Acrobat: Silver' if layup >= 80 and layup < 85 else ''}",
+        f"{'Acrobat: Gold' if layup >= 85 and layup < 90 else ''}",
+        f"{'Acrobat: Hall of Fame' if layup >= 90 else ''}",
+    
+        f"{'Aerial Wizard: Bronze' if max(drivingDunk, standingDunk) >= 75 and max(drivingDunk, standingDunk) < 80 else ''}",
+        f"{'Aerial Wizard: Silver' if max(drivingDunk, standingDunk) >= 80 and max(drivingDunk, standingDunk) < 85 else ''}",
+        f"{'Aerial Wizard: Gold' if max(drivingDunk, standingDunk) >= 85 and max(drivingDunk, standingDunk) < 90 else ''}",
+        f"{'Aerial Wizard: Hall of Fame' if max(drivingDunk, standingDunk) >= 90 else ''}",
+    
+        f"{'Backdown Punisher: Bronze' if postControl >= 75 and postControl < 80 and strength >= 75 else ''}",
+        f"{'Backdown Punisher: Silver' if postControl >= 80 and postControl < 85 and strength >= 80 else ''}",
+        f"{'Backdown Punisher: Gold' if postControl >= 85 and postControl < 90 and strength >= 85 else ''}",
+        f"{'Backdown Punisher: Hall of Fame' if postControl >= 90 and strength >= 90 else ''}",
+        
+        f"{'Big Driver: Bronze' if max(drivingDunk, layup) >= 75 and max(drivingDunk, layup) < 80 else ''}",
+        f"{'Big Driver: Silver' if max(drivingDunk, layup) >= 80 and max(drivingDunk, layup) < 85 else ''}",
+        f"{'Big Driver: Gold' if max(drivingDunk, layup) >= 85 and max(drivingDunk, layup) < 90 else ''}",
+        f"{'Big Driver: Hall of Fame' if max(drivingDunk, layup) >= 90 else ''}",
+        
+        f"{'Bulldozer: Bronze' if postControl >= 75 and postControl < 80 and strength >= 75 else ''}",
+        f"{'Bulldozer: Silver' if postControl >= 80 and postControl < 85 and strength >= 80 else ''}",
+        f"{'Bulldozer: Gold' if postControl >= 85 and postControl < 90 and strength >= 85 < 90 else ''}",
+        f"{'Bulldozer: Hall of Fame' if postControl >= 90 and strength >= 90 else ''}",
+        
+        f"{'Bunny: Bronze' if max(drivingDunk, layup) >= 75 and max(drivingDunk, layup) < 80 else ''}",
+        f"{'Bunny: Silver' if max(drivingDunk, layup) >= 80 and max(drivingDunk, layup) < 85 else ''}",
+        f"{'Bunny: Gold' if max(drivingDunk, layup) >= 85 and max(drivingDunk, layup) < 90 else ''}",
+        f"{'Bunny: Hall of Fame' if max(drivingDunk, layup) >= 90 else ''}",
+        
+        f"{'Dream Shake: Bronze' if postControl >= 75 and postControl < 80 else ''}",
+        f"{'Dream Shake: Silver' if postControl >= 80 and postControl < 85 else ''}",
+        f"{'Dream Shake: Gold' if postControl >= 85 and postControl < 90 else ''}",
+        f"{'Dream Shake: Hall of Fame' if postControl >= 90 else ''}",
+        
+        f"{'Dropstepper: Bronze' if postControl >= 75 and postControl < 80 and strength >= 75 else ''}",
+        f"{'Dropstepper: Silver' if postControl >= 80 and postControl < 85 and strength >= 80 else ''}",
+        f"{'Dropstepper: Gold' if postControl >= 85 and postControl < 90 and strength >= 85 else ''}",
+        f"{'Dropstepper: Hall of Fame' if postControl >= 90 and strength >= 90 else ''}",
+    
+        f"{'Fast Twitch: Bronze' if max(standingDunk, closeShot) >= 75 and max(standingDunk, closeShot) < 80 else ''}",
+        f"{'Fast Twitch: Silver' if max(standingDunk, closeShot) >= 80 and max(standingDunk, closeShot) < 85 else ''}",
+        f"{'Fast Twitch: Gold' if max(standingDunk, closeShot) >= 85 and max(standingDunk, closeShot) < 90 else ''}",
+        f"{'Fast Twitch: Hall of Fame' if max(standingDunk, closeShot) >= 90 else ''}",
+        
+        f"{'Fearless Finisher: Bronze' if max(drivingDunk, layup) >= 75 and max(drivingDunk, layup) < 80 else ''}",
+        f"{'Fearless Finisher: Silver' if max(drivingDunk, layup) >= 80 and max(drivingDunk, layup) < 85 else ''}",
+        f"{'Fearless Finisher: Gold' if max(drivingDunk, layup) >= 85 and max(drivingDunk, layup) < 90 else ''}",
+        f"{'Fearless Finisher: Hall of Fame' if max(drivingDunk, layup) >= 90 else ''}",
+        
+        f"{'Float Game: Bronze' if layup >= 75 and layup < 80 else ''}",
+        f"{'Float Game: Silver' if layup >= 80 and layup < 85 else ''}",
+        f"{'Float Game: Gold' if layup >= 85 and layup < 90 else ''}",
+        f"{'Float Game: Hall of Fame' if layup >= 90 else ''}",
+        
+        f"{'Giant Slayer: Bronze' if max(layup, drivingDunk) >= 75 and max(layup, drivingDunk) < 80 and height <= 195 else ''}",
+        f"{'Giant Slayer: Silver' if max(layup, drivingDunk) >= 80 and max(layup, drivingDunk) < 85 and height <= 195 else ''}",
+        f"{'Giant Slayer: Gold' if max(layup, drivingDunk) >= 85 and max(layup, drivingDunk) < 90 and height <= 195 else ''}",
+        f"{'Giant Slayer: Hall of Fame' if max(layup, drivingDunk) >= 90 and height <= 195 else ''}",
+    
+        f"{'Hook Specialist: Bronze' if postHook >= 75 and postHook < 80 else ''}",
+        f"{'Hook Specialist: Silver' if postHook >= 80 and postHook < 85 else ''}",
+        f"{'Hook Specialist: Gold' if postHook >= 85 and postHook < 90 else ''}",
+        f"{'Hook Specialist: Hall of Fame' if postHook >= 90 else ''}",
+        
+        f"{'Masher: Bronze' if max(standingDunk, closeShot) >= 75 and max(standingDunk, closeShot) < 80 else ''}",
+        f"{'Masher: Silver' if max(standingDunk, closeShot) >= 80 and max(standingDunk, closeShot) < 85 else ''}",
+        f"{'Masher: Gold' if max(standingDunk, closeShot) >= 85 and max(standingDunk, closeShot) < 90 else ''}",
+        f"{'Masher: Hall of Fame' if max(standingDunk, closeShot) >= 90 else ''}",
+        
+        f"{'Post Spin Technician: Bronze' if postControl >= 75 and postControl < 80 and hands >= 75 else ''}",
+        f"{'Post Spin Technician: Silver' if postControl >= 80 and postControl < 85 and hands >= 80 else ''}",
+        f"{'Post Spin Technician: Gold' if postControl >= 85 and postControl < 90 and hands >= 85 else ''}",
+        f"{'Post Spin Technician: Hall of Fame' if postControl >= 90 and hands >= 90 else ''}",
+        
+        f"{'Posterizer: Bronze' if max(standingDunk, drivingDunk) >= 75 and max(standingDunk, drivingDunk) < 80 else ''}",
+        f"{'Posterizer: Silver' if max(standingDunk, drivingDunk) >= 80 and max(standingDunk, drivingDunk) < 85 else ''}",
+        f"{'Posterizer: Gold' if max(standingDunk, drivingDunk) >= 85 and max(standingDunk, drivingDunk) < 90 else ''}",
+        f"{'Posterizer: Hall of Fame' if max(standingDunk, drivingDunk) >= 90 else ''}",
+        
+        f"{'Precision Dunker: Bronze' if max(standingDunk, drivingDunk) >= 75 and max(standingDunk, drivingDunk) < 80 else ''}",
+        f"{'Precision Dunker: Silver' if max(standingDunk, drivingDunk) >= 80 and max(standingDunk, drivingDunk) < 85 else ''}",
+        f"{'Precision Dunker: Gold' if max(standingDunk, drivingDunk) >= 85 and max(standingDunk, drivingDunk) < 90 else ''}",
+        f"{'Precision Dunker: Hall of Fame' if max(standingDunk, drivingDunk) >= 90 else ''}",
+        
+        f"{'Pro Touch: Bronze' if max(layup, closeShot) >= 75 and max(layup, closeShot) < 80 else ''}",
+        f"{'Pro Touch: Silver' if max(layup, closeShot) >= 80 and max(layup, closeShot) < 85 else ''}",
+        f"{'Pro Touch: Gold' if max(layup, closeShot) >= 85 and max(layup, closeShot) < 90 else ''}",
+        f"{'Pro Touch: Hall of Fame' if max(layup, closeShot) >= 90 else ''}",
+        
+        f"{'Rise Up: Bronze' if standingDunk >= 75 and standingDunk < 80 else ''}",
+        f"{'Rise Up: Silver' if standingDunk >= 80 and standingDunk < 85 else ''}",
+        f"{'Rise Up: Gold' if standingDunk >= 85 and standingDunk < 90 else ''}",
+        f"{'Rise Up: Hall of Fame' if standingDunk >= 90 else ''}",
+        
+        f"{'Scooper: Bronze' if max(layup, closeShot) >= 75 and max(layup, closeShot) < 80 else ''}",
+        f"{'Scooper: Silver' if max(layup, closeShot) >= 80 and max(layup, closeShot) < 85 else ''}",
+        f"{'Scooper: Gold' if max(layup, closeShot) >= 85 and max(layup, closeShot) < 90 else ''}",
+        f"{'Scooper: Hall of Fame' if max(layup, closeShot) >= 90 else ''}",
+        
+        f"{'Spin Cycle: Bronze' if layup >= 75 and layup < 80 else ''}",
+        f"{'Spin Cycle: Silver' if layup >= 80 and layup < 85 else ''}",
+        f"{'Spin Cycle: Gold' if layup >= 85 and layup < 90 else ''}",
+        f"{'Spin Cycle: Hall of Fame' if layup >= 90 else ''}",
+        
+        f"{'Two Step: Bronze' if layup >= 75 and layup < 80 else ''}",
+        f"{'Two Step: Silver' if layup >= 80 and layup < 85 else ''}",
+        f"{'Two Step: Gold' if layup >= 85 and layup < 90 else ''}",
+        f"{'Two Step: Hall of Fame' if layup >= 90 else ''}",
+        
+        f"{'Whistle: Bronze' if drawFoul >= 75 and drawFoul < 80 else ''}",
+        f"{'Whistle: Silver' if drawFoul >= 80 and drawFoul < 85 else ''}",
+        f"{'Whistle: Gold' if drawFoul >= 85 and drawFoul < 90 else ''}",
+        f"{'Whistle: Hall of Fame' if drawFoul >= 90 else ''}",
+        
+        f"{'Agent 3: Bronze' if threePointShot >= 75 and threePointShot < 80 and ballHandle >= 75 else ''}",
+        f"{'Agent 3: Silver' if threePointShot >= 80 and threePointShot < 85 and ballHandle >= 80 else ''}",
+        f"{'Agent 3: Gold' if threePointShot >= 85 and threePointShot < 90 and ballHandle >= 85 else ''}",
+        f"{'Agent 3: Hall of Fame' if threePointShot >= 90 and ballHandle >= 90 else ''}",
+        
+        f"{'Blinders: Bronze' if shotIQ >= 75 and shotIQ < 80 else ''}",
+        f"{'Blinders: Silver' if shotIQ >= 80 and shotIQ < 85 else ''}",
+        f"{'Blinders: Gold' if shotIQ >= 85 and shotIQ < 90 else ''}",
+        f"{'Blinders: Hall of Fame' if shotIQ >= 90 else ''}",
+        
+        f"{'Catch and Shoot: Bronze' if max(midRangeShot, threePointShot) >= 75 and max(midRangeShot, threePointShot) < 80 and shotIQ >= 75 else ''}",
+        f"{'Catch and Shoot: Silver' if max(midRangeShot, threePointShot) >= 80 and max(midRangeShot, threePointShot) < 85 and shotIQ >= 80 else ''}",
+        f"{'Catch and Shoot: Gold' if max(midRangeShot, threePointShot) >= 85 and max(midRangeShot, threePointShot) < 90 and shotIQ >= 85 else ''}",
+        f"{'Catch and Shoot: Hall of Fame' if max(midRangeShot, threePointShot) >= 90 and shotIQ >= 90 else ''}",
+        
+        f"{'Claymore: Bronze' if shotIQ >= 75 and shotIQ < 80 else ''}",
+        f"{'Claymore: Silver' if shotIQ >= 80 and shotIQ < 85 else ''}",
+        f"{'Claymore: Gold' if shotIQ >= 85 and shotIQ < 90 else ''}",
+        f"{'Claymore: Hall of Fame' if shotIQ >= 90 else ''}",
+        
+        f"{'Comeback Kid: Bronze' if shotIQ >= 75 and shotIQ < 80 and offensiveConsistency >= 75 else ''}",
+        f"{'Comeback Kid: Silver' if shotIQ >= 80 and shotIQ < 85 and offensiveConsistency >= 80 else ''}",
+        f"{'Comeback Kid: Gold' if shotIQ >= 85 and shotIQ < 90 and offensiveConsistency >= 85 else ''}",
+        f"{'Comeback Kid: Hall of Fame' if shotIQ >= 90 and offensiveConsistency >= 90 else ''}",
+        
+        f"{'Deadeye: Bronze' if shotIQ >= 75 and shotIQ < 80 else ''}",
+        f"{'Deadeye: Silver' if shotIQ >= 80 and shotIQ < 85 else ''}",
+        f"{'Deadeye: Gold' if shotIQ >= 85 and shotIQ < 90 else ''}",
+        f"{'Deadeye: Hall of Fame' if shotIQ >= 90 else ''}",
+        
+        f"{'Free Points: Bronze' if freeThrow >= 75 and freeThrow < 80 else ''}",
+        f"{'Free Points: Silver' if freeThrow >= 80 and freeThrow < 85 else ''}",
+        f"{'Free Points: Gold' if freeThrow >= 85 and freeThrow < 90 else ''}",
+        f"{'Free Points: Hall of Fame' if freeThrow >= 90 else ''}",
+        
+        f"{'Green Machine: Bronze' if max(midRangeShot, threePointShot) >= 75 and max(midRangeShot, threePointShot) < 80 and shotIQ >= 75 else ''}",
+        f"{'Green Machine: Silver' if max(midRangeShot, threePointShot) >= 80 and max(midRangeShot, threePointShot) < 85 and shotIQ >= 80 else ''}",
+        f"{'Green Machine: Gold' if max(midRangeShot, threePointShot) >= 85 and max(midRangeShot, threePointShot) < 90 and shotIQ >= 85 else ''}",
+        f"{'Green Machine: Hall of Fame' if max(midRangeShot, threePointShot) >= 90 and shotIQ >= 90 else ''}",
+    
+        f"{'Guard Up: Bronze' if shotIQ >= 75 and shotIQ < 80 else ''}",
+        f"{'Guard Up: Silver' if shotIQ >= 80 and shotIQ < 85 else ''}",
+        f"{'Guard Up: Gold' if shotIQ >= 85 and shotIQ < 90 else ''}",
+        f"{'Guard Up: Hall of Fame' if shotIQ >= 90 else ''}",
+        
+        f"{'Limitless Range: Bronze' if threePointShot >= 75 and threePointShot < 80 else ''}",
+        f"{'Limitless Range: Silver' if threePointShot >= 80 and threePointShot < 85 else ''}",
+        f"{'Limitless Range: Gold' if threePointShot >= 85 and threePointShot < 90 else ''}",
+        f"{'Limitless Range: Hall of Fame' if threePointShot >= 90 else ''}",
+        
+        f"{'Middy Magician: Bronze' if midRangeShot >= 75 and midRangeShot < 80 else ''}",
+        f"{'Middy Magician: Silver' if midRangeShot >= 80 and midRangeShot < 85 else ''}",
+        f"{'Middy Magician: Gold' if midRangeShot >= 85 and midRangeShot < 90 else ''}",
+        f"{'Middy Magician: Hall of Fame' if midRangeShot >= 90 else ''}",
+        
+        f"{'Open Looks: Bronze' if shotIQ >= 75 and shotIQ < 80 else ''}",
+        f"{'Open Looks: Silver' if shotIQ >= 80 and shotIQ < 85 else ''}",
+        f"{'Open Looks: Gold' if shotIQ >= 85 and shotIQ < 90 else ''}",
+        f"{'Open Looks: Hall of Fame' if shotIQ >= 90 else ''}",
+        
+        f"{'Post Fade Phenom: Bronze' if postFade >= 75 and postFade < 80 else ''}",
+        f"{'Post Fade Phenom: Silver' if postFade >= 80 and postFade < 85 else ''}",
+        f"{'Post Fade Phenom: Gold' if postFade >= 85 and postFade < 90 else ''}",
+        f"{'Post Fade Phenom: Hall of Fame' if postFade >= 90 else ''}",
+        
+        f"{'Slippery Off-Ball: Bronze' if shotIQ >= 75 and shotIQ < 80 and offensiveConsistency >= 75 else ''}",
+        f"{'Slippery Off-Ball: Silver' if shotIQ >= 80 and shotIQ < 85 and offensiveConsistency >= 80 else ''}",
+        f"{'Slippery Off-Ball: Gold' if shotIQ >= 85 and shotIQ < 90 and offensiveConsistency >= 85 else ''}",
+        f"{'Slippery Off-Ball: Hall of Fame' if shotIQ >= 90 and offensiveConsistency >= 90 else ''}",
+        
+        f"{'Space Creator: Bronze' if shotIQ >= 75 and shotIQ < 80 and ballHandle >= 75 else ''}",
+        f"{'Space Creator: Silver' if shotIQ >= 80 and shotIQ < 85 and ballHandle >= 80 else ''}",
+        f"{'Space Creator: Gold' if shotIQ >= 85 and shotIQ < 90 and ballHandle >= 85 else ''}",
+        f"{'Space Creator: Hall of Fame' if shotIQ >= 90 and ballHandle >= 90 else ''}",
+        
+        f"{'Spot Finder: Bronze' if shotIQ >= 75 and shotIQ < 80 else ''}",
+        f"{'Spot Finder: Silver' if shotIQ >= 80 and shotIQ < 85 else ''}",
+        f"{'Spot Finder: Gold' if shotIQ >= 85 and shotIQ < 90 else ''}",
+        f"{'Spot Finder: Hall of Fame' if shotIQ >= 90 else ''}",
+        
+        f"{'Ankle Breaker: Bronze' if ballHandle >= 75 and ballHandle < 80 else ''}",
+        f"{'Ankle Breaker: Silver' if ballHandle >= 80 and ballHandle < 85 else ''}",
+        f"{'Ankle Breaker: Gold' if ballHandle >= 85 and ballHandle < 90 else ''}",
+        f"{'Ankle Breaker: Hall of Fame' if ballHandle >= 90 else ''}",
+        
+        f"{'Bail Out: Bronze' if ballHandle >= 75 and ballHandle < 80 and passIQ >= 75 else ''}",
+        f"{'Bail Out: Silver' if ballHandle >= 80 and ballHandle < 85 and passIQ >= 80 else ''}",
+        f"{'Bail Out: Gold' if ballHandle >= 85 and ballHandle < 90 and passIQ >= 85 else ''}",
+        f"{'Bail Out: Hall of Fame' if ballHandle >= 90 and passIQ >= 90 else ''}",
+        
+        f"{'Blow-By: Bronze' if acceleration >= 75 and acceleration < 80 else ''}",
+        f"{'Blow-By: Silver' if acceleration >= 80 and acceleration < 85 else ''}",
+        f"{'Blow-By: Gold' if acceleration >= 85 and acceleration < 90 else ''}",
+        f"{'Blow-By: Hall of Fame' if acceleration >= 90 else ''}",
+        
+        f"{'Break Starter: Bronze' if passAccuracy >= 75 and passAccuracy < 80 and defensiveRebound >= 75 else ''}",
+        f"{'Break Starter: Silver' if passAccuracy >= 80 and passAccuracy < 85 and defensiveRebound >= 80 else ''}",
+        f"{'Break Starter: Gold' if passAccuracy >= 85 and passAccuracy < 90 and defensiveRebound >= 85 else ''}",
+        f"{'Break Starter: Hall of Fame' if passAccuracy >= 90 and defensiveRebound >= 90 else ''}",
+        
+        f"{'Dimer: Bronze' if passAccuracy >= 75 and passAccuracy < 80 and passIQ >= 75 else ''}",
+        f"{'Dimer: Silver' if passAccuracy >= 80 and passAccuracy < 85 and passIQ >= 80 else ''}",
+        f"{'Dimer: Gold' if passAccuracy >= 85 and passAccuracy < 90 and passIQ >= 85 else ''}",
+        f"{'Dimer: Hall of Fame' if passAccuracy >= 90 and passIQ >= 90 else ''}",
+        
+        f"{'Handles For Days: Bronze' if ballHandle >= 75 and ballHandle < 80 else ''}",
+        f"{'Handles For Days: Silver' if ballHandle >= 80 and ballHandle < 85 else ''}",
+        f"{'Handles For Days: Gold' if ballHandle >= 85 and ballHandle < 90 else ''}",
+        f"{'Handles For Days: Hall of Fame' if ballHandle >= 90 else ''}",
+        
+        f"{'Hyperdrive: Bronze' if ballHandle >= 75 and ballHandle < 80 else ''}",
+        f"{'Hyperdrive: Silver' if ballHandle >= 80 and ballHandle < 85 else ''}",
+        f"{'Hyperdrive: Gold' if ballHandle >= 85 and ballHandle < 90 else ''}",
+        f"{'Hyperdrive: Hall of Fame' if ballHandle >= 90 else ''}",
+        
+        f"{'Killer Combos: Bronze' if ballHandle >= 75 and ballHandle < 80 else ''}",
+        f"{'Killer Combos: Silver' if ballHandle >= 80 and ballHandle < 85 else ''}",
+        f"{'Killer Combos: Gold' if ballHandle >= 85 and ballHandle < 90 else ''}",
+        f"{'Killer Combos: Hall of Fame' if ballHandle >= 90 else ''}",
+        
+        f"{'Needle Threader: Bronze' if passAccuracy >= 75 and passAccuracy < 80 and passIQ >= 75 else ''}",
+        f"{'Needle Threader: Silver' if passAccuracy >= 80 and passAccuracy < 85 and passIQ >= 80 else ''}",
+        f"{'Needle Threader: Gold' if passAccuracy >= 85 and passAccuracy < 90 and passIQ >= 85 else ''}",
+        f"{'Needle Threader: Hall of Fame' if passAccuracy >= 90 and passIQ >= 90 else ''}",
+        
+        f"{'Physical Handles: Bronze' if ballHandle >= 75 and ballHandle < 80 and strength >= 75 else ''}",
+        f"{'Physical Handles: Silver' if ballHandle >= 80 and ballHandle < 85 and strength >= 80 else ''}",
+        f"{'Physical Handles: Gold' if ballHandle >= 85 and ballHandle < 90 and strength >= 85 else ''}",
+        f"{'Physical Handles: Hall of Fame' if ballHandle >= 90 and strength >= 90 else ''}",
+        
+        f"{'Post Playmaker: Bronze' if passAccuracy >= 75 and passAccuracy < 80 and postControl >= 75 else ''}",
+        f"{'Post Playmaker: Silver' if passAccuracy >= 80 and passAccuracy < 85 and postControl >= 80 else ''}",
+        f"{'Post Playmaker: Gold' if passAccuracy >= 85 and passAccuracy < 90 and postControl >= 85 else ''}",
+        f"{'Post Playmaker: Hall of Fame' if passAccuracy >= 90 and postControl >= 90 else ''}",
+        
+        f"{'Relay Passer: Bronze' if passIQ >= 75 and passIQ < 80 else ''}",
+        f"{'Relay Passer: Silver' if passIQ >= 80 and passIQ < 85 else ''}",
+        f"{'Relay Passer: Gold' if passIQ >= 85 and passIQ < 90 else ''}",
+        f"{'Relay Passer: Hall of Fame' if passIQ >= 90 else ''}",
+        
+        f"{'Special Delivery: Bronze' if passVision >= 75 and passVision < 80 and passIQ >= 75 else ''}",
+        f"{'Special Delivery: Silver' if passVision >= 80 and passVision < 85 and passIQ >= 80 else ''}",
+        f"{'Special Delivery: Gold' if passVision >= 85 and passVision < 90 and passIQ >= 85 else ''}",
+        f"{'Special Delivery: Hall of Fame' if passVision >= 90 and passIQ >= 90 else ''}",
+        
+        f"{'Speed Booster: Bronze' if acceleration >= 75 and acceleration < 80 and ballHandle >= 75 else ''}",
+        f"{'Speed Booster: Silver' if acceleration >= 80 and acceleration < 85 and ballHandle >= 80 else ''}",
+        f"{'Speed Booster: Gold' if acceleration >= 85 and acceleration < 90 and ballHandle >= 85 else ''}",
+        f"{'Speed Booster: Hall of Fame' if acceleration >= 90 and ballHandle >= 90 else ''}",
+        
+        f"{'Touch Passer: Bronze' if passVision >= 75 and passVision < 80 and passIQ >= 75 else ''}",
+        f"{'Touch Passer: Silver' if passVision >= 80 and passVision < 85 and passIQ >= 80 else ''}",
+        f"{'Touch Passer: Gold' if passVision >= 85 and passVision < 90 and passIQ >= 85 else ''}",
+        f"{'Touch Passer: Hall of Fame' if passVision >= 90 and passIQ >= 90 else ''}",
+        
+        f"{'Triple Strike: Bronze' if acceleration >= 75 and acceleration < 80 and ballHandle >= 75 else ''}",
+        f"{'Triple Strike: Silver' if acceleration >= 80 and acceleration < 85 and ballHandle >= 80 else ''}",
+        f"{'Triple Strike: Gold' if acceleration >= 85 and acceleration < 90 and ballHandle >= 85 else ''}",
+        f"{'Triple Strike: Hall of Fame' if acceleration >= 90 and ballHandle >= 90 else ''}",
+        
+        f"{'Unpluckable: Bronze' if hands >= 75 and hands < 80 and ballHandle >= 75 else ''}",
+        f"{'Unpluckable: Silver' if hands >= 80 and hands < 85 and ballHandle >= 80 else ''}",
+        f"{'Unpluckable: Gold' if hands >= 85 and hands < 90 and ballHandle >= 85 else ''}",
+        f"{'Unpluckable: Hall of Fame' if hands >= 90 and ballHandle >= 90 else ''}",
+        
+        f"{'94 Feet: Bronze' if lateralQuickness >= 75 and lateralQuickness < 80 and defensiveConsistency >= 75 else ''}",
+        f"{'94 Feet: Silver' if lateralQuickness >= 80 and lateralQuickness < 85 and defensiveConsistency >= 80 else ''}",
+        f"{'94 Feet: Gold' if lateralQuickness >= 85 and lateralQuickness < 90 and defensiveConsistency >= 85 else ''}",
+        f"{'94 Feet: Hall of Fame' if lateralQuickness >= 90 and defensiveConsistency >= 90 else ''}",
+        
+        f"{'Anchor: Bronze' if block >= 75 and block < 80 and defensiveConsistency >= 75 else ''}",
+        f"{'Anchor: Silver' if block >= 80 and block < 85 and defensiveConsistency >= 80 else ''}",
+        f"{'Anchor: Gold' if block >= 85 and block < 90 and defensiveConsistency >= 85 else ''}",
+        f"{'Anchor: Hall of Fame' if block >= 90 and defensiveConsistency >= 90 else ''}",
+        
+        f"{'Ankle Braces: Bronze' if lateralQuickness >= 75 and lateralQuickness < 80 and perimeterDefense >= 75 else ''}",
+        f"{'Ankle Braces: Silver' if lateralQuickness >= 80 and lateralQuickness < 85 and perimeterDefense >= 80 else ''}",
+        f"{'Ankle Braces: Gold' if lateralQuickness >= 85 and lateralQuickness < 90 and perimeterDefense >= 85 else ''}",
+        f"{'Ankle Braces: Hall of Fame' if lateralQuickness >= 90 and perimeterDefense >= 90 else ''}",
+        
+        f"{'Boxout Beast: Bronze' if interiorDefense >= 75 and interiorDefense < 80 and strength >= 75 else ''}",
+        f"{'Boxout Beast: Silver' if interiorDefense >= 80 and interiorDefense < 85 and strength >= 80 else ''}",
+        f"{'Boxout Beast: Gold' if interiorDefense >= 85 and interiorDefense < 90 and strength >= 85 else ''}",
+        f"{'Boxout Beast: Hall of Fame' if interiorDefense >= 90 and strength >= 90 else ''}",
+        
+        f"{'Brick Wall: Bronze' if strength >= 75 and strength < 80 else ''}",
+        f"{'Brick Wall: Silver' if strength >= 80 and strength < 85 else ''}",
+        f"{'Brick Wall: Gold' if strength >= 85 and strength < 90 else ''}",
+        f"{'Brick Wall: Hall of Fame' if strength >= 90 else ''}",
+        
+        f"{'Challenger: Bronze' if perimeterDefense >= 75 and perimeterDefense < 80 and block >= 75 else ''}",
+        f"{'Challenger: Silver' if perimeterDefense >= 80 and perimeterDefense < 85 and block >= 80 else ''}",
+        f"{'Challenger: Gold' if perimeterDefense >= 85 and perimeterDefense < 90 and block >= 85 else ''}",
+        f"{'Challenger: Hall of Fame' if perimeterDefense >= 90 and block >= 90 else ''}",
+        
+        f"{'Chase Down Artist: Bronze' if block >= 75 and block < 80 and helpDefenseIQ >= 75 else ''}",
+        f"{'Chase Down Artist: Silver' if block >= 80 and block < 85 and helpDefenseIQ >= 80 else ''}",
+        f"{'Chase Down Artist: Gold' if block >= 85 and block < 90 and helpDefenseIQ >= 85 else ''}",
+        f"{'Chase Down Artist: Hall of Fame' if block >= 90 and helpDefenseIQ >= 90 else ''}",
+        
+        f"{'Clamps: Bronze' if perimeterDefense >= 75 and perimeterDefense < 80 and strength >= 75 else ''}",
+        f"{'Clamps: Silver' if perimeterDefense >= 80 and perimeterDefense < 85 and strength >= 80 else ''}",
+        f"{'Clamps: Gold' if perimeterDefense >= 85 and perimeterDefense < 90 and strength >= 85 else ''}",
+        f"{'Clamps: Hall of Fame' if perimeterDefense >= 90 and strength >= 90 else ''}",
+        
+        f"{'Fast Feet: Bronze' if perimeterDefense >= 75 and perimeterDefense < 80 and lateralQuickness >= 75 else ''}",
+        f"{'Fast Feet: Silver' if perimeterDefense >= 80 and perimeterDefense < 85 and lateralQuickness >= 80 else ''}",
+        f"{'Fast Feet: Gold' if perimeterDefense >= 85 and perimeterDefense < 90 and lateralQuickness >= 85 else ''}",
+        f"{'Fast Feet: Hall of Fame' if perimeterDefense >= 90 and lateralQuickness >= 90 else ''}",
+        
+        f"{'Glove: Bronze' if steal >= 75 and steal < 80 else ''}",
+        f"{'Glove: Silver' if steal >= 80 and steal < 85 else ''}",
+        f"{'Glove: Gold' if steal >= 85 and steal < 90 else ''}",
+        f"{'Glove: Hall of Fame' if steal >= 90 else ''}",
+        
+        f"{'Interceptor: Bronze' if passPerception >= 75 and passPerception < 80 else ''}",
+        f"{'Interceptor: Silver' if passPerception >= 80 and passPerception < 85 else ''}",
+        f"{'Interceptor: Gold' if passPerception >= 85 and passPerception < 90 else ''}",
+        f"{'Interceptor: Hall of Fame' if passPerception >= 90 else ''}",
+        
+        f"{'Immovable Enforcer: Bronze' if strength >= 75 and strength < 80 else ''}",
+        f"{'Immovable Enforcer: Silver' if strength >= 80 and strength < 85 else ''}",
+        f"{'Immovable Enforcer: Gold' if strength >= 85 and strength < 90 else ''}",
+        f"{'Immovable Enforcer: Hall of Fame' if strength >= 90 else ''}",
+        
+        f"{'Off-Ball Pest: Bronze' if strength >= 75 and strength < 80 and helpDefenseIQ >= 75 else ''}",
+        f"{'Off-Ball Pest: Silver' if strength >= 80 and strength < 85 and helpDefenseIQ >= 80 else ''}",
+        f"{'Off-Ball Pest: Gold' if strength >= 85 and strength < 90 and helpDefenseIQ >= 85 else ''}",
+        f"{'Off-Ball Pest: Hall of Fame' if strength >= 90 and helpDefenseIQ >= 90 else ''}",
+        
+        f"{'Pick Dodger: Bronze' if lateralQuickness >= 75 and lateralQuickness < 80 else ''}",
+        f"{'Pick Dodger: Silver' if lateralQuickness >= 80 and lateralQuickness < 85 else ''}",
+        f"{'Pick Dodger: Gold' if lateralQuickness >= 85 and lateralQuickness < 90 else ''}",
+        f"{'Pick Dodger: Hall of Fame' if lateralQuickness >= 90 else ''}",
+        
+        f"{'Pogo Stick: Bronze' if vertical >= 75 and vertical < 80 and defensiveConsistency >= 75 else ''}",
+        f"{'Pogo Stick: Silver' if vertical >= 80 and vertical < 85 and defensiveConsistency >= 80 else ''}",
+        f"{'Pogo Stick: Gold' if vertical >= 85 and vertical < 90 and defensiveConsistency >= 85 else ''}",
+        f"{'Pogo Stick: Hall of Fame' if vertical >= 90 and defensiveConsistency >= 90 else ''}",
+        
+        f"{'Post Lockdown: Bronze' if interiorDefense >= 75 and interiorDefense < 80 else ''}",
+        f"{'Post Lockdown: Silver' if interiorDefense >= 80 and interiorDefense < 85 else ''}",
+        f"{'Post Lockdown: Gold' if interiorDefense >= 85 and interiorDefense < 90 else ''}",
+        f"{'Post Lockdown: Hall of Fame' if interiorDefense >= 90 else ''}",
+        
+        f"{'Rebound Chaser: Bronze' if max(offensiveRebound, defensiveRebound) >= 75 and max(offensiveRebound, defensiveRebound) < 80 else ''}",
+        f"{'Rebound Chaser: Silver' if max(offensiveRebound, defensiveRebound) >= 80 and max(offensiveRebound, defensiveRebound) < 85 else ''}",
+        f"{'Rebound Chaser: Gold' if max(offensiveRebound, defensiveRebound) >= 85 and max(offensiveRebound, defensiveRebound) < 90 else ''}",
+        f"{'Rebound Chaser: Hall of Fame' if max(offensiveRebound, defensiveRebound) >= 90 else ''}",
+        
+        f"{'Right Stick Ripper: Bronze' if steal >= 75 and steal < 80 else ''}",
+        f"{'Right Stick Ripper: Silver' if steal >= 80 and steal < 85 else ''}",
+        f"{'Right Stick Ripper: Gold' if steal >= 85 and steal < 90 else ''}",
+        f"{'Right Stick Ripper: Hall of Fame' if steal >= 90 else ''}",
+        
+        f"{'Work Horse: Bronze' if defensiveConsistency >= 75 and defensiveConsistency < 80 else ''}",
+        f"{'Work Horse: Silver' if defensiveConsistency >= 80 and defensiveConsistency < 85 else ''}",
+        f"{'Work Horse: Gold' if defensiveConsistency >= 85 and defensiveConsistency < 90 else ''}",
+        f"{'Work Horse: Hall of Fame' if defensiveConsistency >= 90 else ''}",
+    ]
+    
+    playerStats += "Badges:\n" + "\n".join(filter(None, badges))
+    
+    return playerStats
+    
+def main():
+                               #OSP      #ISP    #DP     #AP     #PP     #RP
+    #print(generatePlayer("SF", True,    True,   False,  True,   False,  False))
+    print(generatePlayer("SF",  True,     True,   True,   True,   True,  True))
+    
+if __name__ == "__main__":
+    main()
+        
