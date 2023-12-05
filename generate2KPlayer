@@ -612,7 +612,7 @@ def main():
     if userInput == "PG":
         print("Choose Playstyle")
         print("1. Scoring Machine\n2. 2-Way Inside Out\n3. Slashing Shot Creator\n4. Sharpshooting Playmaker\n5. 2-Way Playmaking Sharpshooter")
-        proficiencyChoice = int(input("Enter a number from 1 to 6 to select a playstyle: "))
+        proficiencyChoice = int(input("Enter a number from 1 to 5 to select a playstyle: "))
 
         if proficiencyChoice == 1:
             print(generatePlayer("PG", 1.4, 1.4, 1.0, 1.4, 1.2, 1.0))
@@ -633,7 +633,7 @@ def main():
     elif userInput == "SG":
         print("Choose Playstyle")
         print("1. Scoring Machine\n2. 2-Way Sharpshooter\n3. Slashing Shot Creator\n4. 2-Way Slasher\n5. Playmaking Sharpshooter")
-        proficiencyChoice = int(input("Enter a number from 1 to 6 to select a playstyle: "))
+        proficiencyChoice = int(input("Enter a number from 1 to 5 to select a playstyle: "))
 
         if proficiencyChoice == 1:
             print(generatePlayer("SG", 1.4, 1.4, 1.0, 1.4, 1.2, 1.0))
@@ -655,7 +655,7 @@ def main():
     elif userInput == "SF":
         print("Choose Playstyle")
         print("1. 3-Level Scorer\n2. 2-Way Sharpshooter\n3. Inside Out Playmaker\n4. 2-Way Slasher\n5. 2-Way Finisher")
-        proficiencyChoice = int(input("Enter a number from 1 to 6 to select a playstyle: "))
+        proficiencyChoice = int(input("Enter a number from 1 to 5 to select a playstyle: "))
 
         if proficiencyChoice == 1:
             print(generatePlayer("SF", 1.4, 1.4, 1.0, 1.4, 1.2, 1.0))
@@ -677,7 +677,7 @@ def main():
     elif userInput == "PF":
         print("Choose Playstyle")
         print("1. 2-Way 3-Level Scorer\n2. Stretch Glass Cleaner\n3. Glass Cleaning Lockdown\n4. 3-Level Stretch Big\n5. 2-Way Playmaking Slasher")
-        proficiencyChoice = int(input("Enter a number from 1 to 6 to select a playstyle: "))
+        proficiencyChoice = int(input("Enter a number from 1 to 5 to select a playstyle: "))
 
         if proficiencyChoice == 1:
             print(generatePlayer("PF", 1.4, 1.4, 1.4, 1.2, 1.0, 1.3))
@@ -699,7 +699,7 @@ def main():
     elif userInput == "C":
         print("Choose Playstyle")
         print("1. Paint Beast\n2. 2-Way Facilitator\n3. Glass Cleaning Finisher\n4. 3-Level Stretch Big\n5. Glass Cleaning Facilitator")
-        proficiencyChoice = int(input("Enter a number from 1 to 6 to select a playstyle: "))
+        proficiencyChoice = int(input("Enter a number from 1 to 5 to select a playstyle: "))
 
         if proficiencyChoice == 1:
             print(generatePlayer("PF", 1.0, 1.4, 1.0, 1.4, 1.2, 1.4))
