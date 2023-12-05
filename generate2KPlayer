@@ -39,7 +39,7 @@ def generatePlayer(POS, OSP, ISP, DP, AP, PP, RP):
     closeShot = min(math.ceil(random.randint(MIN, MAX) * OSP) + (PG + SG + SF + PF + C), 99)
     midRangeShot = min(math.ceil(random.randint(MIN, MAX) * OSP) + (PG + SG + SF + PF + C), 99)
     threePointShot = min(math.ceil(random.randint(MIN, MAX) * OSP) + (PG + SG + SF + PF + C), 99)
-    freeThrow = min(math.ceil(random.randint(round((closeShot / 4) + (midRangeShot / 4)), MAX) * OSP) + (PG + SG + SF), 99)
+    freeThrow = min(math.ceil(random.randint(round((closeShot / 4) + (midRangeShot / 4)), MAX) * OSP) + (PG + SG + SF + PF + C), 99)
     shotIQ = min(math.ceil(random.randint(TEMPMIN, MAX) * OSP) + (PG + SG + C), 99)
     offensiveConsistency = min(math.ceil(random.randint(TEMPMIN, MAX) * OSP) + (SG + SF + PF), 99)
     outsideScoring = math.floor((closeShot 
