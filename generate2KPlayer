@@ -135,9 +135,23 @@ def generatePlayer(POS, OSP, ISP, DP, AP, PP, RP):
     if POS == "PG":
         height = random.randint(175, 201)
         weight = random.randint(69, 88)
+        if height >= 195:
+            newOffensiveRebound = offensiveRebound + 20
+            newDefensiveRebound = defensiveRebound + 20
+            defensiveRebound = min(99, newDefensiveRebound)
+            offensiveRebound = min(99, newOffensiveRebound)
+            rebounding = math.floor((offensiveRebound
+                                    + defensiveRebound) / 2)
     if POS == "SG":
         height = random.randint(191, 206)
         weight = random.randint(75, 95)
+        if height >= 198:
+            newOffensiveRebound = offensiveRebound + 20
+            newDefensiveRebound = defensiveRebound + 20
+            defensiveRebound = min(99, newDefensiveRebound)
+            offensiveRebound = min(99, newOffensiveRebound)
+            rebounding = math.floor((offensiveRebound
+                                    + defensiveRebound) / 2)
     if POS == "SF":
         height = random.randint(196, 208)
         weight = random.randint(83, 103)
