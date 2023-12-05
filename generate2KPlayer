@@ -52,6 +52,11 @@ def generatePlayer(POS, OSP, ISP, DP, AP, PP, RP):
     layup = min(math.ceil(random.randint(MIN, MAX) * ISP) + (PG + SG + SF + PF), 99)
     standingDunk = min(math.ceil(random.randint(MIN, MAX) * ISP) + (SF + PF + C), 99)
     drivingDunk = min(math.ceil(random.randint(MIN, MAX) * ISP) + (SG + SF + PF), 99)
+    if POS == "PG" or POS == "SG" or POS == "SF":
+        tempStandingDunk = min(standingDunk, drivingDunk)
+        tempDrivingDunk = max(standingDunk, drivingDunk)
+        drivingDunk = tempDrivingDunk
+        standingDunk = tempStandingDunk
     postHook = min(math.ceil(random.randint(MIN, MAX) * ISP) + (PF + C), 99)
     postFade = min(math.ceil(random.randint(MIN, MAX) * ISP) + (SG + SF + PF + C), 99)
     postControl = min(math.ceil(random.randint(MIN, MAX) * ISP) + (SG + PF + C), 99)
