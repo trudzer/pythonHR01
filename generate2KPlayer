@@ -71,7 +71,7 @@ def generatePlayer(POS, OSP, ISP, DP, AP, PP, RP):
                                 + drawFoul
                                 + hands) / 8)
     #Athleticism
-    speed = min(math.ceil(random.randint(MIN, MAX) * AP) + (PG + SG + SF), 99)
+    speed = min(math.ceil(random.randint(MIN, MAX) * AP) + (PG + SG + SF + (round(PF / 1.8)) + (round(C / 2))), 99)
     acceleration = min(math.ceil(random.randint(speed - 5, min(speed + 10, 99))), 99)
     strength = min(math.ceil(random.randint(MIN, MAX) * AP) + (PF + C), 99)
     vertical = min(math.ceil(random.randint(MIN, MAX) * AP) + (SG + SF + PF), 99)
@@ -121,10 +121,10 @@ def generatePlayer(POS, OSP, ISP, DP, AP, PP, RP):
                             + passPerception
                             + defensiveConsistency) / 8)
     #Playmaking
-    ballHandle = min(math.ceil(random.randint(MIN, MAX) * PP) + (PG + SG + SF), 99)
+    ballHandle = min(math.ceil(random.randint(MIN, MAX) * PP) + (PG + SG + SF + (round(PF / 1.5))), 99)
     speedWithBall = min(math.ceil((speed + acceleration + ballHandle) / 3), 99)
-    passIQ = min(math.ceil(random.randint(MIN, MAX) * PP) + (PG + SF + C), 99)
-    passVision = min(math.ceil(random.randint(MIN, MAX) * PP) + (PG + SF + C), 99)
+    passIQ = min(math.ceil(random.randint(MIN, MAX) * PP) + (PG + SF + round(PF / 2) + C), 99)
+    passVision = min(math.ceil(random.randint(MIN, MAX) * PP) + (PG + SF + round(PF / 2) + C), 99)
     passAccuracy = min(math.ceil(random.randint(round(passIQ / 4) + round(passVision / 4), MAX) * PP) + (PG + SF + C), 99)
     playmaking = math.floor((passAccuracy
                             + ballHandle
@@ -709,13 +709,13 @@ def main():
             print(generatePlayer("PF", 1.2, 1.3, 1.2, 1.4, 1.2, 1.4))
 
         elif proficiencyChoice == 3:
-            print(generatePlayer("PF", 1.1, 1.5, 1.3, 1.2, 1.0, 1.5))
+            print(generatePlayer("PF", 1.1, 1.5, 1.3, 1.3, 1.0, 1.5))
 
         elif proficiencyChoice == 4:
             print(generatePlayer("PF", 1.4, 1.3, 1.4, 1.2, 1.0, 1.4))
 
         elif proficiencyChoice == 5:
-            print(generatePlayer("PF", 1.1, 1.4, 1.4, 1.3, 1.4, 1.2))
+            print(generatePlayer("PF", 1.1, 1.4, 1.3, 1.4, 1.5, 1.2))
         else:
             print("Invalid playstyle choice. Please enter a number between 1 and 5")
 
