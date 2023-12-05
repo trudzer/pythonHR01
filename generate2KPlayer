@@ -2,7 +2,7 @@ import math
 import random
 
 MIN = 30
-TEMPMIN = 45
+TEMPMIN = 50
 MAX = 59
 
 BRONZE = 80
@@ -36,15 +36,12 @@ def generatePlayer(POS, OSP, ISP, DP, AP, PP, RP):
     if POS == "C":
         C = 10
     #Outside Scoring
-    baseValue = 1.2
-    if OSP:
-        baseValue = 1.5
-    closeShot = math.ceil(random.randint(MIN, MAX) * baseValue) + (SF + PF + C)
-    midRangeShot = math.ceil(random.randint(MIN, MAX) * baseValue) + (PG + SG + SF + PF + C)
-    threePointShot = math.ceil(random.randint(MIN, MAX) * baseValue) + (PG + SG + SF)
-    freeThrow = math.ceil(random.randint(round((closeShot / 4) + (midRangeShot / 4)), MAX) * baseValue) + (PG + SG + SF)
-    shotIQ = math.ceil(random.randint(TEMPMIN, MAX) * baseValue) + (PG + SG + SF + PF + C)
-    offensiveConsistency = math.ceil(random.randint(TEMPMIN, MAX) * baseValue) + (SG + SF + PF)
+    closeShot = math.ceil(random.randint(MIN, MAX) * OSP) + (PG + SG + SF + PF + C)
+    midRangeShot = math.ceil(random.randint(MIN, MAX) * OSP) + (PG + SG + SF + PF + C)
+    threePointShot = math.ceil(random.randint(MIN, MAX) * OSP) + (PG + SG + SF)
+    freeThrow = math.ceil(random.randint(round((closeShot / 4) + (midRangeShot / 4)), MAX) * OSP) + (PG + SG + SF)
+    shotIQ = math.ceil(random.randint(TEMPMIN, MAX) * OSP) + (PG + SG + C)
+    offensiveConsistency = math.ceil(random.randint(TEMPMIN, MAX) * OSP) + (SG + SF + PF)
     outsideScoring = math.floor((closeShot 
                                 + midRangeShot 
                                 + threePointShot 
@@ -52,17 +49,14 @@ def generatePlayer(POS, OSP, ISP, DP, AP, PP, RP):
                                 + shotIQ
                                 + offensiveConsistency) / 6)
     #Inside Scoring
-    baseValue = 1.2
-    if ISP:
-        baseValue = 1.5
-    layup = math.ceil(random.randint(MIN, MAX) * baseValue) + (PG + SG + SF)
-    standingDunk = math.ceil(random.randint(MIN, MAX) * baseValue) + (SF + PF + C)
-    drivingDunk = math.ceil(random.randint(MIN, MAX) * baseValue) + (SF + PF)
-    postHook = math.ceil(random.randint(MIN, MAX) * baseValue) + (PF + C)
-    postFade = math.ceil(random.randint(MIN, MAX) * baseValue) + (PG + SG + SF)
-    postControl = math.ceil(random.randint(MIN, MAX) * baseValue) + (PF + C)
-    drawFoul = math.ceil(random.randint(MIN, MAX) * baseValue) + (PG + SG + SF + PF + C)
-    hands = math.ceil(random.randint(TEMPMIN, MAX) * baseValue) + (PG + SG + SF + PF + C)
+    layup = math.ceil(random.randint(MIN, MAX) * ISP) + (PG + SG + SF + PF)
+    standingDunk = math.ceil(random.randint(MIN, MAX) * ISP) + (SF + PF + C)
+    drivingDunk = math.ceil(random.randint(MIN, MAX) * ISP) + (SG + SF + PF)
+    postHook = math.ceil(random.randint(MIN, MAX) * ISP) + (PF + C)
+    postFade = math.ceil(random.randint(MIN, MAX) * ISP) + (SG + SF + PF + C)
+    postControl = math.ceil(random.randint(MIN, MAX) * ISP) + (SG + PF + C)
+    drawFoul = math.ceil(random.randint(MIN, MAX) * ISP) + (PG + SG + SF + PF + C)
+    hands = math.ceil(random.randint(TEMPMIN, MAX) * ISP) + (PG + SG + SF + PF + C)
     insideScoring = math.floor((layup
                                 + standingDunk
                                 + drivingDunk
@@ -72,16 +66,13 @@ def generatePlayer(POS, OSP, ISP, DP, AP, PP, RP):
                                 + drawFoul
                                 + hands) / 8)
     #Athleticism
-    baseValue = 1.2
-    if AP:
-        baseValue = 1.5
-    speed = math.ceil(random.randint(MIN, MAX) * baseValue) + (PG + SG + SF)
-    acceleration = math.ceil(random.randint(MIN, MAX) * baseValue) + (PG + SG + SF)
-    strength = math.ceil(random.randint(MIN, MAX) * baseValue) + (PF + C)
-    vertical = math.ceil(random.randint(MIN, MAX) * baseValue) + (SG + SF + PF)
-    stamina = math.ceil(random.randint(57, MAX) * baseValue) + (PG + SG + SF + PF + C)
-    hustle = math.ceil(random.randint(MIN, MAX) * baseValue) + (PG + SG + SF)
-    overallDurability = math.ceil(random.randint(TEMPMIN, MAX) * baseValue) + (PG + SG + SF + PF + C)
+    speed = math.ceil(random.randint(MIN, MAX) * AP) + (PG + SG + SF)
+    acceleration = math.ceil(random.randint(speed - 5, min(speed + 10, 99)))
+    strength = math.ceil(random.randint(MIN, MAX) * AP) + (PF + C)
+    vertical = math.ceil(random.randint(MIN, MAX) * AP) + (SG + SF + PF)
+    stamina = math.ceil(random.randint(57, MAX) * AP) + (PG + SG + SF + PF + C)
+    hustle = math.ceil(random.randint(MIN, MAX) * AP) + (PG + SG + SF)
+    overallDurability = math.ceil(random.randint(TEMPMIN, MAX) * AP) + (PG + SG + SF + PF + C)
     athleticism = math.floor((speed
                             + acceleration
                             + strength
@@ -90,13 +81,10 @@ def generatePlayer(POS, OSP, ISP, DP, AP, PP, RP):
                             + hustle
                             + overallDurability) / 7)
     #Defending
-    baseValue = 1.2
-    if DP:
-        baseValue = 1.5
-    interiorDefense = math.ceil(random.randint(MIN, MAX) * baseValue) + (PF + C)
-    perimeterDefense = math.ceil(random.randint(MIN, MAX) * baseValue) + (PG + SG + SF)
-    steal = math.ceil(random.randint(round(perimeterDefense / 2), MAX) * baseValue) + (PG + SG + SF)
-    block = math.ceil(random.randint(MIN, MAX) * baseValue) + (PF + C)
+    interiorDefense = math.ceil(random.randint(MIN, MAX) * DP) + (PF + C)
+    perimeterDefense = math.ceil(random.randint(MIN, MAX) * DP) + (PG + SG + SF)
+    steal = math.ceil(random.randint(round(perimeterDefense / 2), MAX) * DP) + (PG + SG + SF)
+    block = math.ceil(random.randint(round(interiorDefense / 2), MAX) * DP) + (PF + C)
     if POS == "PG" or POS == "SG" or POS == "SF":
         tempPerimeterDefense = max(perimeterDefense, interiorDefense)
         tempSteal = max(steal, block)
@@ -111,10 +99,10 @@ def generatePlayer(POS, OSP, ISP, DP, AP, PP, RP):
         steal = tempSteal
         interiorDefense = max(perimeterDefense, perimeterDefense)
         perimeterDefense = tempPerimeterDefense
-    lateralQuickness = math.ceil(random.randint(round(acceleration / 2), MAX) * baseValue) + (PG + SG + SF)
-    helpDefenseIQ = math.ceil(random.randint(MIN, MAX) * baseValue) + (PG + SG + SF + PF + C)
-    passPerception = math.ceil(random.randint(MIN, MAX) * baseValue) + (PG + SG + SF)
-    defensiveConsistency = math.ceil(random.randint(TEMPMIN, MAX) * baseValue) + (PG + SG + SF + PF + C)
+    lateralQuickness = math.ceil(random.randint(round(acceleration / 2), MAX) * DP) + (PG + SG + SF)
+    helpDefenseIQ = math.ceil(random.randint(MIN, MAX) * DP) + (PG + SG + SF + PF + C)
+    passPerception = math.ceil(random.randint(MIN, MAX) * DP) + (PG + SG + SF)
+    defensiveConsistency = math.ceil(random.randint(round(helpDefenseIQ / 2), MAX) * DP) + (PG + SG + SF + PF + C)
     defending = math.floor((interiorDefense
                             + perimeterDefense
                             + steal
@@ -124,25 +112,19 @@ def generatePlayer(POS, OSP, ISP, DP, AP, PP, RP):
                             + passPerception
                             + defensiveConsistency) / 8)
     #Playmaking
-    baseValue = 1.2
-    if PP:
-        baseValue = 1.5
-    passAccuracy = math.ceil(random.randint(MIN, MAX) * baseValue) + (PG + SF + C)
-    ballHandle = math.ceil(random.randint(MIN, MAX) * baseValue) + (PG + SG + SF)
+    ballHandle = math.ceil(random.randint(MIN, MAX) * PP) + (PG + SG + SF)
     speedWithBall = math.ceil((speed + acceleration + ballHandle) / 3)
-    passIQ= math.ceil(random.randint(MIN, MAX) * baseValue) + (PG + C)
-    passVision = math.ceil(random.randint(MIN, MAX) * baseValue) + (PG + C)
+    passIQ= math.ceil(random.randint(MIN, MAX) * PP) + (PG + C)
+    passVision = math.ceil(random.randint(MIN, MAX) * PP) + (PG + C)
+    passAccuracy = math.ceil(random.randint(round(passIQ / 4) + round(passVision / 4), MAX) * PP) + (PG + SF + C)
     playmaking = math.floor((passAccuracy
                             + ballHandle
                             + speedWithBall
                             + passIQ
                             + passVision) / 5)
     #Rebounding
-    baseValue = 1.2
-    if RP:
-        baseValue = 1.5
-    offensiveRebound = math.ceil(random.randint(MIN, MAX) * baseValue) + (SF + PF + C)
-    defensiveRebound = math.ceil(random.randint(MIN, MAX) * baseValue) + (PF + C)
+    offensiveRebound = math.ceil(random.randint(MIN, MAX) * RP) + (SF + PF + C)
+    defensiveRebound = math.ceil(random.randint(round(offensiveRebound / 2), MAX) * RP) + (PF + C)
     rebounding = math.floor((offensiveRebound
                             + defensiveRebound) / 2)
     #Other
@@ -163,10 +145,11 @@ def generatePlayer(POS, OSP, ISP, DP, AP, PP, RP):
         weight = random.randint(96, 120)
     wingspan = random.randint(height -5, height + 25)
     intangibles = random.randint(70, 99)
-    potential = random.randint(HOF, 99)
+    potential = random.randint(90, 99)
     workEthic = random.randint(0,3)
     
     playerStats = (
+        f"\n"
         f"{outsideScoring:2d} Outside Scoring\n"
         f"____________________\n"
         f"{closeShot:2d} Close Shot\n"
@@ -365,6 +348,11 @@ def generatePlayer(POS, OSP, ISP, DP, AP, PP, RP):
         f"{'Claymore: Silver' if shotIQ >= SILVER and shotIQ < GOLD else ''}",
         f"{'Claymore: Gold' if shotIQ >= GOLD and shotIQ < HOF else ''}",
         f"{'Claymore: Hall of Fame' if shotIQ >= HOF else ''}",
+        
+        f"{'Corner Specialist: Bronze' if threePointShot >= BRONZE and threePointShot < SILVER and shotIQ >= BRONZE else ''}",
+        f"{'Corner Specialist: Silver' if threePointShot >= SILVER and threePointShot < GOLD and shotIQ >= SILVER else ''}",
+        f"{'Corner Specialist: Gold' if threePointShot >= GOLD and threePointShot < HOF and shotIQ >= GOLD else ''}",
+        f"{'Corner Specialist: Hall of Fame' if threePointShot >= HOF and shotIQ >= HOF else ''}",
         
         f"{'Comeback Kid: Bronze' if shotIQ >= BRONZE and shotIQ < SILVER and offensiveConsistency >= BRONZE else ''}",
         f"{'Comeback Kid: Silver' if shotIQ >= SILVER and shotIQ < GOLD and offensiveConsistency >= SILVER else ''}",
@@ -619,8 +607,119 @@ def generatePlayer(POS, OSP, ISP, DP, AP, PP, RP):
 def main():
                                 #OSP     #ISP    #DP     #AP     #PP     #RP
     #print(generatePlayer("SF", True,    True,   False,  True,   False,  False))
-    print(generatePlayer("C",  True,     False,   False,   True,   True,  False))
+    #print(generatePlayer("C",  True,     True,   False,   True,   False,  True))
+    userInput = input("Enter a position from list (PG, SG, SF, PF, C): ").upper()
+    if userInput == "PG":
+        print("Choose Playstyle")
+        print("1. Scoring Machine\n2. 2-Way Inside Out\n3. Slashing Shot Creator\n4. Sharpshooting Playmaker\n5. 2-Way Playmaking Sharpshooter")
+        proficiencyChoice = int(input("Enter a number from 1 to 6 to select a playstyle: "))
+
+        if proficiencyChoice == 1:
+            print(generatePlayer("PG", 1.5, 1.5, 1.0, 1.5, 1.2, 1.0))
+
+        elif proficiencyChoice == 2:
+            print(generatePlayer("PG", 1.2, 1.5, 1.5, 1.5, 1.2, 1.2))
+
+        elif proficiencyChoice == 3:
+            print(generatePlayer("PG", 1.2, 1.5, 1.0, 1.5, 1.5, 1.0))
+
+        elif proficiencyChoice == 4:
+            print(generatePlayer("PG", 1.5, 1.2, 1.0, 1.5, 1.5, 1.0))
+
+        elif proficiencyChoice == 5:
+            print(generatePlayer("PG", 1.5, 1.2, 1.5, 1.2, 1.5, 1.2))
+        else:
+            print("Invalid playstyle choice. Please enter a number between 1 and 5")
+    elif userInput == "SG":
+        print("Choose Playstyle")
+        print("1. Scoring Machine\n2. 2-Way Sharpshooter\n3. Slashing Shot Creator\n4. 2-Way Slasher\n5. Playmaking Sharpshooter")
+        proficiencyChoice = int(input("Enter a number from 1 to 6 to select a playstyle: "))
+
+        if proficiencyChoice == 1:
+            print(generatePlayer("SG", 1.5, 1.5, 1.0, 1.5, 1.2, 1.0))
+
+        elif proficiencyChoice == 2:
+            print(generatePlayer("SG", 1.5, 1.2, 1.5, 1.5, 1.0, 1.3))
+
+        elif proficiencyChoice == 3:
+            print(generatePlayer("SG", 1.2, 1.5, 1.0, 1.5, 1.5, 1.0))
+
+        elif proficiencyChoice == 4:
+            print(generatePlayer("SG", 1.2, 1.5, 1.5, 1.5, 1.0, 1.2))
+
+        elif proficiencyChoice == 5:
+            print(generatePlayer("SG", 1.5, 1.3, 1.2, 1.3, 1.5, 1.2))
+        else:
+            print("Invalid playstyle choice. Please enter a number between 1 and 5")
+
+    elif userInput == "SF":
+        print("Choose Playstyle")
+        print("1. 3-Level Scorer\n2. 2-Way Sharpshooter\n3. Inside Out Playmaker\n4. 2-Way Slasher\n5. 2-Way Finisher")
+        proficiencyChoice = int(input("Enter a number from 1 to 6 to select a playstyle: "))
+
+        if proficiencyChoice == 1:
+            print(generatePlayer("SF", 1.5, 1.5, 1.0, 1.5, 1.2, 1.0))
+
+        elif proficiencyChoice == 2:
+            print(generatePlayer("SF", 1.5, 1.2, 1.5, 1.5, 1.0, 1.3))
+
+        elif proficiencyChoice == 3:
+            print(generatePlayer("SF", 1.5, 1.5, 1.0, 1.2, 1.5, 1.2))
+
+        elif proficiencyChoice == 4:
+            print(generatePlayer("SF", 1.2, 1.5, 1.5, 1.5, 1.0, 1.3))
+
+        elif proficiencyChoice == 5:
+            print(generatePlayer("SF", 1.2, 1.5, 1.5, 1.5, 1.2, 1.5))
+        else:
+            print("Invalid playstyle choice. Please enter a number between 1 and 5")
+
+    elif userInput == "PF":
+        print("Choose Playstyle")
+        print("1. 2-Way 3-Level Scorer\n2. Stretch Glass Cleaner\n3. Glass Cleaning Lockdown\n4. 3-Level Stretch Big\n5. 2-Way Playmaking Slasher")
+        proficiencyChoice = int(input("Enter a number from 1 to 6 to select a playstyle: "))
+
+        if proficiencyChoice == 1:
+            print(generatePlayer("PF", 1.5, 1.5, 1.5, 1.2, 1.0, 1.3))
+
+        elif proficiencyChoice == 2:
+            print(generatePlayer("PF", 1.2, 1.5, 1.2, 1.5, 1.0, 1.5))
+
+        elif proficiencyChoice == 3:
+            print(generatePlayer("PF", 1.2, 1.5, 1.5, 1.2, 1.0, 1.5))
+
+        elif proficiencyChoice == 4:
+            print(generatePlayer("PF", 1.5, 1.5, 1.0, 1.2, 1.0, 1.2))
+
+        elif proficiencyChoice == 5:
+            print(generatePlayer("PF", 1.2, 1.5, 1.5, 1.3, 1.5, 1.3))
+        else:
+            print("Invalid playstyle choice. Please enter a number between 1 and 5")
+
+    elif userInput == "C":
+        print("Choose Playstyle")
+        print("1. Paint Beast\n2. 2-Way Facilitator\n3. Glass Cleaning Finisher\n4. 3-Level Stretch Big\n5. Glass Cleaning Facilitator")
+        proficiencyChoice = int(input("Enter a number from 1 to 6 to select a playstyle: "))
+
+        if proficiencyChoice == 1:
+            print(generatePlayer("PF", 1.0, 1.5, 1.0, 1.5, 1.2, 1.5))
+
+        elif proficiencyChoice == 2:
+            print(generatePlayer("PF", 1.3, 1.3, 1.5, 1.0, 1.5, 1.3))
+
+        elif proficiencyChoice == 3:
+            print(generatePlayer("PF", 1.2, 1.5, 1.0, 1.5, 1.2, 1.5))
+
+        elif proficiencyChoice == 4:
+            print(generatePlayer("PF", 1.5, 1.5, 1.2, 1.3, 1.0, 1.3))
+
+        elif proficiencyChoice == 5:
+            print(generatePlayer("PF", 1.2, 1.5, 1.0, 1.2, 1.5, 1.5))
+        else:
+            print("Invalid playstyle choice. Please enter a number between 1 and 5")
     
+    else:
+        print("Invalid input. Please enter a valid position")
 if __name__ == "__main__":
     main()
         
