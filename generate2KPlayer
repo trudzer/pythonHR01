@@ -127,8 +127,8 @@ def generatePlayer(POS, OSP, ISP, DP, AP, PP, RP):
                             + passIQ
                             + passVision) / 5)
     #Rebounding
-    offensiveRebound = min(math.ceil(random.randint(MIN, MAX) * RP) + (SF + PF + C), 99)
-    defensiveRebound = min(math.ceil(random.randint(round(offensiveRebound / 2), MAX) * RP) + (SF + PF + C), 99)
+    defensiveRebound = min(math.ceil(random.randint(MIN, MAX) * RP) + (SF + PF + C), 99)
+    offensiveRebound = min(math.ceil(random.randint(round(defensiveRebound / 2), MAX) * RP) + (SF + PF + C), 99)
     rebounding = math.floor((offensiveRebound
                             + defensiveRebound) / 2)
     #Other
