@@ -329,7 +329,7 @@ def generatePlayer(ToP, POS, OSP, ISP, DP, AP, PP, RP):
                             + speedWithBall
                             + passIQ
                             + passVision) / 5)
-    wingspan = random.randint(height - 5 - round(PG / 3) - round(SG / 3), height + 25 - round(PG / 3) + round(SG / 3))
+    wingspan = random.randint(height - 5, height + 25 - round(PG / 3) + round(SG / 3))
     intangibles = random.randint(70, 99)
     potential = random.randint(90, 99)
     workEthic = random.randint(0,3)
