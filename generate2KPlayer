@@ -11,7 +11,7 @@ GOLD = 90
 HOF = 95
 
 def calcCMtoInch(heightCM):
-    feet = math.floor(heightCM / 30.4)
+    feet = math.floor(heightCM / 30.48)
     inches = round((heightCM % 30.48) / 2.54)
     if inches == 12:
         feet += 1
@@ -84,7 +84,7 @@ def generatePlayer(POS, OSP, ISP, DP, AP, PP, RP):
         postFade = tempPostFade
     postControl = min(math.ceil(random.randint(MIN, MAX) * ISP) + (SG + PF + C), 99)
     drawFoul = min(math.ceil(random.randint(MIN, MAX) * ISP) + (PG + SG + SF + PF + C), 99)
-    hands = min(math.ceil(random.randint(TEMPMIN, MAX) * ISP) + (PG + SG + SF + PF + C), 99)
+    hands = min(math.ceil(random.randint(TEMPMIN + round(PF / 2) + round(C / 2), MAX + round(PF / 2) + round(C / 2)) * ISP) + (PG + SG + SF + PF + C), 99)
     insideScoring = math.floor((layup
                                 + standingDunk
                                 + drivingDunk
@@ -352,10 +352,10 @@ def generatePlayer(POS, OSP, ISP, DP, AP, PP, RP):
         f"{'Backdown Punisher: Gold' if postControl >= GOLD and postControl < HOF and strength >= GOLD else ''}",
         f"{'Backdown Punisher: Hall of Fame' if postControl >= HOF and strength >= HOF else ''}",
         
-        f"{'Dream Shake: Bronze' if postControl >= BRONZE and postControl < SILVER else ''}",
-        f"{'Dream Shake: Silver' if postControl >= SILVER and postControl < GOLD else ''}",
-        f"{'Dream Shake: Gold' if postControl >= GOLD and postControl < HOF else ''}",
-        f"{'Dream Shake: Hall of Fame' if postControl >= HOF else ''}",
+        f"{'Dream Shake: Bronze' if postControl >= BRONZE and postControl < SILVER and closeShot >= BRONZE else ''}",
+        f"{'Dream Shake: Silver' if postControl >= SILVER and postControl < GOLD and closeShot >= SILVER else ''}",
+        f"{'Dream Shake: Gold' if postControl >= GOLD and postControl < HOF and closeShot >= GOLD else ''}",
+        f"{'Dream Shake: Hall of Fame' if postControl >= HOF and closeShot >= HOF else ''}",
                 
         f"{'Dropstepper: Bronze' if postControl >= BRONZE and postControl < SILVER and strength >= BRONZE else ''}",
         f"{'Dropstepper: Silver' if postControl >= SILVER and postControl < GOLD and strength >= SILVER else ''}",
@@ -372,10 +372,10 @@ def generatePlayer(POS, OSP, ISP, DP, AP, PP, RP):
         f"{'Fearless Finisher: Gold' if max(drivingDunk, layup) >= GOLD and max(drivingDunk, layup) < HOF else ''}",
         f"{'Fearless Finisher: Hall of Fame' if max(drivingDunk, layup) >= HOF else ''}",
         
-        f"{'Giant Slayer: Bronze' if max(layup, drivingDunk) >= BRONZE and max(layup, drivingDunk) < SILVER and height <= 195 else ''}",
-        f"{'Giant Slayer: Silver' if max(layup, drivingDunk) >= SILVER and max(layup, drivingDunk) < GOLD and height <= 195 else ''}",
-        f"{'Giant Slayer: Gold' if max(layup, drivingDunk) >= GOLD and max(layup, drivingDunk) < HOF and height <= 195 else ''}",
-        f"{'Giant Slayer: Hall of Fame' if max(layup, drivingDunk) >= HOF and height <= 195 else ''}",
+        f"{'Giant Slayer: Bronze' if max(layup, drivingDunk) >= BRONZE and max(layup, drivingDunk) < SILVER and height <= 196 else ''}",
+        f"{'Giant Slayer: Silver' if max(layup, drivingDunk) >= SILVER and max(layup, drivingDunk) < GOLD and height <= 196 else ''}",
+        f"{'Giant Slayer: Gold' if max(layup, drivingDunk) >= GOLD and max(layup, drivingDunk) < HOF and height <= 196 else ''}",
+        f"{'Giant Slayer: Hall of Fame' if max(layup, drivingDunk) >= HOF and height <= 196 else ''}",
         
         f"{'Masher: Bronze' if max(standingDunk, closeShot) >= BRONZE and max(standingDunk, closeShot) < SILVER else ''}",
         f"{'Masher: Silver' if max(standingDunk, closeShot) >= SILVER and max(standingDunk, closeShot) < GOLD else ''}",
@@ -407,40 +407,40 @@ def generatePlayer(POS, OSP, ISP, DP, AP, PP, RP):
         f"{'Slithery: Gold' if max(layup, drivingDunk) >= GOLD and max(layup, drivingDunk) < HOF and acceleration >= SILVER else ''}",
         f"{'Slithery: Hall of Fame' if max(layup, drivingDunk) >= HOF and acceleration >= GOLD else ''}",
         
-        f"{'Bunny: Bronze' if max(drivingDunk, layup) >= BRONZE and max(drivingDunk, layup) < SILVER else ''}",
-        f"{'Bunny: Silver' if max(drivingDunk, layup) >= SILVER and max(drivingDunk, layup) < GOLD else ''}",
-        f"{'Bunny: Gold' if max(drivingDunk, layup) >= GOLD and max(drivingDunk, layup) < HOF else ''}",
-        f"{'Bunny: Hall of Fame' if max(drivingDunk, layup) >= HOF else ''}",
+        f"{'Bunny: Bronze' if max(drivingDunk, layup) >= BRONZE and max(drivingDunk, layup) < SILVER and hands >= BRONZE else ''}",
+        f"{'Bunny: Silver' if max(drivingDunk, layup) >= SILVER and max(drivingDunk, layup) < GOLD  and hands >= SILVER and vertical >= BRONZE  else ''}",
+        f"{'Bunny: Gold' if max(drivingDunk, layup) >= GOLD and max(drivingDunk, layup) < HOF and hands >= GOLD and vertical >= SILVER else ''}",
+        f"{'Bunny: Hall of Fame' if max(drivingDunk, layup) >= HOF and hands >= HOF and vertical >= GOLD else ''}",
 
-        f"{'Float Game: Bronze' if layup >= BRONZE and layup < SILVER else ''}",
-        f"{'Float Game: Silver' if layup >= SILVER and layup < GOLD else ''}",
-        f"{'Float Game: Gold' if layup >= GOLD and layup < HOF else ''}",
-        f"{'Float Game: Hall of Fame' if layup >= HOF else ''}",
+        f"{'Float Game: Bronze' if max(layup, closeShot) >= BRONZE and max(layup, closeShot) < SILVER and hands >= BRONZE else ''}",
+        f"{'Float Game: Silver' if max(layup, closeShot) >= SILVER and max(layup, closeShot) < GOLD and hands >= SILVER else ''}",
+        f"{'Float Game: Gold' if max(layup, closeShot) >= GOLD and max(layup, closeShot) < HOF and hands >= GOLD else ''}",
+        f"{'Float Game: Hall of Fame' if max(layup, closeShot) >= HOF and hands >= HOF else ''}",
 
         f"{'Hook Specialist: Bronze' if postHook >= BRONZE and postHook < SILVER else ''}",
         f"{'Hook Specialist: Silver' if postHook >= SILVER and postHook < GOLD else ''}",
         f"{'Hook Specialist: Gold' if postHook >= GOLD and postHook < HOF else ''}",
         f"{'Hook Specialist: Hall of Fame' if postHook >= HOF else ''}",
 
-        f"{'Precision Dunker: Bronze' if max(standingDunk, drivingDunk) >= BRONZE and max(standingDunk, drivingDunk) < SILVER else ''}",
-        f"{'Precision Dunker: Silver' if max(standingDunk, drivingDunk) >= SILVER and max(standingDunk, drivingDunk) < GOLD else ''}",
-        f"{'Precision Dunker: Gold' if max(standingDunk, drivingDunk) >= GOLD and max(standingDunk, drivingDunk) < HOF else ''}",
-        f"{'Precision Dunker: Hall of Fame' if max(standingDunk, drivingDunk) >= HOF else ''}",
+        f"{'Precision Dunker: Bronze' if max(standingDunk, drivingDunk) >= BRONZE and max(standingDunk, drivingDunk) < SILVER and hands >= BRONZE else ''}",
+        f"{'Precision Dunker: Silver' if max(standingDunk, drivingDunk) >= SILVER and max(standingDunk, drivingDunk) < GOLD and hands >= SILVER else ''}",
+        f"{'Precision Dunker: Gold' if max(standingDunk, drivingDunk) >= GOLD and max(standingDunk, drivingDunk) < HOF and hands >= GOLD else ''}",
+        f"{'Precision Dunker: Hall of Fame' if max(standingDunk, drivingDunk) >= HOF and hands >= HOF else ''}",
 
-        f"{'Scooper: Bronze' if max(layup, closeShot) >= BRONZE and max(layup, closeShot) < SILVER else ''}",
-        f"{'Scooper: Silver' if max(layup, closeShot) >= SILVER and max(layup, closeShot) < GOLD else ''}",
-        f"{'Scooper: Gold' if max(layup, closeShot) >= GOLD and max(layup, closeShot) < HOF else ''}",
-        f"{'Scooper: Hall of Fame' if max(layup, closeShot) >= HOF else ''}",
+        f"{'Scooper: Bronze' if layup >= BRONZE and layup < SILVER and ballHandle >= BRONZE else ''}",
+        f"{'Scooper: Silver' if layup >= SILVER and layup < GOLD and ballHandle >= SILVER else ''}",
+        f"{'Scooper: Gold' if layup >= GOLD and layup < HOF and ballHandle >= GOLD else ''}",
+        f"{'Scooper: Hall of Fame' if layup >= HOF and ballHandle >= HOF else ''}",
  
-        f"{'Spin Cycle: Bronze' if layup >= BRONZE and layup < SILVER else ''}",
-        f"{'Spin Cycle: Silver' if layup >= SILVER and layup < GOLD else ''}",
-        f"{'Spin Cycle: Gold' if layup >= GOLD and layup < HOF else ''}",
-        f"{'Spin Cycle: Hall of Fame' if layup >= HOF else ''}",
+        f"{'Spin Cycle: Bronze' if layup >= BRONZE + 2 and layup < SILVER + 2 and ballHandle >= BRONZE else ''}",
+        f"{'Spin Cycle: Silver' if layup >= SILVER + 2 and layup < GOLD + 2 and ballHandle >= SILVER else ''}",
+        f"{'Spin Cycle: Gold' if layup >= GOLD + 2 and layup < HOF + 2 and ballHandle >= GOLD else ''}",
+        f"{'Spin Cycle: Hall of Fame' if layup >= HOF + 2 and ballHandle >= HOF else ''}",
 
-        f"{'Two Step: Bronze' if layup >= BRONZE and layup < SILVER else ''}",
-        f"{'Two Step: Silver' if layup >= SILVER and layup < GOLD else ''}",
-        f"{'Two Step: Gold' if layup >= GOLD and layup < HOF else ''}",
-        f"{'Two Step: Hall of Fame' if layup >= HOF else ''}",
+        f"{'Two Step: Bronze' if layup >= BRONZE and layup < SILVER and hands >= BRONZE else ''}",
+        f"{'Two Step: Silver' if layup >= SILVER and layup < GOLD and hands >= SILVER else ''}",
+        f"{'Two Step: Gold' if layup >= GOLD and layup < HOF and hands >= GOLD else ''}",
+        f"{'Two Step: Hall of Fame' if layup >= HOF and hands >= HOF else ''}",
 
         f"{'Whistle: Bronze' if drawFoul >= BRONZE and drawFoul < SILVER else ''}",
         f"{'Whistle: Silver' if drawFoul >= SILVER and drawFoul < GOLD else ''}",
@@ -492,30 +492,30 @@ def generatePlayer(POS, OSP, ISP, DP, AP, PP, RP):
         f"{'Guard Up: Gold' if shotIQ >= GOLD and shotIQ < HOF and max(midRangeShot, threePointShot) >= SILVER else ''}",
         f"{'Guard Up: Hall of Fame' if shotIQ >= HOF and max(midRangeShot, threePointShot) >= GOLD else ''}",
         
-        f"{'Limitless Range: Bronze' if threePointShot >= BRONZE and threePointShot < SILVER else ''}",
-        f"{'Limitless Range: Silver' if threePointShot >= SILVER and threePointShot < GOLD else ''}",
-        f"{'Limitless Range: Gold' if threePointShot >= GOLD and threePointShot < HOF else ''}",
-        f"{'Limitless Range: Hall of Fame' if threePointShot >= HOF else ''}",
+        f"{'Limitless Range: Bronze' if threePointShot >= BRONZE + 3 and threePointShot < SILVER + 3 else ''}",
+        f"{'Limitless Range: Silver' if threePointShot >= SILVER + 3 and threePointShot < GOLD + 3 else ''}",
+        f"{'Limitless Range: Gold' if threePointShot >= GOLD + 3 and threePointShot < HOF + 3 else ''}",
+        f"{'Limitless Range: Hall of Fame' if threePointShot >= HOF + 3 else ''}",
         
         f"{'Middy Magician: Bronze' if midRangeShot >= BRONZE and midRangeShot < SILVER else ''}",
         f"{'Middy Magician: Silver' if midRangeShot >= SILVER and midRangeShot < GOLD else ''}",
         f"{'Middy Magician: Gold' if midRangeShot >= GOLD and midRangeShot < HOF else ''}",
         f"{'Middy Magician: Hall of Fame' if midRangeShot >= HOF else ''}",
         
-        f"{'Slippery Off-Ball: Bronze' if shotIQ >= BRONZE and shotIQ < SILVER and offensiveConsistency >= BRONZE else ''}",
-        f"{'Slippery Off-Ball: Silver' if shotIQ >= SILVER and shotIQ < GOLD and offensiveConsistency >= SILVER else ''}",
-        f"{'Slippery Off-Ball: Gold' if shotIQ >= GOLD and shotIQ < HOF and offensiveConsistency >= GOLD else ''}",
-        f"{'Slippery Off-Ball: Hall of Fame' if shotIQ >= HOF and offensiveConsistency >= HOF else ''}",
+        f"{'Slippery Off-Ball: Bronze' if shotIQ >= BRONZE and shotIQ < SILVER and offensiveConsistency >= BRONZE and acceleration >= BRONZE else ''}",
+        f"{'Slippery Off-Ball: Silver' if shotIQ >= SILVER and shotIQ < GOLD and offensiveConsistency >= SILVER and acceleration >= SILVER else ''}",
+        f"{'Slippery Off-Ball: Gold' if shotIQ >= GOLD and shotIQ < HOF and offensiveConsistency >= GOLD and acceleration >= GOLD else ''}",
+        f"{'Slippery Off-Ball: Hall of Fame' if shotIQ >= HOF and offensiveConsistency >= HOF and acceleration >= HOF else ''}",
         
         f"{'Space Creator: Bronze' if shotIQ >= BRONZE and shotIQ < SILVER and ballHandle >= BRONZE else ''}",
         f"{'Space Creator: Silver' if shotIQ >= SILVER and shotIQ < GOLD and ballHandle >= SILVER else ''}",
         f"{'Space Creator: Gold' if shotIQ >= GOLD and shotIQ < HOF and ballHandle >= GOLD else ''}",
         f"{'Space Creator: Hall of Fame' if shotIQ >= HOF and ballHandle >= HOF else ''}",
 
-        f"{'Free Points: Bronze' if freeThrow >= BRONZE and freeThrow < SILVER else ''}",
-        f"{'Free Points: Silver' if freeThrow >= SILVER and freeThrow < GOLD else ''}",
-        f"{'Free Points: Gold' if freeThrow >= GOLD and freeThrow < HOF else ''}",
-        f"{'Free Points: Hall of Fame' if freeThrow >= HOF else ''}",
+        f"{'Free Points: Bronze' if freeThrow >= BRONZE and freeThrow < SILVER and offensiveConsistency >= BRONZE else ''}",
+        f"{'Free Points: Silver' if freeThrow >= SILVER and freeThrow < GOLD and offensiveConsistency >= SILVER else ''}",
+        f"{'Free Points: Gold' if freeThrow >= GOLD and freeThrow < HOF and offensiveConsistency >= GOLD else ''}",
+        f"{'Free Points: Hall of Fame' if freeThrow >= HOF and offensiveConsistency >= HOF else ''}",
   
         f"{'Open Looks: Bronze' if shotIQ >= BRONZE and shotIQ < SILVER else ''}",
         f"{'Open Looks: Silver' if shotIQ >= SILVER and shotIQ < GOLD else ''}",
@@ -552,20 +552,20 @@ def generatePlayer(POS, OSP, ISP, DP, AP, PP, RP):
         f"{'Dimer: Gold' if passAccuracy >= GOLD and passAccuracy < HOF and passIQ >= GOLD else ''}",
         f"{'Dimer: Hall of Fame' if passAccuracy >= HOF and passIQ >= HOF else ''}",
         
-        f"{'Handles For Days: Bronze' if ballHandle >= BRONZE and ballHandle < SILVER else ''}",
-        f"{'Handles For Days: Silver' if ballHandle >= SILVER and ballHandle < GOLD else ''}",
-        f"{'Handles For Days: Gold' if ballHandle >= GOLD and ballHandle < HOF else ''}",
-        f"{'Handles For Days: Hall of Fame' if ballHandle >= HOF else ''}",
+        f"{'Handles For Days: Bronze' if ballHandle >= BRONZE and ballHandle < SILVER and stamina >= BRONZE else ''}",
+        f"{'Handles For Days: Silver' if ballHandle >= SILVER and ballHandle < GOLD and stamina >= SILVER else ''}",
+        f"{'Handles For Days: Gold' if ballHandle >= GOLD and ballHandle < HOF and stamina >= GOLD else ''}",
+        f"{'Handles For Days: Hall of Fame' if ballHandle >= HOF and stamina >= HOF else ''}",
         
         f"{'Hyperdrive: Bronze' if ballHandle >= BRONZE and ballHandle < SILVER else ''}",
         f"{'Hyperdrive: Silver' if ballHandle >= SILVER and ballHandle < GOLD else ''}",
         f"{'Hyperdrive: Gold' if ballHandle >= GOLD and ballHandle < HOF else ''}",
         f"{'Hyperdrive: Hall of Fame' if ballHandle >= HOF else ''}",
         
-        f"{'Killer Combos: Bronze' if ballHandle >= BRONZE and ballHandle < SILVER else ''}",
-        f"{'Killer Combos: Silver' if ballHandle >= SILVER and ballHandle < GOLD else ''}",
-        f"{'Killer Combos: Gold' if ballHandle >= GOLD and ballHandle < HOF else ''}",
-        f"{'Killer Combos: Hall of Fame' if ballHandle >= HOF else ''}",
+        f"{'Killer Combos: Bronze' if ballHandle >= BRONZE + 3 and ballHandle < SILVER +3 else ''}",
+        f"{'Killer Combos: Silver' if ballHandle >= SILVER + 3 and ballHandle < GOLD + 3 else ''}",
+        f"{'Killer Combos: Gold' if ballHandle >= GOLD + 3 and ballHandle < HOF + 3 else ''}",
+        f"{'Killer Combos: Hall of Fame' if ballHandle >= HOF + 3 else ''}",
         
         f"{'Needle Threader: Bronze' if passAccuracy >= BRONZE and passAccuracy < SILVER and passIQ >= BRONZE else ''}",
         f"{'Needle Threader: Silver' if passAccuracy >= SILVER and passAccuracy < GOLD and passIQ >= SILVER else ''}",
@@ -587,10 +587,10 @@ def generatePlayer(POS, OSP, ISP, DP, AP, PP, RP):
         f"{'Unpluckable: Gold' if hands >= GOLD and hands < HOF and ballHandle >= GOLD else ''}",
         f"{'Unpluckable: Hall of Fame' if hands >= HOF and ballHandle >= HOF else ''}",
     
-        f"{'Big Driver: Bronze' if max(drivingDunk, layup) >= BRONZE and max(drivingDunk, layup) < SILVER else ''}",
-        f"{'Big Driver: Silver' if max(drivingDunk, layup) >= SILVER and max(drivingDunk, layup) < GOLD else ''}",
-        f"{'Big Driver: Gold' if max(drivingDunk, layup) >= GOLD and max(drivingDunk, layup) < HOF else ''}",
-        f"{'Big Driver: Hall of Fame' if max(drivingDunk, layup) >= HOF else ''}",
+        f"{'Big Driver: Bronze' if max(drivingDunk, layup) >= BRONZE and max(drivingDunk, layup) < SILVER and max(closeShot, midRangeShot) >= BRONZE else ''}",
+        f"{'Big Driver: Silver' if max(drivingDunk, layup) >= SILVER and max(drivingDunk, layup) < GOLD and max(closeShot, midRangeShot) >= SILVER else ''}",
+        f"{'Big Driver: Gold' if max(drivingDunk, layup) >= GOLD and max(drivingDunk, layup) < HOF and max(closeShot, midRangeShot) >= GOLD else ''}",
+        f"{'Big Driver: Hall of Fame' if max(drivingDunk, layup) >= HOF and max(closeShot, midRangeShot) >= HOF else ''}",
 
         f"{'Blow-By: Bronze' if acceleration >= BRONZE and acceleration < SILVER else ''}",
         f"{'Blow-By: Silver' if acceleration >= SILVER and acceleration < GOLD else ''}",
@@ -677,10 +677,10 @@ def generatePlayer(POS, OSP, ISP, DP, AP, PP, RP):
         f"{'Pogo Stick: Gold' if vertical >= GOLD and vertical < HOF and defensiveConsistency >= GOLD else ''}",
         f"{'Pogo Stick: Hall of Fame' if vertical >= HOF and defensiveConsistency >= HOF else ''}",
         
-        f"{'Work Horse: Bronze' if defensiveConsistency >= BRONZE and defensiveConsistency < SILVER else ''}",
-        f"{'Work Horse: Silver' if defensiveConsistency >= SILVER and defensiveConsistency < GOLD else ''}",
-        f"{'Work Horse: Gold' if defensiveConsistency >= GOLD and defensiveConsistency < HOF else ''}",
-        f"{'Work Horse: Hall of Fame' if defensiveConsistency >= HOF else ''}",
+        f"{'Work Horse: Bronze' if defensiveConsistency >= BRONZE and defensiveConsistency < SILVER and helpDefenseIQ >= BRONZE else ''}",
+        f"{'Work Horse: Silver' if defensiveConsistency >= SILVER and defensiveConsistency < GOLD and helpDefenseIQ >= SILVER else ''}",
+        f"{'Work Horse: Gold' if defensiveConsistency >= GOLD and defensiveConsistency < HOF and helpDefenseIQ >= GOLD else ''}",
+        f"{'Work Horse: Hall of Fame' if defensiveConsistency >= HOF and helpDefenseIQ >= HOF else ''}",
 
         f"{'Fast Feet: Bronze' if perimeterDefense >= BRONZE and perimeterDefense < SILVER and lateralQuickness >= BRONZE else ''}",
         f"{'Fast Feet: Silver' if perimeterDefense >= SILVER and perimeterDefense < GOLD and lateralQuickness >= SILVER else ''}",
@@ -735,7 +735,7 @@ def generatePlayer(POS, OSP, ISP, DP, AP, PP, RP):
 def main():
     userInput = input
     while userInput != 0:
-        userInput = int(input("|0| Quit\n\n|1| PG\n|2| SG\n|3| SF\n|4| PF\n|5| C\n\nInput:"))
+        userInput = int(input("0. Quit\n\n1. PG\n2. SG\n3. SF\n4. PF\n5. C\n\nInput: "))
         if userInput == 1:
             print("Choose Playstyle")
             print("1. Scoring Machine\n2. 2-Way Sharpshooter\n3. Slashing Shot Creator\n4. Sharpshooting Playmaker\n5. 2-Way All Around Threat")
@@ -808,7 +808,7 @@ def main():
             proficiencyChoice = int(input("Enter a number from 1 to 5 to select a playstyle: "))
 
             if proficiencyChoice == 1:
-                print(generatePlayer("PF", 1.4, 1.4, 1.1, 1.4, 1.1, 1.1))
+                print(generatePlayer("PF", 1.3, 1.3, 1.0, 1.3, 1.1, 1.1))
 
             elif proficiencyChoice == 2:
                 print(generatePlayer("PF", 1.2, 1.3, 1.2, 1.4, 1.2, 1.4))
@@ -820,7 +820,7 @@ def main():
                 print(generatePlayer("PF", 1.2, 1.3, 1.3, 1.2, 1.1, 1.4))
 
             elif proficiencyChoice == 5:
-                print(generatePlayer("PF", 1.1, 1.4, 1.3, 1.4, 1.5, 1.2))
+                print(generatePlayer("PF", 1.1, 1.4, 1.3, 1.4, 1.6, 1.2))
             else:
                 print("Invalid playstyle choice. Please enter a number between 1 and 5")
             userInput = input("\nPress Enter to continue...\n")
