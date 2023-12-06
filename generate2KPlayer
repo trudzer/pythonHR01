@@ -120,7 +120,7 @@ def generatePlayer(ToP, POS, OSP, ISP, DP, AP, PP, RP):
                                 + drawFoul
                                 + hands) / 8)
     #Athleticism
-    speed = min(math.ceil(random.randint(MIN + round(PG / 4) + round(SG / 4), MAX + round(PG / 4) + round(SG / 4)) * AP) + (PG + SG + SF + (round(PF / 1.8)) + (round(C / 2))), 99)
+    speed = min(math.ceil(random.randint(MIN + round(PG / 4) + round(SG / 4), MAX + round(PG / 4) + round(SG / 4)) * AP) + (PG + SG + SF + (round(PF / 1.8)) + (round(C / 3))), 99)
     acceleration = min(math.ceil(random.randint(speed - 5, min(speed + 10, 99))), 99)
     strength = min(math.ceil(random.randint(MIN, MAX) * AP) + (PF + C), 99)
     vertical = min(math.ceil(random.randint(MIN + round(PG / 4) + round(SG / 4), MAX + round(PG / 4) + round(SG / 4)) * AP) + (PG + SG + SF + PF), 99)
@@ -290,10 +290,21 @@ def generatePlayer(ToP, POS, OSP, ISP, DP, AP, PP, RP):
         height = random.randint(206, 221)
         weight = random.randint(88, 113)
         if height <= 210:
-            newSpeed = speed + 10
-            newAcceleration = acceleration + 10
-            newSpeedWithBall = speedWithBall + 10
-            newLateralQuickness = lateralQuickness + 10
+            if ToP == "SS" or ToP == "AS":
+                newSpeed = speed + 5
+                newAcceleration = acceleration + 5
+                newSpeedWithBall = speedWithBall + 5
+                newLateralQuickness = lateralQuickness + 5
+            elif ToP == "Y":
+                newSpeed = speed + 10
+                newAcceleration = acceleration + 10
+                newSpeedWithBall = speedWithBall + 10
+                newLateralQuickness = lateralQuickness + 10
+            else:
+                newSpeed = speed + 15
+                newAcceleration = acceleration + 15
+                newSpeedWithBall = speedWithBall + 15
+                newLateralQuickness = lateralQuickness + 15
             speed = min(99, newSpeed)
             acceleration = min(99, newAcceleration)
             speedWithBall = min(99, newSpeedWithBall)
