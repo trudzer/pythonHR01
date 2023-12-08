@@ -207,7 +207,7 @@ def generatePlayer(ToP, POS, OSP, ISP, DP, AP, PP, RP):
         block = tempBlock
         interiorDefense = tempInteriorDefense
         perimeterDefense = tempPerimeterDefense
-    lateralQuickness = min(math.ceil(random.randint(round(acceleration / 2), MAX) * DP) + (PG + SG + SF), 99)
+    lateralQuickness = min(math.ceil(random.randint(round(acceleration / 2), MAX + round(acceleration / 2)) * DP) + (PG + SG + SF), 99)
     if POS == "SF":
         if height <= 201:
             newLateralQuickness = lateralQuickness + 5
@@ -744,19 +744,19 @@ def main():
             proficiencyChoice = int(input("Enter a number from 1 to 5 to select a playstyle: "))
 
             if proficiencyChoice == 1:
-                print(generatePlayer(typeOfPlayer,"PG", 1.4, 1.4, 1.0, 1.4, 1.2, 1.0))
+                print(generatePlayer(typeOfPlayer,"PG", 1.4, 1.4, 1.0, 1.3, 1.2, 1.0))
 
             elif proficiencyChoice == 2:
-                print(generatePlayer(typeOfPlayer,"PG", 1.4, 1.2, 1.4, 1.2, 1.2, 1.2))
+                print(generatePlayer(typeOfPlayer,"PG", 1.3, 1.2, 1.4, 1.2, 1.2, 1.2))
 
             elif proficiencyChoice == 3:
                 print(generatePlayer(typeOfPlayer,"PG", 1.2, 1.4, 1.0, 1.4, 1.4, 1.0))
 
             elif proficiencyChoice == 4:
-                print(generatePlayer(typeOfPlayer,"PG", 1.4, 1.2, 1.0, 1.4, 1.4, 1.0))
+                print(generatePlayer(typeOfPlayer,"PG", 1.3, 1.2, 1.0, 1.3, 1.4, 1.0))
 
             elif proficiencyChoice == 5:
-                print(generatePlayer(typeOfPlayer,"PG", 1.3, 1.3, 1.3, 1.3, 1.3, 1.3))
+                print(generatePlayer(typeOfPlayer,"PG", 1.3, 1.3, 1.2, 1.3, 1.3, 1.2))
             else:
                 print("Invalid playstyle choice. Please enter a number between 1 and 5")
             userInput = input("\nPress Enter to continue...\n")
