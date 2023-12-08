@@ -52,44 +52,73 @@ def generatePlayer(ToP, POS, OSP, ISP, DP, AP, PP, RP):
         MIN = 50
         TEMPMIN = 55
         MAX = 55
+
+    if POS == "C":
+        height = random.randint(206, 221)
+        weight = random.randint(88, 113)
+    if POS == "PF":
+        height = random.randint(198, 213)
+        weight = random.randint(80, 110)
+    if POS == "SF":
+        height = random.randint(193, 208)
+        weight = random.randint(71, 103)
+    if POS == "SG":
+        height = random.randint(188, 206)
+        weight = random.randint(66, 95)
+    if POS == "PG":
+        height = random.randint(183, 201)
+        weight = random.randint(62, 88)
     #Outside Scoring
     closeShot = min(math.ceil(random.randint(MIN, MAX) * OSP) + (PG + SG + SF + PF + C), 99)
     midRangeShot = min(math.ceil(random.randint(MIN, MAX) * OSP) + (PG + SG + SF + PF + C), 99)
     threePointShot = min(math.ceil(random.randint(MIN, MAX) * OSP) + (PG + SG + SF + PF + C), 99)
     freeThrow = min(math.ceil(random.randint(round((closeShot / 4) + (midRangeShot / 4)), MAX) * OSP) + (PG + SG + SF + PF + C), 99)
     shotIQ = min(math.ceil(random.randint(TEMPMIN, MAX) * OSP) + (PG + SG + SF + PF + C), 99)
-    offensiveConsistency = min(math.ceil(random.randint(TEMPMIN, MAX) * OSP) + (SG + SF + PF), 99)
-    outsideScoring = math.floor((closeShot 
-                                + midRangeShot 
-                                + threePointShot 
-                                + freeThrow 
-                                + shotIQ
-                                + offensiveConsistency) / 6)
+    offensiveConsistency = min(math.ceil(random.randint(TEMPMIN, MAX) * OSP) + (PG + SG + SF + PF + C), 99)
+    
     #Inside Scoring
     layup = min(math.ceil(random.randint(MIN, MAX) * ISP) + (PG + SG + SF + PF + C), 99)
     if POS == "PG" or POS == "SG":
-        tempCloseShot = min(closeShot, layup)
-        tempLayup = max(closeShot, layup)
-        layup = tempLayup
-        closeShot = tempCloseShot
-        tempCloseShot = min(closeShot, threePointShot)
-        tempThreePointShot = max(closeShot, threePointShot)
-        closeShot = tempCloseShot
-        threePointShot = tempThreePointShot
-        tempMidRangeShot = min(threePointShot, midRangeShot)
-        tempThreePointShot = max(midRangeShot, threePointShot)
-        midRangeShot = tempMidRangeShot
-        threePointShot = tempThreePointShot
+        values = [closeShot, midRangeShot, threePointShot, layup]
+        values = sorted(values)
+        values.reverse()
+        threePointShot = values[0]
+        layup = values[1]
+        closeShot = values[2]
+        midRangeShot = values[3]
         freeThrow = min(math.ceil(random.randint(round((closeShot / 4) + (midRangeShot / 4)), MAX) * OSP) + (PG + SG + SF + PF + C), 99)
+    standingDunk = min(math.ceil(random.randint(MIN, MAX) * ISP) + (SF + PF + C), 99)
+    drivingDunk = min(math.ceil(random.randint(MIN, MAX) * ISP) + (SG + SF + PF + C), 99)
+    postHook = min(math.ceil(random.randint(MIN, MAX) * ISP) + (PF + C), 99)
+    postFade = min(math.ceil(random.randint(MIN, MAX) * ISP) + (SG + SF + PF + C), 99)
+    postControl = min(math.ceil(random.randint(MIN, MAX) * ISP) + (SG + PF + C), 99)
+    drawFoul = min(math.ceil(random.randint(MIN, MAX) * ISP) + (PG + SG + SF + PF + C), 99)
+    hands = min(math.ceil(random.randint(TEMPMIN + round(PF / 2) + round(C / 2), MAX + round(PF / 2) + round(C / 2)) * ISP) + (PG + SG + SF + PF + C), 99)
     if POS == "PF" or POS == "C":
         tempCloseShot = max(closeShot, layup)
         tempLayup = min(closeShot, layup)
         layup = tempLayup
         closeShot = tempCloseShot
-    standingDunk = min(math.ceil(random.randint(MIN, MAX) * ISP) + (SF + PF + C), 99)
-    drivingDunk = min(math.ceil(random.randint(MIN, MAX) * ISP) + (SG + SF + PF + C), 99)
-    postHook = min(math.ceil(random.randint(MIN, MAX) * ISP) + (PF + C), 99)
-    postFade = min(math.ceil(random.randint(MIN, MAX) * ISP) + (SG + SF + PF + C), 99)
+    if POS == "PG":
+        if height >= 194:
+            newDrivingDunk = drivingDunk + 20
+            newStandingDunk = standingDunk + 10
+            standingDunk = min(99, newStandingDunk)
+            drivingDunk = min(99, newDrivingDunk)
+            tempStandingDunk = min(standingDunk, drivingDunk)
+            tempDrivingDunk = max(standingDunk, drivingDunk)
+            standingDunk = tempStandingDunk
+            drivingDunk = tempDrivingDunk
+    if POS == "SG":
+            if height >= 197:
+                newDrivingDunk = drivingDunk + 10
+                newStandingDunk = standingDunk + 10
+                standingDunk = min(99, newStandingDunk)
+                drivingDunk = min(99, newDrivingDunk)
+                tempStandingDunk = min(standingDunk, drivingDunk)
+                tempDrivingDunk = max(standingDunk, drivingDunk)
+                standingDunk = tempStandingDunk
+                drivingDunk = tempDrivingDunk
     if POS == "PG" or POS == "SG" or POS == "SF":
         tempStandingDunk = min(standingDunk, drivingDunk)
         tempDrivingDunk = max(standingDunk, drivingDunk)
@@ -108,43 +137,53 @@ def generatePlayer(ToP, POS, OSP, ISP, DP, AP, PP, RP):
         standingDunk = tempStandingDunk
         postHook = tempPostHook
         postFade = tempPostFade
-    postControl = min(math.ceil(random.randint(MIN, MAX) * ISP) + (SG + PF + C), 99)
-    drawFoul = min(math.ceil(random.randint(MIN, MAX) * ISP) + (PG + SG + SF + PF + C), 99)
-    hands = min(math.ceil(random.randint(TEMPMIN + round(PF / 2) + round(C / 2), MAX + round(PF / 2) + round(C / 2)) * ISP) + (PG + SG + SF + PF + C), 99)
-    insideScoring = math.floor((layup
-                                + standingDunk
-                                + drivingDunk
-                                + postHook
-                                + postFade
-                                + postControl
-                                + drawFoul
-                                + hands) / 8)
+    
     #Athleticism
-    speed = min(math.ceil(random.randint(MIN + round(PG / 4) + round(SG / 4), MAX + round(PG / 4) + round(SG / 4)) * AP) + (PG + SG + SF + (round(PF / 1.8)) + (round(C / 3))), 99)
+    speed = min(math.ceil(random.randint(MIN, MAX + round(PG / 4) + round(SG / 4)) * AP) + (PG + SG + SF + (round(PF / 1.8)) + (round(C / 3))), 99)
     acceleration = min(math.ceil(random.randint(speed - 5, min(speed + 10, 99))), 99)
+    if POS == "SF":
+        if height <= 201:
+            newSpeed = speed + 5
+            newAcceleration = acceleration + 5
+            speed = min(99, newSpeed)
+            acceleration = min(99, newAcceleration)
+    if POS == "PF":
+            if height <= 206:
+                newSpeed = speed + 10
+                newAcceleration = acceleration + 10
+                speed = min(99, newSpeed)
+                acceleration = min(99, newAcceleration)
+    if POS == "C":
+            if height <= 210:
+                if ToP == "R":
+                    newSpeed = speed + 15
+                    newAcceleration = acceleration + 15
     strength = min(math.ceil(random.randint(MIN, MAX) * AP) + (PF + C), 99)
-    vertical = min(math.ceil(random.randint(MIN + round(PG / 4) + round(SG / 4), MAX + round(PG / 4) + round(SG / 4)) * AP) + (PG + SG + SF + PF), 99)
+    vertical = min(math.ceil(random.randint(MIN, MAX + round(PG / 4) + round(SG / 4)) * AP) + (PG + SG + SF + PF), 99)
     stamina = min(math.ceil(random.randint(MAX + round(PG / 4) + round(SG / 4), MAX + round(PG / 4) + round(SG / 4) + 5) * AP) + (PG + SG + SF + PF + C), 99)
     hustle = min(math.ceil(random.randint(MIN, MAX) * AP) + (PG + SG + SF), 99)
     overallDurability = min(math.ceil(random.randint(TEMPMIN, MAX) * AP) + (PG + SG + SF + PF + C), 99)
-    athleticism = math.floor((speed
-                            + acceleration
-                            + strength
-                            + vertical
-                            + stamina
-                            + hustle
-                            + overallDurability) / 7)
+    
     #Playmaking
     ballHandle = min(math.ceil(random.randint(MIN, MAX) * PP) + (PG + SG + SF + (round(PF / 1.5))), 99)
     speedWithBall = min(math.ceil((speed + acceleration + ballHandle) / 3), 99)
+    if POS == "SF":
+        if height <= 201:
+            newSpeedWithBall = speedWithBall + 5
+            speedWithBall = min(99, newSpeedWithBall)
+    if POS == "PF":
+            if height <= 206:
+                newSpeedWithBall = speedWithBall + 10
+                speedWithBall = min(99, newSpeedWithBall)
+    if POS == "C":
+            if height <= 210:
+                if ToP == "R":
+                    newSpeedWithBall = speedWithBall + 15
+                    speedWithBall = min(99, newSpeedWithBall)
     passIQ = min(math.ceil(random.randint(MIN, MAX) * PP) + (PG + round(SG / 2) + SF + round(PF / 2) + C), 99)
     passVision = min(math.ceil(random.randint(MIN, MAX) * PP) + (PG + round(SG / 2) + SF + round(PF / 2) + C), 99)
     passAccuracy = min(math.ceil(random.randint(round(passIQ / 4) + round(passVision / 4), MAX) * PP) + (PG + round(SG / 2) + SF + C), 99)
-    playmaking = math.floor((passAccuracy
-                            + ballHandle
-                            + speedWithBall
-                            + passIQ
-                            + passVision) / 5)
+    
     #Defending
     interiorDefense = min(math.ceil(random.randint(MIN, MAX) * DP) + (PF + C), 99)
     perimeterDefense = min(math.ceil(random.randint(MIN, MAX) * DP) + (PG + SG + SF), 99)
@@ -169,9 +208,69 @@ def generatePlayer(ToP, POS, OSP, ISP, DP, AP, PP, RP):
         interiorDefense = tempInteriorDefense
         perimeterDefense = tempPerimeterDefense
     lateralQuickness = min(math.ceil(random.randint(round(acceleration / 2), MAX) * DP) + (PG + SG + SF), 99)
+    if POS == "SF":
+        if height <= 201:
+            newLateralQuickness = lateralQuickness + 5
+            lateralQuickness = min(99, newLateralQuickness)
+    if POS == "PF":
+            if height <= 206:
+                newLateralQuickness = lateralQuickness + 10
+                lateralQuickness = min(99, newLateralQuickness)
+    if POS == "C":
+            if height <= 210:
+                if ToP == "R":
+                    newLateralQuickness = lateralQuickness + 15
+                    lateralQuickness = min(99, newLateralQuickness)
     helpDefenseIQ = min(math.ceil(random.randint(MIN, MAX) * DP) + (PG + SG + SF + PF + C), 99)
     passPerception = min(math.ceil(random.randint(round(passIQ / 4) + round(helpDefenseIQ / 4), MAX) * DP) + (PG + SG + SF), 99)
     defensiveConsistency = min(math.ceil(random.randint(round(helpDefenseIQ / 2), MAX) * DP) + (PG + SG + SF + PF + C), 99)
+    
+    #Rebounding
+    defensiveRebound = min(math.ceil(random.randint(MIN, MAX) * RP) + (SF + PF + C), 99)
+    offensiveRebound = min(math.ceil(random.randint(round(defensiveRebound / 2), MAX) * RP) + (SF + PF + C), 99)
+    if POS == "PG":
+        if height >= 194:
+            newOffensiveRebound = offensiveRebound + 20
+            newDefensiveRebound = defensiveRebound + 20
+            defensiveRebound = min(99, newDefensiveRebound)
+            offensiveRebound = min(99, newOffensiveRebound)
+    if POS == "SG":
+            if height >= 197:
+                newOffensiveRebound = offensiveRebound + 20
+                newDefensiveRebound = defensiveRebound + 20
+                defensiveRebound = min(99, newDefensiveRebound)
+                offensiveRebound = min(99, newOffensiveRebound)
+
+    outsideScoring = math.floor((closeShot 
+                                + midRangeShot 
+                                + threePointShot 
+                                + freeThrow 
+                                + shotIQ
+                                + offensiveConsistency) / 6)
+    
+    insideScoring = math.floor((layup
+                                + standingDunk
+                                + drivingDunk
+                                + postHook
+                                + postFade
+                                + postControl
+                                + drawFoul
+                                + hands) / 8)
+    
+    athleticism = math.floor((speed
+                            + acceleration
+                            + strength
+                            + vertical
+                            + stamina
+                            + hustle
+                            + overallDurability) / 7)
+    
+    playmaking = math.floor((passAccuracy
+                            + ballHandle
+                            + speedWithBall
+                            + passIQ
+                            + passVision) / 5)
+    
     defending = math.floor((interiorDefense
                             + perimeterDefense
                             + steal
@@ -180,156 +279,11 @@ def generatePlayer(ToP, POS, OSP, ISP, DP, AP, PP, RP):
                             + helpDefenseIQ
                             + passPerception
                             + defensiveConsistency) / 8)
-    #Rebounding
-    defensiveRebound = min(math.ceil(random.randint(MIN, MAX) * RP) + (SF + PF + C), 99)
-    offensiveRebound = min(math.ceil(random.randint(round(defensiveRebound / 2), MAX) * RP) + (SF + PF + C), 99)
+    
     rebounding = math.floor((offensiveRebound
                             + defensiveRebound) / 2)
     #Other
-    if POS == "PG":
-        height = random.randint(183, 201)
-        weight = random.randint(62, 88)
-        if height >= 194:
-            newOffensiveRebound = offensiveRebound + 20
-            newDefensiveRebound = defensiveRebound + 20
-            defensiveRebound = min(99, newDefensiveRebound)
-            offensiveRebound = min(99, newOffensiveRebound)
-            rebounding = math.floor((offensiveRebound
-                                    + defensiveRebound) / 2)
-            newDrivingDunk = drivingDunk + 20
-            newStandingDunk = standingDunk + 10
-            standingDunk = min(99, newStandingDunk)
-            drivingDunk = min(99, newDrivingDunk)
-            tempStandingDunk = min(standingDunk, drivingDunk)
-            tempDrivingDunk = max(standingDunk, drivingDunk)
-            standingDunk = tempStandingDunk
-            drivingDunk = tempDrivingDunk
-    if POS == "SG":
-        height = random.randint(188, 206)
-        weight = random.randint(66, 95)
-        if height >= 197:
-            newOffensiveRebound = offensiveRebound + 20
-            newDefensiveRebound = defensiveRebound + 20
-            defensiveRebound = min(99, newDefensiveRebound)
-            offensiveRebound = min(99, newOffensiveRebound)
-            rebounding = math.floor((offensiveRebound
-                                    + defensiveRebound) / 2)
-            newDrivingDunk = drivingDunk + 10
-            newStandingDunk = standingDunk + 10
-            standingDunk = min(99, newStandingDunk)
-            drivingDunk = min(99, newDrivingDunk)
-            tempStandingDunk = min(standingDunk, drivingDunk)
-            tempDrivingDunk = max(standingDunk, drivingDunk)
-            standingDunk = tempStandingDunk
-            drivingDunk = tempDrivingDunk
-    if POS == "SF":
-        height = random.randint(193, 208)
-        weight = random.randint(71, 103)
-        if height <= 201:
-            newSpeed = speed + 5
-            newAcceleration = acceleration + 5
-            newSpeedWithBall = speedWithBall + 5
-            newLateralQuickness = lateralQuickness + 5
-            speed = min(99, newSpeed)
-            acceleration = min(99, newAcceleration)
-            speedWithBall = min(99, newSpeedWithBall)
-            lateralQuickness = min(99, newLateralQuickness)
-            athleticism = math.floor((speed
-                            + acceleration
-                            + strength
-                            + vertical
-                            + stamina
-                            + hustle
-                            + overallDurability) / 7)
-            defending = math.floor((interiorDefense
-                            + perimeterDefense
-                            + steal
-                            + block
-                            + lateralQuickness
-                            + helpDefenseIQ
-                            + passPerception
-                            + defensiveConsistency) / 8)
-            playmaking = math.floor((passAccuracy
-                            + ballHandle
-                            + speedWithBall
-                            + passIQ
-                            + passVision) / 5)
-    if POS == "PF":
-        height = random.randint(198, 213)
-        weight = random.randint(80, 110)
-        if height <= 206:
-            newSpeed = speed + 10
-            newAcceleration = acceleration + 10
-            newSpeedWithBall = speedWithBall + 10
-            newLateralQuickness = lateralQuickness + 10
-            speed = min(99, newSpeed)
-            acceleration = min(99, newAcceleration)
-            speedWithBall = min(99, newSpeedWithBall)
-            lateralQuickness = min(99, newLateralQuickness)
-            athleticism = math.floor((speed
-                            + acceleration
-                            + strength
-                            + vertical
-                            + stamina
-                            + hustle
-                            + overallDurability) / 7)
-            defending = math.floor((interiorDefense
-                            + perimeterDefense
-                            + steal
-                            + block
-                            + lateralQuickness
-                            + helpDefenseIQ
-                            + passPerception
-                            + defensiveConsistency) / 8)
-            playmaking = math.floor((passAccuracy
-                            + ballHandle
-                            + speedWithBall
-                            + passIQ
-                            + passVision) / 5)
-    if POS == "C":
-        height = random.randint(206, 221)
-        weight = random.randint(88, 113)
-        if height <= 210:
-            if ToP == "SS" or ToP == "AS":
-                newSpeed = speed + 5
-                newAcceleration = acceleration + 5
-                newSpeedWithBall = speedWithBall + 5
-                newLateralQuickness = lateralQuickness + 5
-            elif ToP == "Y":
-                newSpeed = speed + 10
-                newAcceleration = acceleration + 10
-                newSpeedWithBall = speedWithBall + 10
-                newLateralQuickness = lateralQuickness + 10
-            else:
-                newSpeed = speed + 15
-                newAcceleration = acceleration + 15
-                newSpeedWithBall = speedWithBall + 15
-                newLateralQuickness = lateralQuickness + 15
-            speed = min(99, newSpeed)
-            acceleration = min(99, newAcceleration)
-            speedWithBall = min(99, newSpeedWithBall)
-            lateralQuickness = min(99, newLateralQuickness)
-            athleticism = math.floor((speed
-                            + acceleration
-                            + strength
-                            + vertical
-                            + stamina
-                            + hustle
-                            + overallDurability) / 7)
-            defending = math.floor((interiorDefense
-                            + perimeterDefense
-                            + steal
-                            + block
-                            + lateralQuickness
-                            + helpDefenseIQ
-                            + passPerception
-                            + defensiveConsistency) / 8)
-            playmaking = math.floor((passAccuracy
-                            + ballHandle
-                            + speedWithBall
-                            + passIQ
-                            + passVision) / 5)
-    wingspan = random.randint(height - 5, height + 25 - round(PG / 3) + round(SG / 3))
+    wingspan = random.randint(height - 4, height + 25 - round(PG / 3) + round(SG / 3))
     intangibles = random.randint(70, 99)
     potential = random.randint(90, 99)
     workEthic = random.randint(0,3)
@@ -504,15 +458,15 @@ def generatePlayer(ToP, POS, OSP, ISP, DP, AP, PP, RP):
         f"{'Claymore: Gold' if shotIQ >= GOLD and shotIQ < HOF else ''}",
         f"{'Claymore: Hall of Fame' if shotIQ >= HOF else ''}",
         
-        f"{'Corner Specialist: Bronze' if threePointShot >= BRONZE and threePointShot < SILVER and shotIQ >= BRONZE else ''}",
-        f"{'Corner Specialist: Silver' if threePointShot >= SILVER and threePointShot < GOLD and shotIQ >= SILVER else ''}",
-        f"{'Corner Specialist: Gold' if threePointShot >= GOLD and threePointShot < HOF and shotIQ >= GOLD else ''}",
-        f"{'Corner Specialist: Hall of Fame' if threePointShot >= HOF and shotIQ >= HOF else ''}",
-        
         f"{'Comeback Kid: Bronze' if shotIQ >= BRONZE and shotIQ < SILVER and offensiveConsistency >= BRONZE else ''}",
         f"{'Comeback Kid: Silver' if shotIQ >= SILVER and shotIQ < GOLD and offensiveConsistency >= SILVER else ''}",
         f"{'Comeback Kid: Gold' if shotIQ >= GOLD and shotIQ < HOF and offensiveConsistency >= GOLD else ''}",
         f"{'Comeback Kid: Hall of Fame' if shotIQ >= HOF and offensiveConsistency >= HOF else ''}",
+
+        f"{'Corner Specialist: Bronze' if threePointShot >= BRONZE and threePointShot < SILVER and shotIQ >= BRONZE else ''}",
+        f"{'Corner Specialist: Silver' if threePointShot >= SILVER and threePointShot < GOLD and shotIQ >= SILVER else ''}",
+        f"{'Corner Specialist: Gold' if threePointShot >= GOLD and threePointShot < HOF and shotIQ >= GOLD else ''}",
+        f"{'Corner Specialist: Hall of Fame' if threePointShot >= HOF and shotIQ >= HOF else ''}",
         
         f"{'Deadeye: Bronze' if shotIQ >= BRONZE and shotIQ < SILVER else ''}",
         f"{'Deadeye: Silver' if shotIQ >= SILVER and shotIQ < GOLD and max(midRangeShot, threePointShot) >= BRONZE else ''}",
@@ -828,10 +782,10 @@ def main():
                 print(generatePlayer(typeOfPlayer,"SG", 1.3, 1.1, 1.3, 1.3, 1.0, 1.3))
 
             elif proficiencyChoice == 3:
-                print(generatePlayer(typeOfPlayer,"SG", 1.2, 1.4, 1.0, 1.4, 1.4, 1.0))
+                print(generatePlayer(typeOfPlayer,"SG", 1.1, 1.4, 1.0, 1.4, 1.4, 1.0))
 
             elif proficiencyChoice == 4:
-                print(generatePlayer(typeOfPlayer,"SG", 1.2, 1.3, 1.4, 1.3, 1.0, 1.2))
+                print(generatePlayer(typeOfPlayer,"SG", 1.1, 1.3, 1.4, 1.3, 1.0, 1.2))
 
             elif proficiencyChoice == 5:
                 print(generatePlayer(typeOfPlayer,"SG", 1.4, 1.2, 1.0, 1.2, 1.4, 1.0))
@@ -866,7 +820,7 @@ def main():
                 print(generatePlayer(typeOfPlayer,"SF", 1.2, 1.4, 1.0, 1.4, 1.1, 1.1))
 
             elif proficiencyChoice == 5:
-                print(generatePlayer(typeOfPlayer,"SF", 1.2, 1.4, 1.3, 1.3, 1.0, 1.3))
+                print(generatePlayer(typeOfPlayer,"SF", 1.1, 1.4, 1.3, 1.3, 1.0, 1.3))
             else:
                 print("Invalid playstyle choice. Please enter a number between 1 and 5")
             userInput = input("\nPress Enter to continue...\n")
@@ -892,13 +846,13 @@ def main():
                 print(generatePlayer(typeOfPlayer,"PF", 1.2, 1.3, 1.2, 1.4, 1.2, 1.4))
 
             elif proficiencyChoice == 3:
-                print(generatePlayer(typeOfPlayer,"PF", 1.2, 1.4, 1.3, 1.3, 1.1, 1.4))
+                print(generatePlayer(typeOfPlayer,"PF", 1.1, 1.4, 1.3, 1.3, 1.1, 1.4))
 
             elif proficiencyChoice == 4:
                 print(generatePlayer(typeOfPlayer,"PF", 1.2, 1.3, 1.3, 1.2, 1.1, 1.4))
 
             elif proficiencyChoice == 5:
-                print(generatePlayer(typeOfPlayer,"PF", 1.2, 1.4, 1.3, 1.4, 1.6, 1.2))
+                print(generatePlayer(typeOfPlayer,"PF", 1.1, 1.4, 1.3, 1.4, 1.6, 1.2))
             else:
                 print("Invalid playstyle choice. Please enter a number between 1 and 5")
             userInput = input("\nPress Enter to continue...\n")
@@ -918,7 +872,7 @@ def main():
             proficiencyChoice = int(input("Enter a number from 1 to 5 to select a playstyle: "))
 
             if proficiencyChoice == 1:
-                print(generatePlayer(typeOfPlayer,"C", 1.2, 1.4, 1.3, 1.2, 1.0, 1.4))
+                print(generatePlayer(typeOfPlayer,"C", 1.1, 1.4, 1.3, 1.2, 1.0, 1.4))
 
             elif proficiencyChoice == 2:
                 print(generatePlayer(typeOfPlayer,"C", 1.3, 1.3, 1.3, 1.1, 1.4, 1.2))
@@ -927,7 +881,7 @@ def main():
                 print(generatePlayer(typeOfPlayer,"C", 1.4, 1.1, 1.0, 1.2, 1.1, 1.4))
 
             elif proficiencyChoice == 4:
-                print(generatePlayer(typeOfPlayer,"C", 1.4, 1.4, 1.0, 1.4, 1.2, 1.0))
+                print(generatePlayer(typeOfPlayer,"C", 1.4, 1.4, 1.0, 1.3, 1.2, 1.0))
 
             elif proficiencyChoice == 5:
                 print(generatePlayer(typeOfPlayer,"C", 1.2, 1.4, 1.4, 1.3, 1.1, 1.3))
