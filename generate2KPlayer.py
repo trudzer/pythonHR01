@@ -204,8 +204,8 @@ def generatePlayer(ToP, POS, OSP, ISP, DP, AP, PP, RP):
     #Defending
     interiorDefense = min(math.ceil(random.randint(MIN, MAX) * DP) + (PF + C), 99)
     perimeterDefense = min(math.ceil(random.randint(MIN, MAX) * DP) + (PG + SG + SF), 99)
-    steal = min(math.ceil(random.randint(round(perimeterDefense / 2), MAX) * DP) + (PG + SG + SF), 99)
-    block = min(math.ceil(random.randint(round(interiorDefense / 2), MAX) * DP) + (PF + C), 99)
+    steal = min(random.randint(perimeterDefense - 5, perimeterDefense + 10), 99)
+    block = min(random.randint(interiorDefense - 5, interiorDefense + 10), 99)
     if POS == "PG" or POS == "SG" or POS == "SF":
         tempPerimeterDefense = max(perimeterDefense, interiorDefense)
         tempInteriorDefense = min(perimeterDefense, interiorDefense)
