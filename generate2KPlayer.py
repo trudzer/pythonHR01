@@ -68,13 +68,40 @@ def generatePlayer(ToP, POS, OSP, ISP, DP, AP, PP, RP):
     if POS == "PG":
         height = random.randint(183, 201)
         weight = random.randint(62, 88)
+
+    #Athleticism
+    speed = min(math.ceil(random.randint(MIN, MAX + round(PG / 4) + round(SG / 4)) * AP) + (PG + SG + SF + (round(PF / 1.8)) + (round(C / 3))), 99)
+    acceleration = min(math.ceil(random.randint(speed - 5, min(speed + 10, 99))), 99)
+    if POS == "SF":
+        if height <= 201:
+            newSpeed = speed + 5
+            newAcceleration = acceleration + 5
+            speed = min(99, newSpeed)
+            acceleration = min(99, newAcceleration)
+    if POS == "PF":
+            if height <= 206:
+                newSpeed = speed + 10
+                newAcceleration = acceleration + 10
+                speed = min(99, newSpeed)
+                acceleration = min(99, newAcceleration)
+    if POS == "C":
+            if height <= 210:
+                if ToP == "R":
+                    newSpeed = speed + 15
+                    newAcceleration = acceleration + 15
+    strength = min(math.ceil(random.randint(MIN, MAX) * AP) + (PF + C), 99)
+    vertical = min(math.ceil(random.randint(MIN, MAX + round(PG / 4) + round(SG / 4)) * AP) + (PG + SG + SF + PF), 99)
+    stamina = min(math.ceil(random.randint(MAX + round(PG / 4) + round(SG / 4), MAX + round(PG / 4) + round(SG / 4) + 5) * AP) + (PG + SG + SF + PF + C), 99)
+    hustle = min(math.ceil(random.randint(MIN, MAX) * AP) + (PG + SG + SF), 99)
+    overallDurability = min(math.ceil(random.randint(TEMPMIN, MAX) * AP) + (PG + SG + SF + PF + C), 99)
+
     #Outside Scoring
     closeShot = min(math.ceil(random.randint(MIN, MAX) * OSP) + (PG + SG + SF + PF + C), 99)
     midRangeShot = min(math.ceil(random.randint(MIN, MAX) * OSP) + (PG + SG + SF + PF + C), 99)
     threePointShot = min(math.ceil(random.randint(MIN, MAX) * OSP) + (PG + SG + SF + PF + C), 99)
     freeThrow = min(math.ceil(random.randint(round((closeShot / 4) + (midRangeShot / 4)), MAX) * OSP) + (PG + SG + SF + PF + C), 99)
     shotIQ = min(random.randint(max(closeShot, midRangeShot, threePointShot) - 5, max(closeShot, midRangeShot, threePointShot) + 10), 99)
-    offensiveConsistency = min(random.randint(shotIQ - 5, shotIQ + 10), 99)
+    offensiveConsistency = min(random.randint((round(shotIQ / 2) + round(stamina / 2)) - 5, (round(shotIQ / 2) + round(stamina / 2))), 99)
     #Inside Scoring
     layup = min(math.ceil(random.randint(MIN, MAX) * ISP) + (PG + SG + SF + PF + C), 99)
     if POS == "PG":
@@ -87,7 +114,7 @@ def generatePlayer(ToP, POS, OSP, ISP, DP, AP, PP, RP):
         midRangeShot = values[3]
         freeThrow = min(math.ceil(random.randint(round((closeShot / 4) + (midRangeShot / 4)), MAX) * OSP) + (PG + SG + SF + PF + C), 99)
         shotIQ = min(random.randint(max(closeShot, midRangeShot, threePointShot) - 5, max(closeShot, midRangeShot, threePointShot) + 10), 99)
-        offensiveConsistency = min(random.randint(shotIQ - 5, shotIQ + 10), 99)
+        offensiveConsistency = min(random.randint((round(shotIQ / 2) + round(stamina / 2)) - 5, (round(shotIQ / 2) + round(stamina / 2)) + 10), 99)
     if POS == "SG":
         values = [closeShot, midRangeShot, threePointShot, layup]
         values = sorted(values)
@@ -98,7 +125,7 @@ def generatePlayer(ToP, POS, OSP, ISP, DP, AP, PP, RP):
         layup = values[3]
         freeThrow = min(math.ceil(random.randint(round((closeShot / 4) + (midRangeShot / 4)), MAX) * OSP) + (PG + SG + SF + PF + C), 99)
         shotIQ = min(random.randint(max(closeShot, midRangeShot, threePointShot) - 5, max(closeShot, midRangeShot, threePointShot) + 10), 99)
-        offensiveConsistency = min(random.randint(shotIQ - 5, shotIQ + 10), 99)
+        offensiveConsistency = min(random.randint((round(shotIQ / 2) + round(stamina / 2)) - 5, (round(shotIQ / 2) + round(stamina / 2)) + 10), 99)
     if POS == "C":
         values = [closeShot, midRangeShot, threePointShot, layup]
         values = sorted(values)
@@ -153,32 +180,6 @@ def generatePlayer(ToP, POS, OSP, ISP, DP, AP, PP, RP):
         postHook = tempPostHook
         postFade = tempPostFade
     
-    #Athleticism
-    speed = min(math.ceil(random.randint(MIN, MAX + round(PG / 4) + round(SG / 4)) * AP) + (PG + SG + SF + (round(PF / 1.8)) + (round(C / 3))), 99)
-    acceleration = min(math.ceil(random.randint(speed - 5, min(speed + 10, 99))), 99)
-    if POS == "SF":
-        if height <= 201:
-            newSpeed = speed + 5
-            newAcceleration = acceleration + 5
-            speed = min(99, newSpeed)
-            acceleration = min(99, newAcceleration)
-    if POS == "PF":
-            if height <= 206:
-                newSpeed = speed + 10
-                newAcceleration = acceleration + 10
-                speed = min(99, newSpeed)
-                acceleration = min(99, newAcceleration)
-    if POS == "C":
-            if height <= 210:
-                if ToP == "R":
-                    newSpeed = speed + 15
-                    newAcceleration = acceleration + 15
-    strength = min(math.ceil(random.randint(MIN, MAX) * AP) + (PF + C), 99)
-    vertical = min(math.ceil(random.randint(MIN, MAX + round(PG / 4) + round(SG / 4)) * AP) + (PG + SG + SF + PF), 99)
-    stamina = min(math.ceil(random.randint(MAX + round(PG / 4) + round(SG / 4), MAX + round(PG / 4) + round(SG / 4) + 5) * AP) + (PG + SG + SF + PF + C), 99)
-    hustle = min(math.ceil(random.randint(MIN, MAX) * AP) + (PG + SG + SF), 99)
-    overallDurability = min(math.ceil(random.randint(TEMPMIN, MAX) * AP) + (PG + SG + SF + PF + C), 99)
-    
     #Playmaking
     ballHandle = min(math.ceil(random.randint(MIN + round(PG / 4) + round(SG / 4), MAX  + round(PG / 4) + round(SG / 4)) * PP) + (PG + SG + SF + (round(PF / 1.5))), 99)
     speedWithBall = min(math.ceil((speed + acceleration + ballHandle) / 3), 99)
@@ -222,7 +223,7 @@ def generatePlayer(ToP, POS, OSP, ISP, DP, AP, PP, RP):
         block = tempBlock
         interiorDefense = tempInteriorDefense
         perimeterDefense = tempPerimeterDefense
-    lateralQuickness = min(math.ceil(random.randint(round(acceleration / 2), MAX + round(acceleration / 2)) * DP) + (PG + SG + SF), 99)
+    lateralQuickness = min(random.randint((round(acceleration / 2) + round(speed / 2)) - 5, (round(acceleration / 2) + round(speed / 2))), 99)
     if POS == "SF":
         if height <= 201:
             newLateralQuickness = lateralQuickness + 5
@@ -237,8 +238,8 @@ def generatePlayer(ToP, POS, OSP, ISP, DP, AP, PP, RP):
                     newLateralQuickness = lateralQuickness + 15
                     lateralQuickness = min(99, newLateralQuickness)
     helpDefenseIQ = min(math.ceil(random.randint(MIN, MAX) * DP) + (PG + SG + SF + PF + C), 99)
-    passPerception = min(math.ceil(random.randint(round(passIQ / 4) + round(helpDefenseIQ / 4), MAX + round(passIQ / 4) + round(helpDefenseIQ / 4)) * DP) + (PG + SG + SF), 99)
-    defensiveConsistency = min(math.ceil(random.randint(round(helpDefenseIQ / 2), MAX + round(helpDefenseIQ / 2)) * DP) + (PG + SG + SF + PF + C), 99)
+    passPerception = min(random.randint(round(passIQ / 2) + round(helpDefenseIQ / 2) - 5, round(passIQ / 2) + round(helpDefenseIQ / 2)), 99)
+    defensiveConsistency = min(random.randint((round(helpDefenseIQ / 2) + round(stamina / 2)) - 5, (round(helpDefenseIQ / 2) + round(stamina / 2))), 99)
     
     #Rebounding
     defensiveRebound = min(math.ceil(random.randint(MIN, MAX) * RP) + (SF + PF + C), 99)
@@ -762,19 +763,19 @@ def main():
             proficiencyChoice = int(input("Enter a number from 1 to 5 to select a playstyle: "))
 
             if proficiencyChoice == 1:
-                print(generatePlayer(typeOfPlayer,"PG", 1.4, 1.3, 1.0, 1.3, 1.2, 1.0))
+                print(generatePlayer(typeOfPlayer,"PG", 1.3, 1.3, 1.0, 1.3, 1.2, 1.0))
 
             elif proficiencyChoice == 2:
-                print(generatePlayer(typeOfPlayer,"PG", 1.3, 1.2, 1.4, 1.2, 1.2, 1.2))
+                print(generatePlayer(typeOfPlayer,"PG", 1.3, 1.2, 1.3, 1.2, 1.2, 1.2))
 
             elif proficiencyChoice == 3:
-                print(generatePlayer(typeOfPlayer,"PG", 1.2, 1.4, 1.0, 1.4, 1.3, 1.0))
+                print(generatePlayer(typeOfPlayer,"PG", 1.2, 1.4, 1.0, 1.4, 1.2, 1.0))
 
             elif proficiencyChoice == 4:
                 print(generatePlayer(typeOfPlayer,"PG", 1.3, 1.2, 1.0, 1.3, 1.4, 1.0))
 
             elif proficiencyChoice == 5:
-                print(generatePlayer(typeOfPlayer,"PG", 1.3, 1.3, 1.3, 1.1, 1.1, 1.1))
+                print(generatePlayer(typeOfPlayer,"PG", 1.2, 1.2, 1.2, 1.2, 1.2, 1.1))
             else:
                 print("Invalid playstyle choice. Please enter a number between 1 and 5")
             userInput = input("\nPress Enter to continue...\n")
