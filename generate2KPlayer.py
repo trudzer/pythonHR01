@@ -105,35 +105,36 @@ def generatePlayer(ToP, POS, OSP, ISP, DP, AP, PP, RP):
     #Inside Scoring
     layup = min(math.ceil(random.randint(MIN, MAX) * ISP) + (PG + SG + SF + PF + C), 99)
     if POS == "PG":
-        values = [closeShot, midRangeShot, threePointShot, layup]
+        tempCloseShot = min(closeShot, layup)
+        tempLayup = max(closeShot, layup)
+        layup = tempLayup
+        closeShot = tempCloseShot
+        values = [closeShot, midRangeShot, threePointShot]
         values = sorted(values)
         values.reverse()
         threePointShot = values[0]
-        layup = values[1]
-        closeShot = values[2]
-        midRangeShot = values[3]
+        closeShot = values[1]
+        midRangeShot = values[2]
         freeThrow = min(math.ceil(random.randint(round((closeShot / 4) + (midRangeShot / 4)), MAX) * OSP) + (PG + SG + SF + PF + C), 99)
         shotIQ = min(random.randint(max(closeShot, midRangeShot, threePointShot) - 5, max(closeShot, midRangeShot, threePointShot) + 10), 99)
         offensiveConsistency = min(random.randint((round(shotIQ / 2) + round(stamina / 2)) - 5, (round(shotIQ / 2) + round(stamina / 2)) + 10), 99)
     if POS == "SG":
-        values = [closeShot, midRangeShot, threePointShot, layup]
+        values = [closeShot, midRangeShot, threePointShot]
         values = sorted(values)
         values.reverse()
         threePointShot = values[0]
         midRangeShot = values[1]
         closeShot = values[2]
-        layup = values[3]
         freeThrow = min(math.ceil(random.randint(round((closeShot / 4) + (midRangeShot / 4)), MAX) * OSP) + (PG + SG + SF + PF + C), 99)
         shotIQ = min(random.randint(max(closeShot, midRangeShot, threePointShot) - 5, max(closeShot, midRangeShot, threePointShot) + 10), 99)
         offensiveConsistency = min(random.randint((round(shotIQ / 2) + round(stamina / 2)) - 5, (round(shotIQ / 2) + round(stamina / 2)) + 10), 99)
     if POS == "C":
-        values = [closeShot, midRangeShot, threePointShot, layup]
+        values = [closeShot, midRangeShot, threePointShot]
         values = sorted(values)
         values.reverse()
         closeShot = values[0]
         threePointShot = values[1]
         midRangeShot = values[2]
-        layup = values[3]
         freeThrow = min(math.ceil(random.randint(round((closeShot / 4) + (midRangeShot / 4)), MAX) * OSP) + (PG + SG + SF + PF + C), 99)
         shotIQ = min(random.randint(max(closeShot, midRangeShot, threePointShot) - 5, max(closeShot, midRangeShot, threePointShot) + 10), 99)
         offensiveConsistency = min(random.randint(shotIQ - 5, shotIQ + 10), 99)
@@ -250,12 +251,19 @@ def generatePlayer(ToP, POS, OSP, ISP, DP, AP, PP, RP):
             newDefensiveRebound = defensiveRebound + 20
             defensiveRebound = min(99, newDefensiveRebound)
             offensiveRebound = min(99, newOffensiveRebound)
+
     if POS == "SG":
             if height >= 197:
                 newOffensiveRebound = offensiveRebound + 20
                 newDefensiveRebound = defensiveRebound + 20
                 defensiveRebound = min(99, newDefensiveRebound)
                 offensiveRebound = min(99, newOffensiveRebound)
+
+    if POS == "PG" or POS == "SG" or POS == "C":
+        tempOffensiveRebound = min(offensiveRebound, defensiveRebound)
+        tempDefensiveRebound = max(offensiveRebound, defensiveRebound)
+        defensiveRebound = tempDefensiveRebound
+        offensiveRebound = tempOffensiveRebound
 
     outsideScoring = math.floor((closeShot 
                                 + midRangeShot 
@@ -769,13 +777,13 @@ def main():
                 print(generatePlayer(typeOfPlayer,"PG", 1.3, 1.2, 1.3, 1.2, 1.2, 1.2))
 
             elif proficiencyChoice == 3:
-                print(generatePlayer(typeOfPlayer,"PG", 1.2, 1.4, 1.0, 1.4, 1.2, 1.0))
+                print(generatePlayer(typeOfPlayer,"PG", 1.2, 1.3, 1.0, 1.3, 1.2, 1.0))
 
             elif proficiencyChoice == 4:
-                print(generatePlayer(typeOfPlayer,"PG", 1.3, 1.2, 1.0, 1.3, 1.4, 1.0))
+                print(generatePlayer(typeOfPlayer,"PG", 1.3, 1.2, 1.0, 1.3, 1.3, 1.0))
 
             elif proficiencyChoice == 5:
-                print(generatePlayer(typeOfPlayer,"PG", 1.2, 1.2, 1.2, 1.2, 1.2, 1.1))
+                print(generatePlayer(typeOfPlayer,"PG", 1.2, 1.2, 1.2, 1.3, 1.2, 1.2))
             else:
                 print("Invalid playstyle choice. Please enter a number between 1 and 5")
             userInput = input("\nPress Enter to continue...\n")
