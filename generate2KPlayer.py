@@ -803,7 +803,7 @@ def main():
             proficiencyChoice = int(input("Enter a number from 1 to 5 to select a playstyle: "))
 
             if proficiencyChoice == 1:
-                print(generatePlayer(typeOfPlayer,"SG", 1.4, 1.3, 1.0, 1.2, 1.1, 1.0))
+                print(generatePlayer(typeOfPlayer,"SG", 1.3, 1.3, 1.0, 1.2, 1.1, 1.0))
 
             elif proficiencyChoice == 2:
                 print(generatePlayer(typeOfPlayer,"SG", 1.3, 1.1, 1.3, 1.2, 1.0, 1.1))
@@ -812,10 +812,10 @@ def main():
                 print(generatePlayer(typeOfPlayer,"SG", 1.2, 1.3, 1.0, 1.3, 1.4, 1.0))
 
             elif proficiencyChoice == 4:
-                print(generatePlayer(typeOfPlayer,"SG", 1.2, 1.3, 1.4, 1.3, 1.0, 1.2))
+                print(generatePlayer(typeOfPlayer,"SG", 1.2, 1.3, 1.3, 1.3, 1.0, 1.2))
 
             elif proficiencyChoice == 5:
-                print(generatePlayer(typeOfPlayer,"SG", 1.4, 1.2, 1.0, 1.2, 1.4, 1.0))
+                print(generatePlayer(typeOfPlayer,"SG", 1.3, 1.1, 1.1, 1.2, 1.4, 1.0))
             else:
                 print("Invalid playstyle choice. Please enter a number between 1 and 5")
             userInput = input("\nPress Enter to continue...\n")
@@ -835,19 +835,19 @@ def main():
             proficiencyChoice = int(input("Enter a number from 1 to 5 to select a playstyle: "))
 
             if proficiencyChoice == 1:
-                print(generatePlayer(typeOfPlayer,"SF", 1.4, 1.1, 1.0, 1.2, 1.2, 1.0))
+                print(generatePlayer(typeOfPlayer,"SF", 1.3, 1.1, 1.0, 1.3, 1.2, 1.0))
 
             elif proficiencyChoice == 2:
-                print(generatePlayer(typeOfPlayer,"SF", 1.3, 1.2, 1.4, 1.2, 1.0, 1.2))
+                print(generatePlayer(typeOfPlayer,"SF", 1.3, 1.1, 1.3, 1.1, 1.0, 1.2))
 
             elif proficiencyChoice == 3:
-                print(generatePlayer(typeOfPlayer,"SF", 1.2, 1.2, 1.4, 1.3, 1.4, 1.3))
+                print(generatePlayer(typeOfPlayer,"SF", 1.2, 1.2, 1.3, 1.3, 1.3, 1.3))
 
             elif proficiencyChoice == 4:
-                print(generatePlayer(typeOfPlayer,"SF", 1.2, 1.4, 1.0, 1.4, 1.1, 1.1))
+                print(generatePlayer(typeOfPlayer,"SF", 1.1, 1.3, 1.0, 1.4, 1.1, 1.2))
 
             elif proficiencyChoice == 5:
-                print(generatePlayer(typeOfPlayer,"SF", 1.1, 1.3, 1.3, 1.3, 1.0, 1.3))
+                print(generatePlayer(typeOfPlayer,"SF", 1.1, 1.3, 1.3, 1.2, 1.0, 1.3))
             else:
                 print("Invalid playstyle choice. Please enter a number between 1 and 5")
             userInput = input("\nPress Enter to continue...\n")
@@ -867,16 +867,16 @@ def main():
             proficiencyChoice = int(input("Enter a number from 1 to 5 to select a playstyle: "))
 
             if proficiencyChoice == 1:
-                print(generatePlayer(typeOfPlayer,"PF", 1.4, 1.1, 1.0, 1.2, 1.1, 1.1))
+                print(generatePlayer(typeOfPlayer,"PF", 1.3, 1.1, 1.0, 1.2, 1.2, 1.1))
 
             elif proficiencyChoice == 2:
-                print(generatePlayer(typeOfPlayer,"PF", 1.2, 1.3, 1.2, 1.3, 1.2, 1.4))
+                print(generatePlayer(typeOfPlayer,"PF", 1.1, 1.2, 1.2, 1.3, 1.2, 1.4))
 
             elif proficiencyChoice == 3:
-                print(generatePlayer(typeOfPlayer,"PF", 1.1, 1.4, 1.3, 1.2, 1.1, 1.4))
+                print(generatePlayer(typeOfPlayer,"PF", 1.1, 1.4, 1.3, 1.2, 1.2, 1.4))
 
             elif proficiencyChoice == 4:
-                print(generatePlayer(typeOfPlayer,"PF", 1.2, 1.2, 1.4, 1.2, 1.1, 1.4))
+                print(generatePlayer(typeOfPlayer,"PF", 1.2, 1.2, 1.4, 1.2, 1.2, 1.4))
 
             elif proficiencyChoice == 5:
                 print(generatePlayer(typeOfPlayer,"PF", 1.2, 1.2, 1.3, 1.4, 1.6, 1.2))
@@ -899,19 +899,19 @@ def main():
             proficiencyChoice = int(input("Enter a number from 1 to 5 to select a playstyle: "))
 
             if proficiencyChoice == 1:
-                print(generatePlayer(typeOfPlayer,"C", 1.2, 1.4, 1.3, 1.2, 1.0, 1.4))
+                print(generatePlayer(typeOfPlayer,"C", 1.1, 1.3, 1.2, 1.2, 1.0, 1.4))
 
             elif proficiencyChoice == 2:
-                print(generatePlayer(typeOfPlayer,"C", 1.3, 1.2, 1.3, 1.2, 1.3, 1.2))
+                print(generatePlayer(typeOfPlayer,"C", 1.2, 1.2, 1.3, 1.2, 1.3, 1.2))
 
             elif proficiencyChoice == 3:
                 print(generatePlayer(typeOfPlayer,"C", 1.3, 1.1, 1.0, 1.2, 1.0, 1.4))
 
             elif proficiencyChoice == 4:
-                print(generatePlayer(typeOfPlayer,"C", 1.4, 1.2, 1.0, 1.2, 1.1, 1.2))
+                print(generatePlayer(typeOfPlayer,"C", 1.4, 1.1, 1.0, 1.2, 1.1, 1.2))
 
             elif proficiencyChoice == 5:
-                print(generatePlayer(typeOfPlayer,"C", 1.1, 1.3, 1.4, 1.3, 1.1, 1.3))
+                print(generatePlayer(typeOfPlayer,"C", 1.1, 1.3, 1.3, 1.3, 1.1, 1.3))
             else:
                 print("Invalid playstyle choice. Please enter a number between 1 and 5")
             userInput = input("\nPress Enter to continue...\n")
