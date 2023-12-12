@@ -100,7 +100,7 @@ def generatePlayer(ToP, POS, OSP, ISP, DP, AP, PP, RP):
     midRangeShot = min(math.ceil(random.randint(MIN, MAX) * OSP) + (PG + SG + SF + PF + C), 99)
     threePointShot = min(math.ceil(random.randint(MIN, MAX) * OSP) + (PG + SG + SF + PF + C), 99)
     freeThrow = min(math.ceil(random.randint(round((closeShot / 4) + (midRangeShot / 4)), MAX) * OSP) + (PG + SG + SF + PF + C), 99)
-    shotIQ = min(random.randint(max(closeShot, midRangeShot, threePointShot) - 5, max(closeShot, midRangeShot, threePointShot) + 10), 99)
+    shotIQ = min(random.randint(max(closeShot, midRangeShot, threePointShot) - 5, max(closeShot, midRangeShot, threePointShot) + 5), 99)
     offensiveConsistency = min(random.randint((round(shotIQ / 2) + round(stamina / 2)) - 5, (round(shotIQ / 2) + round(stamina / 2))), 99)
     #Inside Scoring
     layup = min(math.ceil(random.randint(MIN, MAX) * ISP) + (PG + SG + SF + PF + C), 99)
@@ -115,9 +115,7 @@ def generatePlayer(ToP, POS, OSP, ISP, DP, AP, PP, RP):
         threePointShot = values[0]
         closeShot = values[1]
         midRangeShot = values[2]
-        freeThrow = min(math.ceil(random.randint(round((closeShot / 4) + (midRangeShot / 4)), MAX) * OSP) + (PG + SG + SF + PF + C), 99)
-        shotIQ = min(random.randint(max(closeShot, midRangeShot, threePointShot) - 5, max(closeShot, midRangeShot, threePointShot) + 10), 99)
-        offensiveConsistency = min(random.randint((round(shotIQ / 2) + round(stamina / 2)) - 5, (round(shotIQ / 2) + round(stamina / 2)) + 10), 99)
+        offensiveConsistency = min(random.randint((round(shotIQ / 2) + round(stamina / 2)) - 5, (round(shotIQ / 2) + round(stamina / 2)) + 5), 99)
     if POS == "SG":
         values = [closeShot, midRangeShot, threePointShot]
         values = sorted(values)
@@ -126,8 +124,8 @@ def generatePlayer(ToP, POS, OSP, ISP, DP, AP, PP, RP):
         midRangeShot = values[1]
         closeShot = values[2]
         freeThrow = min(math.ceil(random.randint(round((closeShot / 4) + (midRangeShot / 4)), MAX) * OSP) + (PG + SG + SF + PF + C), 99)
-        shotIQ = min(random.randint(max(closeShot, midRangeShot, threePointShot) - 5, max(closeShot, midRangeShot, threePointShot) + 10), 99)
-        offensiveConsistency = min(random.randint((round(shotIQ / 2) + round(stamina / 2)) - 5, (round(shotIQ / 2) + round(stamina / 2)) + 10), 99)
+        shotIQ = min(random.randint(max(closeShot, midRangeShot, threePointShot) - 5, max(closeShot, midRangeShot, threePointShot) + 5), 99)
+        offensiveConsistency = min(random.randint((round(shotIQ / 2) + round(stamina / 2)) - 5, (round(shotIQ / 2) + round(stamina / 2)) + 5), 99)
     if POS == "C":
         values = [closeShot, midRangeShot, threePointShot]
         values = sorted(values)
@@ -135,16 +133,14 @@ def generatePlayer(ToP, POS, OSP, ISP, DP, AP, PP, RP):
         closeShot = values[0]
         threePointShot = values[1]
         midRangeShot = values[2]
-        freeThrow = min(math.ceil(random.randint(round((closeShot / 4) + (midRangeShot / 4)), MAX) * OSP) + (PG + SG + SF + PF + C), 99)
-        shotIQ = min(random.randint(max(closeShot, midRangeShot, threePointShot) - 5, max(closeShot, midRangeShot, threePointShot) + 10), 99)
-        offensiveConsistency = min(random.randint(shotIQ - 5, shotIQ + 10), 99)
+        offensiveConsistency = min(random.randint(shotIQ - 5, shotIQ + 5), 99)
     standingDunk = min(math.ceil(random.randint(MIN, MAX) * ISP) + (SF + PF + C), 99)
     drivingDunk = min(math.ceil(random.randint(MIN, MAX) * ISP) + (PG + SG + SF + PF + C), 99)
     postHook = min(math.ceil(random.randint(MIN, MAX) * ISP) + (SF + PF + C), 99)
     postFade = min(math.ceil(random.randint(MIN, MAX) * ISP) + (SG + SF + PF + C), 99)
     postControl = min(math.ceil(random.randint(MIN, MAX) * ISP) + (SG + SF + PF + C), 99)
     drawFoul = min(math.ceil(random.randint(MIN, MAX) * ISP) + (PG + SG + SF + PF + C), 99)
-    hands = min(math.ceil(random.randint(TEMPMIN + round(PF / 2) + round(C / 2), MAX + round(PF / 2) + round(C / 2)) * ISP) + (PG + SG + SF + PF + C), 99)
+    hands = min(math.ceil(random.randint(TEMPMIN + round(PF / 4) + round(C / 4), MAX + round(PF / 4) + round(C / 4)) * ISP) + (PG + SG + SF + PF + C), 99)
     if POS == "PF" or POS == "C":
         tempCloseShot = max(closeShot, layup)
         tempLayup = min(closeShot, layup)
@@ -180,6 +176,8 @@ def generatePlayer(ToP, POS, OSP, ISP, DP, AP, PP, RP):
         standingDunk = tempStandingDunk
         postHook = tempPostHook
         postFade = tempPostFade
+    freeThrow = min(math.ceil(random.randint(round((closeShot / 4) + (midRangeShot / 4)), MAX) * OSP) + (PG + SG + SF + PF + C), 99)
+    shotIQ = min(random.randint(max(closeShot, midRangeShot, threePointShot) - 5, max(closeShot, midRangeShot, threePointShot) + 5), 99)
     
     #Playmaking
     ballHandle = min(math.ceil(random.randint(MIN + round(PG / 4) + round(SG / 4), MAX  + round(PG / 4) + round(SG / 4)) * PP) + (PG + SG + SF + (round(PF / 1.5))), 99)
