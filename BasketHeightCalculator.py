@@ -2,13 +2,21 @@ import math
 
 def calcReach(height, ws):
     return math.floor(height + (ws / 2) - (0.2 * ws))
-
+    
+def calcJump(standingReach, basketHeight):
+    return (basketHeight - standingReach) + 15
+    
 def calcHeight(height, ws, basket, HEIGHT, WS):
     differenceInReach = calcReach(height, ws) - calcReach(HEIGHT, WS)
     equivalentBasketHeight = basket - differenceInReach
     return math.floor(equivalentBasketHeight)
-
+    
 def calcCMtoInch(heightCM):
+    inches = round(heightCM / 2.54)
+    newHeight = "{}\"".format(inches)
+    return newHeight
+
+def calcCMtoFeet(heightCM):
     feet = math.floor(heightCM / 30.48)
     inches = round((heightCM % 30.48) / 2.54)
     if inches == 12:
@@ -43,9 +51,11 @@ def main():
     otherReach = calcReach(otherHeight, otherWS)
     equivalentHeight = calcHeight(otherHeight, otherWS, BASKET, HEIGHT, WS)
 
-    print(f"\n(A) Height: {HEIGHT}cm ({calcCMtoInch(HEIGHT)}), wingspan: {WS}cm ({calcCMtoInch(WS)}) and standing reach: {REACH}cm ({calcCMtoInch(REACH)})")
-    print(f"(B) Height: {otherHeight}cm ({calcCMtoInch(otherHeight)}), wingspan: {otherWS}cm ({calcCMtoInch(otherWS)}) and standing reach: {otherReach}cm ({calcCMtoInch(otherReach)})")
-    print(f"A basket height of {equivalentHeight}cm ({calcCMtoInch(equivalentHeight)}) for person (A) is equivalent to a basket height of {BASKET}cm ({calcCMtoInch(BASKET)}) for person (B)")
+    print(f"\n(A) Height: {HEIGHT}cm ({calcCMtoFeet(HEIGHT)}), wingspan: {WS}cm ({calcCMtoFeet(WS)}) and standing reach: {REACH}cm ({calcCMtoFeet(REACH)})")
+    print(f"(B) Height: {otherHeight}cm ({calcCMtoFeet(otherHeight)}), wingspan: {otherWS}cm ({calcCMtoFeet(otherWS)}) and standing reach: {otherReach}cm ({calcCMtoFeet(otherReach)})")
+    print(f"A basket height of {equivalentHeight}cm ({calcCMtoFeet(equivalentHeight)}) for person (A) is equivalent to a basket height of {BASKET}cm ({calcCMtoFeet(BASKET)}) for person (B)")
+    print(f"\nFor person (A) it will require {calcJump(REACH, BASKET)}cm ({calcCMtoInch(calcJump(REACH, BASKET))})")
+    print(f"For person (B) it will require {calcJump(otherReach, BASKET)}cm ({calcCMtoInch(calcJump(otherReach, BASKET))})")
 
 if __name__ == "__main__":
     main()
